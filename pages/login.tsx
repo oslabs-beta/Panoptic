@@ -1,5 +1,5 @@
 // Login page serving file
-function LoginPage() {
+function LoginPage(): JSX.Element {
   return <div>
     <div>Login</div>
     <form action='/api/login' method='post' id='login'>

@@ -1,10 +1,19 @@
-const { mongoose } = require('mongoose');
+import mongoose, { Schema } from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+// interface Endpoints {
+// }
+
+interface User {
+  username: string
+  password: string
+  endpoints: any
+}
+
+const userSchema = new Schema<User>({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  endPoints: [{ type: String }]
-});
+  endpoints: { type: Object, default: {} }
+}, { minimize: false });
 
 // This or statement fixes mongoose error on NextJS->
 //"Mongoose Cannot Overwrite Model Once Compiled Error"
