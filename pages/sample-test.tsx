@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/api/hello`);
+  const res = await fetch(`http://localhost:3000/api/hello`);
   const data = await res.json();
 
   // Pass data to the page via props
@@ -24,7 +24,7 @@ const DataTest: NextPage = (props: any) => {
     const urlData = document.querySelector('#urlData');
     // console.log(urlData.value);
     // get data from lighthouse api
-    await fetch(`http://localhost:8080/api/lighthouse`, {
+    await fetch(`http://localhost:3000/api/lighthouse`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
