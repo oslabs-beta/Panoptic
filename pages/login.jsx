@@ -23,7 +23,7 @@ function LoginPage() {
 
             {!session ? (
                 <>
-                    <button onClick={() => signIn("github")}>
+                    <button onClick={() => signIn("github",{callbackUrl:'http://localhost:3000/sample-test'})}>
                         Sign in with Github
                     </button>
                 </>
