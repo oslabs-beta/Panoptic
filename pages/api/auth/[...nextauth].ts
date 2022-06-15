@@ -1,36 +1,32 @@
 // import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-
-import { NextApiRequest, NextApiResponse } from "next";
-import NextAuth from "next-auth"; //, { InitOptions }
-import Providers from "next-auth/providers";
+import GithubProvider from 'next-auth/providers/github';
+import { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth from 'next-auth'; //, { InitOptions }
+import Providers from 'next-auth/providers';
 // NEXTAUTH_URL='http://localhost:8080'
 
 const options: any = {
   // Configure one or more authentication providers
-  providers: [    
-        GithubProvider({
-          clientId: '26a39c74c6cc84f5a4ab',
-          clientSecret: '34bf7cb06ce444f2f964633472c538eddef13e26',
-          // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
-          // @ts-ignore
-          authorization: "https://github.com/login/oauth/authorize?scope=read:user+user:email+repo+read:repo_hook",
-          
-        //   : ["read:user%20repo:status%20read:repo_hook"],
-        }),
-  ]
+  providers: [
+    GithubProvider({
+      clientId: '26a39c74c6cc84f5a4ab',
+      clientSecret: '34bf7cb06ce444f2f964633472c538eddef13e26',
+      // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+      // @ts-ignore
+      authorization:
+        'https://github.com/login/oauth/authorize?scope=read:user+user:email+repo+read:repo_hook',
+
+      //   : ["read:user%20repo:status%20read:repo_hook"],
+    }),
+  ],
 };
 
 const login = (req: NextApiRequest, res: NextApiResponse) => {
-    console.log("hi")
-    return NextAuth(req, res, options);
-}
-    
+  console.log('hi');
+  return NextAuth(req, res, options);
+};
+
 export default login;
-
-
-
-
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -50,7 +46,6 @@ export default login;
 //     //     keyId: process.env.APPLE_KEY_ID,
 //     //   },
 //     // }),
-
 
 //     GithubProvider({
 //       clientId: process.env.GITHUB_ID,
@@ -133,4 +128,3 @@ export default login;
 //   // Enable debug messages in the console if you are having problems
 //   debug: false,
 // })
-
