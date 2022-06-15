@@ -94,9 +94,38 @@ export default async function lighthouseRequest(req: Request, res: Response) {
         title: runnerResult.lhr.audits['modern-image-formats'].title,
         description: runnerResult.lhr.audits['modern-image-formats'].description,
         score: runnerResult.lhr.audits['modern-image-formats'].score,
-        displayValue: Math.max(runnerResult.lhr.audits['modern-image-formats'].score / 100) + ' S',
-      }
-    },
+        displayValue: Math.max((runnerResult.lhr.audits['modern-image-formats'].numericValue / 1000)) + ' S',
+      },
+      'unused-javascript': {
+        title: runnerResult.lhr.audits['unused-javascript'].title,
+        description: runnerResult.lhr.audits['unused-javascript'].description,
+        score: runnerResult.lhr.audits['unused-javascript'].score,
+        displayValue: Math.max((runnerResult.lhr.audits['unused-javascript'].numericValue / 1000)) + ' S',
+      },
+      'minified-javascript': {
+        title: runnerResult.lhr.audits['unminified-javascript'].title,
+        description: runnerResult.lhr.audits['unminified-javascript'].description,
+        score: runnerResult.lhr.audits['unminified-javascript'].score,
+        displayValue: runnerResult.lhr.audits['unminified-javascript'].scoreDisplayMode,
+      },
+      'minified-css': {
+        title: runnerResult.lhr.audits['unminified-css'].title,
+        description: runnerResult.lhr.audits['unminified-css'].description,
+        score: runnerResult.lhr.audits['unminified-css'].score,
+        displayValue: runnerResult.lhr.audits['unminified-css'].scoreDisplayMode,
+      },
+      'preload-lcp-image': {
+        title: runnerResult.lhr.audits['preload-lcp-image'].title,
+        description: runnerResult.lhr.audits['preload-lcp-image'].description,
+        score: runnerResult.lhr.audits['preload-lcp-image'].score,
+        displayValue: runnerResult.lhr.audits['preload-lcp-image'].scoreDisplayMode,
+      },
+      'uses-long-cache-ttl': {
+        title: runnerResult.lhr.audits['uses-long-cache-ttl'].title,
+        description: runnerResult.lhr.audits['uses-long-cache-ttl'].description,
+        score: runnerResult.lhr.audits['uses-long-cache-ttl'].score,
+        displayValue: runnerResult.lhr.audits['uses-long-cache-ttl'].displayValue,
+      },
     accessibilityMetrics: {
 
     },
@@ -159,8 +188,38 @@ export default async function lighthouseRequest(req: Request, res: Response) {
     // }}
   },
   seoMetrics: {
+    'viewport': {
+          title: runnerResult.lhr.audits['viewport'].title,
+          description: runnerResult.lhr.audits['viewport'].description,
+          score: runnerResult.lhr.audits['viewport'].score,
+          displayValue: runnerResult.lhr.audits['viewport'].scoreDisplayMode,},
+    'document-title': {
+          title: runnerResult.lhr.audits['document-title'].title,
+          description: runnerResult.lhr.audits['document-title'].description,
+          score: runnerResult.lhr.audits['document-title'].score,
+          displayValue: runnerResult.lhr.audits['document-title'].scoreDisplayMode,},
+    'link-name': {
+          title: runnerResult.lhr.audits['link-name'].title,
+          description: runnerResult.lhr.audits['link-name'].description,
+          score: runnerResult.lhr.audits['link-name'].score,
+          displayValue: runnerResult.lhr.audits['link-name'].scoreDisplayMode,},
+    'http-status-code': {
+          title: runnerResult.lhr.audits['http-status-code'].title,
+          description: runnerResult.lhr.audits['http-status-code'].description,
+          score: runnerResult.lhr.audits['http-status-code'].score,
+          displayValue: runnerResult.lhr.audits['http-status-code'].scoreDisplayMode,},
+    'meta-description': {
+          title: runnerResult.lhr.audits['meta-description'].title,
+          description: runnerResult.lhr.audits['meta-description'].description,
+          score: runnerResult.lhr.audits['meta-description'].score,
+          displayValue: runnerResult.lhr.audits['meta-description'].scoreDisplayMode,},
+    'image-alt': {
+          title: runnerResult.lhr.audits['image-alt'].title,
+          description: runnerResult.lhr.audits['image-alt'].description,
+          score: runnerResult.lhr.audits['image-alt'].score,
+          displayValue: runnerResult.lhr.audits['image-alt'].scoreDisplayMode,},
 
-  }
+  }}
 };
   console.log(scores);
   const id = cookies.get('userId');
