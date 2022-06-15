@@ -126,102 +126,117 @@ export default async function lighthouseRequest(req: Request, res: Response) {
         score: runnerResult.lhr.audits['uses-long-cache-ttl'].score,
         displayValue: runnerResult.lhr.audits['uses-long-cache-ttl'].displayValue,
       },
-    accessibilityMetrics: {
-
     },
-    bestPracticesMetrics: { 'doctype': {
+    accessibilityMetrics: {
+      'button-name': {
+        title: runnerResult.lhr.audits['button-name'].title,
+        description: runnerResult.lhr.audits['button-name'].description,
+        score: runnerResult.lhr.audits['button-name'].score,
+        displayMode: runnerResult.lhr.audits['button-name'].scoreDisplayMode,
+      },
+      'bypass': {
+        title: runnerResult.lhr.audits['bypass'].title,
+        description: runnerResult.lhr.audits['bypass'].description,
+        score: runnerResult.lhr.audits['bypass'].score,
+        displayMode: runnerResult.lhr.audits['bypass'].scoreDisplayMode,
+      },
+      'link-name': {
+        title: runnerResult.lhr.audits['link-name'].title,
+        description: runnerResult.lhr.audits['link-name'].description,
+        score: runnerResult.lhr.audits['link-name'].score,
+        displayMode: runnerResult.lhr.audits['link-name'].scoreDisplayMode,
+      },
+    },
+    bestPracticesMetrics: { 
+      'doctype': {
       title: runnerResult.lhr.audits['doctype'].title,
       description: runnerResult.lhr.audits['doctype'].description,
       score: runnerResult.lhr.audits['doctype'].score,
-      displayValue: runnerResult.lhr.audits['doctype'].scoreDisplayMode,
-    },
+      displayMode: runnerResult.lhr.audits['doctype'].scoreDisplayMode,
+      },
     'is-on-https': {
         title: runnerResult.lhr.audits['is-on-https'].title,
         description: runnerResult.lhr.audits['is-on-https'].description,
         score: runnerResult.lhr.audits['is-on-https'].score,
-        displayValue: runnerResult.lhr.audits['is-on-https'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['is-on-https'].scoreDisplayMode,
+      },
     'deprecations': {
         title: runnerResult.lhr.audits['deprecations'].title,
         description: runnerResult.lhr.audits['deprecations'].description,
         score: runnerResult.lhr.audits['deprecations'].score,
-        displayValue: runnerResult.lhr.audits['deprecations'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['deprecations'].scoreDisplayMode,
+      },
     'geolocation-on-start': {
         title: runnerResult.lhr.audits['geolocation-on-start'].title,
         description: runnerResult.lhr.audits['geolocation-on-start'].description,
         score: runnerResult.lhr.audits['geolocation-on-start'].score,
-        displayValue: runnerResult.lhr.audits['geolocation-on-start'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['geolocation-on-start'].scoreDisplayMode,
+      },
     'notification-on-start': {
         title: runnerResult.lhr.audits['notification-on-start'].title,
         description: runnerResult.lhr.audits['notification-on-start'].description,
         score: runnerResult.lhr.audits['notification-on-start'].score,
-        displayValue: runnerResult.lhr.audits['notification-on-start'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['notification-on-start'].scoreDisplayMode,
+      },
     'image-size-responsive': {
         title: runnerResult.lhr.audits['image-size-responsive'].title,
         description: runnerResult.lhr.audits['image-size-responsive'].description,
         score: runnerResult.lhr.audits['image-size-responsive'].score,
-        displayValue: runnerResult.lhr.audits['image-size-responsive'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['image-size-responsive'].scoreDisplayMode,
+      },
     'image-aspect-ratio': {
         title: runnerResult.lhr.audits['image-aspect-ratio'].title,
         description: runnerResult.lhr.audits['image-aspect-ratio'].description,
         score: runnerResult.lhr.audits['image-aspect-ratio'].score,
-        displayValue: runnerResult.lhr.audits['image-aspect-ratio'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['image-aspect-ratio'].scoreDisplayMode,
+      },
     'password-inputs-can-be-pasted-into': {
         title: runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].title,
         description: runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].description,
         score: runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].score,
-        displayValue: runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].scoreDisplayMode,},
+        displayMode: runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].scoreDisplayMode,
+      },
     'errors-in-console': {
         title: runnerResult.lhr.audits['errors-in-console'].title,
         description: runnerResult.lhr.audits['errors-in-console'].description,
         score: runnerResult.lhr.audits['errors-in-console'].score,
-        displayValue: runnerResult.lhr.audits['errors-in-console'].scoreDisplayMode,},
-    // 'doctyope': {
-    //     title: runnerResult.lhr.audits[''].title,
-    //     description: runnerResult.lhr.audits[''].description,
-    //     score: runnerResult.lhr.audits[''].score,
-    //     displayValue: runnerResult.lhr.audits[''].scoreDisplayMode,},
-    // bestPracticesMetrics: { 'doctype': {
-    //   title: runnerResult.lhr.audits[''].title,
-    //   description: runnerResult.lhr.audits[''].description,
-    //   score: runnerResult.lhr.audits[''].score,
-    //   displayValue: runnerResult.lhr.audits[''].displayValue,
-    // }}
+        displayMode: runnerResult.lhr.audits['errors-in-console'].scoreDisplayMode,
+      },
   },
   seoMetrics: {
     'viewport': {
           title: runnerResult.lhr.audits['viewport'].title,
           description: runnerResult.lhr.audits['viewport'].description,
           score: runnerResult.lhr.audits['viewport'].score,
-          displayValue: runnerResult.lhr.audits['viewport'].scoreDisplayMode,},
+          displayMode: runnerResult.lhr.audits['viewport'].scoreDisplayMode,},
     'document-title': {
           title: runnerResult.lhr.audits['document-title'].title,
           description: runnerResult.lhr.audits['document-title'].description,
           score: runnerResult.lhr.audits['document-title'].score,
-          displayValue: runnerResult.lhr.audits['document-title'].scoreDisplayMode,},
+          displayMode: runnerResult.lhr.audits['document-title'].scoreDisplayMode,},
     'link-name': {
           title: runnerResult.lhr.audits['link-name'].title,
           description: runnerResult.lhr.audits['link-name'].description,
           score: runnerResult.lhr.audits['link-name'].score,
-          displayValue: runnerResult.lhr.audits['link-name'].scoreDisplayMode,},
+          displayMode: runnerResult.lhr.audits['link-name'].scoreDisplayMode,},
     'http-status-code': {
           title: runnerResult.lhr.audits['http-status-code'].title,
           description: runnerResult.lhr.audits['http-status-code'].description,
           score: runnerResult.lhr.audits['http-status-code'].score,
-          displayValue: runnerResult.lhr.audits['http-status-code'].scoreDisplayMode,},
+          displayMode: runnerResult.lhr.audits['http-status-code'].scoreDisplayMode,},
     'meta-description': {
           title: runnerResult.lhr.audits['meta-description'].title,
           description: runnerResult.lhr.audits['meta-description'].description,
           score: runnerResult.lhr.audits['meta-description'].score,
-          displayValue: runnerResult.lhr.audits['meta-description'].scoreDisplayMode,},
+          displayMode: runnerResult.lhr.audits['meta-description'].scoreDisplayMode,},
     'image-alt': {
           title: runnerResult.lhr.audits['image-alt'].title,
           description: runnerResult.lhr.audits['image-alt'].description,
           score: runnerResult.lhr.audits['image-alt'].score,
-          displayValue: runnerResult.lhr.audits['image-alt'].scoreDisplayMode,},
-
-  }}
+          displayMode: runnerResult.lhr.audits['image-alt'].scoreDisplayMode,},
+    }
 };
-  console.log(scores);
+
   const id = cookies.get('userId');
   let currentUser;
   if (id) {
