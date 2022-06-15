@@ -23,6 +23,7 @@ const options: any = {
 
 const login = (req: NextApiRequest, res: NextApiResponse) => {
     console.log("hi")
+    console.log(NextAuth(req, res, options));
     return NextAuth(req, res, options);
 }
     
