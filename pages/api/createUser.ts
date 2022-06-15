@@ -26,7 +26,7 @@ const createUser = async (req: Request, res: Response) => {
       mongoose.connection.close()
       console.log('Closed Mongo connection without error');
     });
-  }
-}
+  };
+};
 
 export default createUser;
