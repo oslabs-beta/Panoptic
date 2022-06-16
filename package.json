@@ -14,6 +14,10 @@
     "@types/passport-github": "^1.1.7",
     "axios": "^0.27.2",
     "chrome-launcher": "^0.15.1",
+<<<<<<< HEAD
+=======
+    "bcrypt": "^5.0.1",
+>>>>>>> dev
     "cookies": "^0.8.0",
     "dotenv": "^16.0.1",
     "express-session": "^1.17.3",

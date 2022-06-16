@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Cookies = require('cookies');
+const bcrypt = require('bcrypt');
+
 import express, {
   Request,
   Response,
@@ -24,20 +26,61 @@ const handler = async (req: Request, res: Response) => {
     // Check if user exists and then compare pass if so
     const foundUser = await User.findOne({ username: username });
     if (foundUser) {
-      // If not null User exist
-      if (foundUser.password === password) {
-        // Set Login Cookie
-        cookies.set('userId', foundUser._id);
-        // res.status(201).send('Logged in and new cookie set')
-        return res.status(201).redirect('/sample-test');
-      } else {
-        res.status(401).send('Password wrong');
-      }
+      console.log('Login username found');
+      //  User exist
+      // Checking password with hash password on server
+      bcrypt.compare(
+        password,
+        foundUser.password,
+        function (err: any, result: any) {
+          if (err) {
+            console.log('Error comparing hashed password on login');
+            return res
+              .status(401)
+              .send('Error comparing hashed password on login');
+          } else {
+            if (result) {
+              // Login pass correct
+              // Set Login Cookie
+              cookies.set('userId', foundUser._id);
+              // return res.status(200).send('Logged in and new cookie set');
+              return res.status(201).redirect('/sample-test');
+            } else {
+              // Login pass wrong
+              return res.status(401).send('Password wrong');
+            }
+          }
+        }
+      ); // End hash password compare
     } else {
-      res.status(404).send("Username doesn't exist");
+      // create user as they don't exist
+      console.log('Create user called');
+      // Assign username / pass to varibles so we can hash pass
+      const { username, password } = req.body;
+      // Hashing function with bcrypt
+      bcrypt.hash(password, 10, async function (err: any, hash: any) {
+        if (err) {
+          // Error when hashing password
+          console.log('Error hashing password');
+          return res.status(401).send('Error hashing password');
+        } else {
+          // Store hash in your password DB.
+          await mongoose.connect(
+            'mongodb+srv://admin:admin@cluster0.tuf6p.mongodb.net/Panoptic?retryWrites=true&w=majority'
+          );
+          const newUser = await new User({
+            username: username,
+            password: hash,
+          });
+          await newUser.save();
+          mongoose.connection.close();
+          console.log('Closed Mongo connection');
+          // Set Login Cookie
+          cookies.set('username', username);
+          return res.status(201).send(`Created user ` + newUser.username);
+        }
+      });
     }
-    mongoose.connection.close();
-    console.log('Closed Mongo connection');
   }
 };
 
