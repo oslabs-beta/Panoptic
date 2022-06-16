@@ -37,6 +37,7 @@ const DataTest: NextPage = (props: any) => {
     urlData.value = '';
   };
 
+
   let scores;
   if (!lighthouseData.performance) {
     scores = <h1>Please Wait for Scores</h1>;

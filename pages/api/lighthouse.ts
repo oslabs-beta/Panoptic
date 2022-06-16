@@ -11,7 +11,13 @@ export default async function lighthouseRequest(req: Request, res: Response) {
   await mongoose.connect('mongodb+srv://admin:admin@cluster0.tuf6p.mongodb.net/Panoptic?retryWrites=true&w=majority');
   const cookies = new Cookies(req, res);
   // creates headless chrome browser to test metrics
-  const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
+  const chrome = await chromeLauncher.launch({ chromeFlags: [
+    '--no-first-run',
+    '--headless',
+    '--disable-gpu',
+    '--no-sandbox'
+  ]
+});
   // options that will be passed into lighthouse
   const options = {
     logLevel: 'info',
