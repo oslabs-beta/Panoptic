@@ -1,13 +1,16 @@
-import { signIn, signOut, useSession } from 'next-auth/react';
-import styles from '../styles/Home.module.css';
+import { signIn, signOut, useSession, getSession } from 'next-auth/react';
+// import styles from '../styles/Home.module.css';
+import styles from '../styles/Login.module.css';
 
 // Login page serving file
 function LoginPage() {
   const { data: session, status } = useSession();
-  console.log(status);
+//   const sesh = getSession();
+//   console.log('SESH: ', sesh);
+//   console.log(status);
   return (
-    <div className={styles.container}>
-      <div>Login</div>
+    <div className={`${styles.yeahBoi} ${styles.background}`}>
+      <div className={styles.yeah2}>Login</div>
       <form action='/api/login' method='post' id='login'>
         <input id='username' name='username' placeholder='username'></input>
         <input
@@ -26,13 +29,14 @@ function LoginPage() {
 
       <div>
         <h1>Github OAuth Demo</h1>
-
-        {!session ? (
+        <h1>Test</h1>
+        <a href="http://localhost:3000/api/githublogin">Test Me</a>
+        {/* {!session ? (
           <>
             <button
               onClick={() =>
                 signIn('github', {
-                  callbackUrl: 'http://localhost:3000/sample-test',
+                //   callbackUrl: 'http://localhost:3000/sample-test',
                 })
               }
             >
@@ -53,7 +57,7 @@ function LoginPage() {
             />
             <button onClick={signOut}>Logout</button> <br />
           </>
-        )}
+        )} */}
       </div>
     </div>
   );

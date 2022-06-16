@@ -10,20 +10,34 @@
   },
   "dependencies": {
     "@types/next-auth": "^3.15.0",
+    "@types/passport": "^1.0.9",
+    "@types/passport-github": "^1.1.7",
     "axios": "^0.27.2",
     "chrome-launcher": "^0.15.1",
+<<<<<<< HEAD
+=======
     "bcrypt": "^5.0.1",
+>>>>>>> dev
     "cookies": "^0.8.0",
+    "dotenv": "^16.0.1",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.7.0",
     "mongoose": "^6.3.8",
     "next": "12.1.6",
     "next-auth": "^4.5.0",
+    "next-connect": "^0.12.2",
+    "next-session": "^4.0.4",
+    "passport": "^0.6.0",
+    "passport-github": "^1.1.0",
+    "passport-github2": "^0.1.12",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "17.0.42",
+    "@types/passport-github2": "^1.2.5",
     "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
     "concurrently": "^7.2.1",

@@ -1,11 +1,12 @@
 // import Head from 'next/head';
-import styles from '../../styles/Home.module.css';
+import stylesHome from '../../styles/Home.module.css';
+import stylesNav from '../../styles/Nav.module.css';
 
 import Link from 'next/link';
 const Header = (): JSX.Element => {
   return (
-    <header className={styles.container}>
-      <Link className='titleThing' href='/'>
+    <header className={`${stylesHome.container} ${stylesNav.yeah3}`}>
+      <Link className='' href='/'>
         Panoptic
       </Link>
       <hr />

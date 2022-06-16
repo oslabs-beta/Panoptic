@@ -9,11 +9,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <React.Fragment>
-        {/* <Head></Head> */}
         <Header />
-
-        <Component {...pageProps} />
       </React.Fragment>
+      
+        <Component {...pageProps} />
     </SessionProvider>
   );
 }
