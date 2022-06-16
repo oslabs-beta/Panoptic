@@ -20,7 +20,7 @@ interface Props {
 const Home: NextPage<Props> = (props): JSX.Element => {
   return (
     <div className={styles.container}>
-      <Link href='/sample-test'>
+      <Link href='/login'>
         <button>Enter</button>
       </Link>
     </div>
