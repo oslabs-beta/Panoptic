@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 export async function getServerSideProps() {
   // Fetch data from external API
@@ -21,7 +21,7 @@ const DataTest: NextPage = (props: any) => {
   });
 
   const helperFunc = async () => {
-    const urlData = document.querySelector('#urlData');
+    const urlData: any = document.querySelector('#urlData');
     // console.log(urlData.value);
     // get data from lighthouse api
     await fetch(`http://localhost:3000/api/lighthouse`, {

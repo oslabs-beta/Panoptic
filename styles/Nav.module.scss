@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,800;1,900&display=swap');
+
+// Color inspiration
+// https://www.pinterest.com/pin/ice-blue-color-palette-winter-colour-inspiration-color-scheme--574842339932570411/
+
+$primary-font: 'Montserrat', sans-serif;
+$round-dem-edges: 10px;
+$primary-green: HSL(114, 96.1%, 59.6%);
+$primary-black: hsl(225, 6%, 13%);
+$blue-stone: #266EF6;
+$dark-blue: #3a5985;
+$primary-blue: #608fca;
+$secondary-blue: #89afe0;
+$light-blue: #b2caee;
+$gray: #d5deef;
+$lavender: #f0f4fb;
+
+
+.yeahBoi {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 5%;
+  align-items: center;
+  font-size: 2rem;
+  background-color: $lavender;
+  border-bottom: solid rgb(198, 198, 198) 1px;
+  box-shadow: 0px 1px 10px 2px rgb(182, 182, 182);
+}
+
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  color: $blue-stone;
+}
+
+// .buttonsContainer {
+
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 200px;
+// }
+
+.loginBtn {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+}
+
+.loginBtn:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}
+
+// .signupBtn {
+//   font-family: $primary-font;
+//   padding: 0.5em 1.5em;
+//   border: 2px solid HSL(114, 96.1%, 59.6%);
+//   border-radius: $round-dem-edges;
+//   box-shadow: 0px 0px 10px 2px HSL(114, 96.1%, 59.6%);
+//   font-weight: 700;
+//   background-color: #010a01;
+//   color: HSL(114, 96.1%, 59.6%);
+// }
