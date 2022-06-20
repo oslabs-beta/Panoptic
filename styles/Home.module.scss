@@ -8,6 +8,34 @@
   padding: 10% 9%;
 }
 
+.metricsContainer {
+  display: flex;
+  margin-top: 5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#endpointBtn {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  white-space: nowrap;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+#endpointBtn:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
