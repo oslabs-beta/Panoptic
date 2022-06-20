@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@types/next-auth": "^3.15.0",
     "@types/passport": "^1.0.9",
     "@types/passport-github": "^1.1.7",
@@ -31,6 +34,7 @@
     "passport-github2": "^0.1.12",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-icons": "^4.4.0",
     "sass": "^1.52.3"
   },
   "devDependencies": {

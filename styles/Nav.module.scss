@@ -52,13 +52,39 @@ $lavender: #f0f4fb;
   font-weight: 700;
   background-color: rgba(0, 0, 0, 0);
   color: $blue-stone;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.readDocsNav {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: $blue-stone;
+  color: $lavender;
+  margin-right: 1vw;
+  cursor: pointer;
 }
 
 .loginBtn:hover {
   color: $lavender;
   background-color: $blue-stone;
   box-shadow: 0px 0px 10px 1px $primary-blue;
-  transition: 0.3s ease-in-out;
+  transition: 0.3s ease;
+}
+
+.readDocsNav:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease;
+}
+
+#navBtns {
+  display: flex;
+  justify-content: space-between;
 }
 
 // .signupBtn {

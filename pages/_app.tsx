@@ -8,10 +8,9 @@ import { SessionProvider } from 'next-auth/react';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
-      <React.Fragment>
+      {/* <React.Fragment>
         <Header />
-      </React.Fragment>
-      
+      </React.Fragment> */}
         <Component {...pageProps} />
     </SessionProvider>
   );

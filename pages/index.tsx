@@ -1,49 +1,40 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
+import Hero from './components/Hero';
+import Nav from './components/Nav';
+import EmployeeID from './components/employeeID';
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(`http://localhost:3000/api/hello`);
+//   const data = await res.json();
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/hello`);
-  const data = await res.json();
+//   return { props: { name: data.name } };
+// }
 
-  return { props: { name: data.name } };
-}
-
-// Props interface with name set to string
-interface Props {
-  name: string;
-}
+// // Props interface with name set to string
+// interface Props {
+//   name: string;
+// }
 
 //Creates Home Landing Page Component
 //Using Link on the Button to Route to Sample
-const Home: NextPage<Props> = (props): JSX.Element => {
+const Home: NextPage = (): JSX.Element => {
   return (
-    <div className={styles.home}>
-      <div className={styles.hero}>
-
-        <div className={styles.left}>
-          <h1 className={styles.leftTitle}>Track your performance metrics per commit</h1>
-          <p className={styles.subText}>Refer to the docs for more information</p>
-
-          <div className={styles.heroBtnContainer}>
-            <button className={styles.readDocs}>Read Docs</button>
-            <button className={styles.install}>Install</button>
+    <div id="homePage">
+      <Nav />
+      <div className={styles.home}>
+        <Hero />
+      
+        <div className={styles.lowcontainer}>
+          <h3 className={styles.mdeak}>Meet Our Team</h3>
+          <div className={styles.staffcontainer}>
+            <EmployeeID employeeID={styles.marcpic} employee="Marc Doran" employeegit="https://github.com/CodedMarc" employeelinkedin="https://www.linkedin.com/in/marc-doran-b5ab3b21b/"/>
+            <EmployeeID employeeID={styles.davispic} employee="Davis Zung" employeegit="https://github.com/daviszung" employeelinkedin="https://www.linkedin.com/in/davis-zung/"/>
+            <EmployeeID employeeID={styles.elliotpic} employee="Elliot Adinolfi" employeegit="https://github.com/ElliotAdinolfi" employeelinkedin="https://www.linkedin.com/in/elliot-adinolfi/"/>
+            <EmployeeID employeeID={styles.austinpic} employee="Austin Johnson" employeegit="https://hehe.com" employeelinkedin="https://hoho.com"/>
+            <EmployeeID employeeID={styles.karlpic} employee="Karl Richards" employeegit="https://hehe.com" employeelinkedin="https://hoho.com"/>
           </div>
-
-        </div>
-        <div className={styles.right}>
-          
-        </div>
-      </div>
-      <div>
-        <h3 className={styles.mdeak}>M.D.E.A.K</h3>
-        <div className={styles.staffcontainer}>
-          <div>Marc</div>
-          <div>Davis</div>
-          <div>Elliot</div>
-          <div>Austin</div>
-          <div>Karl</div>
         </div>
       </div>
     </div>

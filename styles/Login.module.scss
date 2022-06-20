@@ -1,0 +1,100 @@
+@import './Nav.module.scss';
+
+.body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $lavender;
+  background-image: linear-gradient(315deg, $blue-stone 0%, $lavender 74%);
+
+}
+
+.username {
+  margin: .6rem;
+  padding: .6em 0.5em;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 2px solid $primary-blue;
+  width: 100%;
+}
+
+.password {
+  margin: .6rem;
+  padding: .6em 0.5em;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 2px solid $primary-blue;
+  width: 100%;
+}
+
+.username:focus,
+.password:focus {
+  outline: none;
+}
+
+.username::placeholder,
+.password::placeholder {
+  color: black;
+  font-size: 1rem;
+}
+
+.background {
+  background-color: black;
+}
+
+.loginForm {
+  width: 25%;
+  height: 50%;
+  padding: 2% 3%;
+  border: 0px solid $blue-stone;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.oauthBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: .8rem;
+  padding: .8em 1em;
+  border: 3px solid whitesmoke;
+  border-radius: 10px;
+  color: $lavender;
+  width: 100%;
+  background: $primary-black;
+}
+
+
+
+.loginButton {
+  font-family: $primary-font;
+  padding: 0.7em 1.5em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  font-size: large;
+  width: 100%;
+  margin-top: 20px;
+  background-color: transparent;
+  color: $blue-stone;
+  white-space: nowrap;
+}
+
+.loginButton:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 2px $primary-blue;
+  transition: 0.3s ease-in;
+}
+
+.githubLogin {
+  margin-right: 5px;
+  font-size: 1.4rem;
+
+}
