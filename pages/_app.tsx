@@ -2,16 +2,15 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import Header from './components/Header';
+import Header from './components/Nav';
 import { SessionProvider } from 'next-auth/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
-      <React.Fragment>
+      {/* <React.Fragment>
         <Header />
-      </React.Fragment>
-      
+      </React.Fragment> */}
         <Component {...pageProps} />
     </SessionProvider>
   );
