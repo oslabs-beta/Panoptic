@@ -4,6 +4,7 @@ import Head from 'next/head';
 import React from 'react';
 import Header from './components/Nav';
 import { SessionProvider } from 'next-auth/react';
+import './lineChart/lineChart.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
