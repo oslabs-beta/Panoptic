@@ -116,18 +116,28 @@ const DataTest: NextPage = (props: any) => {
   return (
     <div>
       <Nav />
-      <div className={styles.metricsContainer}>
-        <h1>Enter Url Below</h1>
-        <input
-          id='urlData'
-          type='text'
-          required
-          placeholder='ex: https://YouTube.com/'
-        />
-        <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
-          Click Me!
-        </button>
-        {scores}
+      <div className={styles.threeParts}>
+        <div className={styles.containerLeft}>
+          <div className={styles.metricsContainer}>
+            <h1 className={styles.enterUrl}>Enter url below</h1>
+            <input
+              id='urlData'
+              type='text'
+              required
+              placeholder='ex: https://YouTube.com/'
+              className={styles.endpointInput}
+            />
+            <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
+              Run Tests
+            </button>
+            {scores}
+          </div>
+          <div>
+            <h1>Put dropdown here</h1>
+          </div>
+        </div>
+        <div className={styles.containerMid}>mid</div>
+        <div className={styles.containerRight}>right</div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ const createUser = async (req: Request, res: Response) => {
   // Check method type ie post/get etc
   if (req.method === 'POST') {
     await mongoose.connect(process.env.MONGO_URI)
-    console.log('~~~Connected to mongoDB~~~');
+    console.log('~~~Connected to ඞDB~~~');
 
     console.log('Called createUser POST');
     // Passing in username / pass into Mongoose Schema from req.body
