@@ -1,0 +1,9 @@
+.container {
+  padding: 0 2rem;
+}
+
+.body {
+  background: #343e59;
+  color: #777;
+  font-family: Montserrat, Arial, sans-serif;
+}

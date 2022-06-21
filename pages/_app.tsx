@@ -4,6 +4,7 @@ import Head from 'next/head';
 import React from 'react';
 import Header from './components/Header';
 import { SessionProvider } from 'next-auth/react';
+import './lineChart';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,8 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <React.Fragment>
         <Header />
       </React.Fragment>
-      
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </SessionProvider>
   );
 }
