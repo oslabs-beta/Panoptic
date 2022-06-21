@@ -254,3 +254,68 @@
     gap: 50px;
   }
 }
+
+
+// APP
+
+.body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+// containers
+
+.threeParts {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  justify-content: space-evenly;
+}
+
+.containerLeft {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 18vw;
+}
+
+.containerMid {
+  display: flex;
+  height: 100%;
+  width: 60vw;
+  background-color: rgb(81, 21, 21);
+}
+
+.containerRight {
+  display: flex;
+  height: 100%;
+  width: 22vw;
+  background-color: rgb(27, 3, 111);
+}
+
+// parts
+
+.enterUrl {
+  font-family: $primary-font;
+  color: $primary-black;
+}
+
+.endpointInput {
+  color: $primary-black;
+  font-family: $primary-font;
+  height: 2.5rem;
+  width: 16%;
+  border: 0;
+  font-weight: 500;
+  outline: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  border-bottom: 2px solid $primary-black;
+}
+
+.endpointInput:focus {
+  border-bottom: 2px solid $blue-stone;
+  font-weight: 700;
+}
