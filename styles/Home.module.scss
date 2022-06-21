@@ -1,0 +1,256 @@
+@import './Nav.module.scss';
+
+
+.home {
+  background-color: $lavender;
+  width: 100%;
+  height: 100%;
+  padding: 10% 9%;
+}
+
+.metricsContainer {
+  display: flex;
+  margin-top: 5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#endpointBtn {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  white-space: nowrap;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+#endpointBtn:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50vh;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.leftTitle {
+  color: $blue-stone;
+  font-size: 3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  margin: 0;
+}
+
+.subText {
+  color: $secondary-blue;
+}
+
+.right {
+  background: url('https://www.vantagenext.com/_next/image?url=%2Fsplash%2Fdashboard-view.png&w=1920&q=75');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+}
+
+.heroBtnContainer {
+  margin-top: 10px;
+  display: flex;
+}
+
+.readDocs {
+  font-family: $primary-font;
+  padding: 1em 1.5rem;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  margin-right: 1vw;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.readDocs:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}
+
+.install {
+  margin-left: 10px;
+  font-family: $primary-font;
+  padding: 1em 1.5rem;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: $blue-stone;
+  color: $lavender;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.install:hover {
+
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}
+
+.lowcontainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
+}
+
+.mdeak {
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  color: $blue-stone;
+  font-weight: 700;
+}
+
+.staffcontainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  text-align: center;
+  flex-direction: row;
+  color: $dark-blue;
+  font-size: large;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+#marcpic {
+  margin: auto;
+  background: url('../assets/marc.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+}
+
+#davispic {
+  margin: auto;
+  background: url('../assets/square_picture_of_me.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+}
+
+#elliotpic {
+  margin: auto;
+  background: url('../assets/elliot.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+}
+
+#austinpic {
+  margin: auto;
+  background: url('https://pbs.twimg.com/profile_images/1426662283456000008/CjBDzaeX_400x400.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+}
+
+#karlpic {
+  margin: auto;
+  background: url('https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1440,w_2560,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1531451526/180712-Weill--The-Creator-of-Pepe-hero_uionjj');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+}
+
+.linkContainer {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.githubIcon {
+  margin-right: 10px;
+  color: black;
+}
+
+.linkedinIcon {
+  color: #0A66C2;
+}
+
+@media screen and (max-width: 800px) {
+
+  // Turn Hero Into Flexbox for mobile
+  .hero {
+    padding-top: 20%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .left {
+      align-items: center;
+    }
+
+    .right {
+      margin-top: 10%;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-position: top;
+      background-repeat: no-repeat;
+    }
+  }
+
+  // Meet Team
+  .lowcontainer {
+    margin-top: -50px;
+  }
+
+  .staffcontainer {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
+    gap: 50px;
+  }
+}

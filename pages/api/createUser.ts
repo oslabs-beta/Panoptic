@@ -5,7 +5,7 @@ import express, { Request, Response, NextFunction, ErrorRequestHandler } from 'e
 const createUser = async (req: Request, res: Response) => {
   // Check method type ie post/get etc
   if (req.method === 'POST') {
-    await mongoose.connect('mongodb+srv://admin:admin@cluster0.tuf6p.mongodb.net/Panoptic?retryWrites=true&w=majority')
+    await mongoose.connect(process.env.MONGO_URI)
     console.log('~~~Connected to mongoDB~~~');
 
     console.log('Called createUser POST');

@@ -7,5 +7,5 @@ export default nextConnect()
   .get(
     // passport.authenticate("google", {
     //   scope: ["profile", "email"],})
-    passport.authenticate('github', { scope: ['read:user', 'read:repo'] })
+    passport.authenticate('github', { scope: ['read:user', 'read:repo', 'workflow', 'repo:read'] })
   );
