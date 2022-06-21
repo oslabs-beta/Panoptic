@@ -36,16 +36,12 @@
     "passport-github": "^1.1.0",
     "passport-github2": "^0.1.12",
     "react": "18.1.0",
-<<<<<<< HEAD
     "react-apexcharts": "^1.4.0",
     "react-chartjs-2": "^4.2.0",
     "react-dom": "18.1.0",
-    "uuid": "^8.3.2"
-=======
-    "react-dom": "18.1.0",
+    "uuid": "^8.3.2",
     "react-icons": "^4.4.0",
     "sass": "^1.52.3"
->>>>>>> dev
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",

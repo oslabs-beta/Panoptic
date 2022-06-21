@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../styles/chartie.scss';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -12,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/* <React.Fragment>
         <Header />
       </React.Fragment> */}
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </SessionProvider>
   );
 }
