@@ -11,16 +11,21 @@ function ChartApp(): JSX.Element {
     options: {
       chart: {
         id: 'apexchart-example',
+        background: 'red',
+        height: 100,
+        width: 100,
+        type: 'line',
       },
       xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 'ABCD'],
       },
-      theme: { mode: 'dark' },
+      // theme: { mode: 'dark' },
+      color: ['#6ab04c', '#2980b9'],
     },
     series: [
       {
         name: 'series-1',
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+        data: [300, 40, 35, 50, 49, 60, 70, 91, 125],
         color: '#FFD300',
       },
     ],
@@ -51,7 +56,7 @@ function ChartApp(): JSX.Element {
       {
         name: 'Performance',
         data: [1, 15, 26, 20, 33, 27],
-        color: '#44D62C',
+        color: '#39FF14',
       },
       {
         name: 'Best Practices',
@@ -216,25 +221,25 @@ function ChartApp(): JSX.Element {
   console.log(data);
   return (
     <div className={`${stylesApex.container} ${stylesApex.body}`}>
-      <div className={`${stylesApex.container} `}>
+      <div className={`${stylesApex.chartContainer} `}>
         {
           <Chart
             options={data.options}
             series={data.series}
-            type='line'
-            width={500}
-            height={320}
+            // type='line'
+            // width={500}
+            // height={320}
           />
         }
       </div>
-      <div className={`${stylesApex.container} `}>
+      <div className={`${stylesApex.chartContainer} `}>
         {
           <Chart
             options={optionsLine}
             series={optionsLine.series}
             type='line'
-            width={500}
-            height={320}
+            width={800}
+            height={400}
           />
         }
       </div>
@@ -244,8 +249,8 @@ function ChartApp(): JSX.Element {
             options={radialBarOptions}
             series={radialBarOptions.series}
             type='radialBar'
-            width={500}
-            height={320}
+            width={250}
+            height={300}
           />
         }
       </div>

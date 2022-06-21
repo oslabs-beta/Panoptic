@@ -2,16 +2,19 @@
   padding: 2rem;
 }
 
-.body {
+.bodyCH {
   background: #15232d;
   color: rgb(255, 255, 255);
   font-family: Montserrat, Arial, sans-serif;
+  width: 100wv;
+  height: 100vh;
 }
 
 .chartContainer {
   padding: 2rem;
   border-radius: 25px;
-  background: #73ad21;
-  width: '50%';
-  height: '50%';
+  /* background: #73ad21; */
+  width: 200px;
+  height: 200px;
+  color: white;
 }
