@@ -23,6 +23,7 @@
     "cookies": "^0.8.0",
     "dotenv": "^16.0.1",
     "express-session": "^1.17.3",
+    "faker": "^5.5.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.7.0",
     "mongoose": "^6.3.8",
@@ -35,13 +36,24 @@
     "passport-github": "^1.1.0",
     "passport-github2": "^0.1.12",
     "react": "18.1.0",
+<<<<<<< HEAD
+    "react-apexcharts": "^1.4.0",
+    "react-chartjs-2": "^4.2.0",
+=======
+<<<<<<< HEAD
     "react-apexcharts": "^1.4.0",
     "react-chartjs-2": "^4.2.0",
     "react-dom": "18.1.0",
+    "uuid": "^8.3.2"
+=======
+>>>>>>> dev
+    "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
     "sass": "^1.52.3"
+>>>>>>> dev
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@types/express": "^4.17.13",
     "@types/node": "17.0.42",
     "@types/passport-github2": "^1.2.5",
