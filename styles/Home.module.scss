@@ -216,6 +216,7 @@
   color: #0A66C2;
 }
 
+
 @media screen and (max-width: 800px) {
 
   // Turn Hero Into Flexbox for mobile
@@ -272,6 +273,8 @@
   height: 100vh;
   width: 100vw;
   justify-content: space-evenly;
+  padding: 2rem;
+  margin-top: 4em;
 }
 
 .containerLeft {
@@ -285,19 +288,24 @@
   display: flex;
   height: 100%;
   width: 60vw;
-  background-color: rgb(81, 21, 21);
+  // background-color: rgb(81, 21, 21);
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 .containerRight {
   display: flex;
   height: 100%;
   width: 22vw;
-  background-color: rgb(27, 3, 111);
+  justify-content: center;
+  // background-color: rgb(27, 3, 111);
 }
 
 // parts
 
 .enterUrl {
+  margin: 10% 0 10% 0;
   font-family: $primary-font;
   color: $primary-black;
 }
@@ -306,7 +314,8 @@
   color: $primary-black;
   font-family: $primary-font;
   height: 2.5rem;
-  width: 16%;
+  min-width: 15vw;
+  width: 65%;
   border: 0;
   font-weight: 500;
   outline: 0;
@@ -318,4 +327,30 @@
 .endpointInput:focus {
   border-bottom: 2px solid $blue-stone;
   font-weight: 700;
+}
+
+.dropdownMenu {
+  display: flex;
+  justify-content: center;
+}
+
+.controlPanel {
+  display: flex;
+  justify-content: center;
+  height: 20vh;
+  width: 60vw;
+}
+
+.lineChart {
+  display: flex;
+  justify-content: center;
+  // background-color: rgb(48, 0, 0);
+  height: 80vh;
+  width: 60vw;
+}
+
+.detailsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

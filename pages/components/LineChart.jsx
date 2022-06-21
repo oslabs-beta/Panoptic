@@ -36,7 +36,7 @@ export const options = {
     },
     title: {
       // display: true,//
-      text: 'M.D.E.A.K Line Chart',
+      text: 'Penoptic Line Chart',
     },
   },
 };
@@ -44,7 +44,7 @@ export const options = {
 // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 
-const labels = [1, 2, 3, 2, 5, 6, 1];
+const labels = ['', '', '', "Commits", '', '', "<3"];
 const arrPerformance = [1, 2, 3, 2, 5, 6, 1];
 const arrAccessibility = [1, 2, 3, 2, 5, 6, 1];
 const arrBestPractice = [1, 2, 3, 2, 5, 6, 1];
@@ -84,7 +84,7 @@ let callOnce = false;
 //     },
 //   ],
 // };
-const austinChart = () => {
+const mainLineChart = () => {
   let arrOfEndPoints;
   const [endPoints, setEndPoints] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -121,19 +121,30 @@ const austinChart = () => {
         data: (accessibilityData ? accessibilityData : arrAccessibility),
         borderColor: 'rgb(4, 217, 255)',
         backgroundColor: 'rgb(4, 217, 255)',
-
+        pointHoverBackgroundColor: 'black', // Hover DOT background color
+        pointHoverBorderWidth: 25, // Hover DOT border size 
+        pointHoverRadius: 25, // Hover DOT border size 
+        fill: true,
       },
       {
         label: 'Best Practices',
         data: (bestPracticeData ? bestPracticeData : arrBestPractice),
         borderColor: 'rgb(12, 255, 12)',
         backgroundColor: 'rgb(12, 255, 12)',
+        pointHoverBackgroundColor: 'black', // Hover DOT background color
+        pointHoverBorderWidth: 25, // Hover DOT border size 
+        pointHoverRadius: 25, // Hover DOT border size 
+        fill: true,
       },
       {
         label: 'SEO',
         data: (seoData ? seoData : arrSEO),
         borderColor: 'rgb(255, 153, 51)',
         backgroundColor: 'rgb(255, 153, 51)',
+        pointHoverBackgroundColor: 'black', // Hover DOT background color
+        pointHoverBorderWidth: 25, // Hover DOT border size 
+        pointHoverRadius: 25, // Hover DOT border size 
+        fill: true,
       },
     ],
   };
@@ -144,15 +155,9 @@ const austinChart = () => {
       performanceArray.push(endPoints[key][date].metrics.performance);
     }
   }
-
-  // setPerformanceData([...performanceArray]);
-
-
-
   useEffect(() => {
     const userObj = getUserData('sampledata'); // Get user data from user/[user] API
   }, []);
-
 
   const getUserData = async (user) => {// Grab api DATA of user
     setLoading(true)
@@ -176,9 +181,7 @@ const austinChart = () => {
           return res;
         }));
     }
-
   }
-
 
   if (isLoading) return <p>Loading...</p>
   if (!endPoints) return <p>No profile data</p>
@@ -209,7 +212,7 @@ const austinChart = () => {
     console.log(performanceData);
   }
 
-  return (<>
+  return (<div className='lineChartMain'>
     <div>Hello Please choose an end point from your database</div>
     <select onChange={loadEndPointDataToChart} className="userDropdown">
       <option value="">---Please choose an end point---</option>
@@ -218,11 +221,9 @@ const austinChart = () => {
     <div className='AChart'>
       <Line options={options} data={data} />
     </div>
-  </>);
-
-
+  </div>);
 }
 
 
-export default austinChart;
+export default mainLineChart;
 
