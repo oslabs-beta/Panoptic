@@ -38,21 +38,6 @@ const DataTest: NextPage = (props: any) => {
     urlData.value = '';
   };
 
-
-  let scores;
-  if (!lighthouseData.performance) {
-    scores = <h1>Please Wait for Scores</h1>;
-  } else if (lighthouseData.performance) {
-    scores = (
-      <div>
-        <h1>Performance Score: {lighthouseData.performance}</h1>
-        <h1>Accessibility Score: {lighthouseData.accessibility}</h1>
-        <h1>Best Practice Score: {lighthouseData.bestPractices}</h1>
-        <h1>SEO Score: {lighthouseData.seo}</h1>
-      </div>
-    );
-  }
-
   return (
     <div>
       <Nav />
@@ -70,14 +55,24 @@ const DataTest: NextPage = (props: any) => {
             <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
               Run Tests
             </button>
-            {scores}
           </div>
-          <div>
+          <div className={styles.dropdownMenu}>
             <h1>Put dropdown here</h1>
           </div>
         </div>
-        <div className={styles.containerMid}>mid</div>
-        <div className={styles.containerRight}>right</div>
+        <div className={styles.containerMid}>
+          <div className={styles.controlPanel}>
+            <h1>Control Panel</h1>
+          </div>
+          <div className={styles.lineChart}>
+            <h1>Line Chart</h1>
+          </div>
+        </div>
+        <div className={styles.containerRight}>
+          <div className={styles.detailsList}>
+            <h1>Put details list here</h1>
+          </div>
+        </div>
       </div>
     </div>
   );
