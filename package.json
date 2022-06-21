@@ -18,10 +18,7 @@
     "apexcharts": "^3.35.3",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
-<<<<<<< HEAD
     "chart.js": "^3.8.0",
-=======
->>>>>>> dev
     "chrome-launcher": "^0.15.1",
     "cookies": "^0.8.0",
     "dotenv": "^16.0.1",
