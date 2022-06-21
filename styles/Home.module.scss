@@ -216,6 +216,7 @@
   color: #0A66C2;
 }
 
+
 @media screen and (max-width: 800px) {
 
   // Turn Hero Into Flexbox for mobile
@@ -272,6 +273,8 @@
   height: 100vh;
   width: 100vw;
   justify-content: space-evenly;
+  padding: 2rem;
+  margin-top: 4em;
 }
 
 .containerLeft {
@@ -285,8 +288,7 @@
   display: flex;
   height: 100%;
   width: 60vw;
-  background-color: rgb(81, 21, 21);
-  margin-top: 5vh;
+  // background-color: rgb(81, 21, 21);
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -297,7 +299,7 @@
   height: 100%;
   width: 22vw;
   justify-content: center;
-  background-color: rgb(27, 3, 111);
+  // background-color: rgb(27, 3, 111);
 }
 
 // parts
@@ -335,15 +337,15 @@
 .controlPanel {
   display: flex;
   justify-content: center;
-  height: 15vh;
+  height: 20vh;
   width: 60vw;
 }
 
 .lineChart {
   display: flex;
   justify-content: center;
-  background-color: rgb(48, 0, 0);
-  height: 85vh;
+  // background-color: rgb(48, 0, 0);
+  height: 80vh;
   width: 60vw;
 }
 
