@@ -1,8 +1,11 @@
-import React from 'react'
-
+import Sidenav from './components/Sidenav';
+import styles from '../styles/Dashboard.module.scss';
 const dashboard = () => {
   return (
-    <div>dashboard</div>
+    <div className={styles.Dashboard}>
+      <Sidenav />
+      dashboard
+    </div>
   )
 }
 
