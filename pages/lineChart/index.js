@@ -42,56 +42,118 @@ export const options = {
 };
 
 // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-const labels = [1, 2, 3, 4, 5, 6, 7];
+
+
+const labels = [1, 2, 3, 2, 5, 6, 1];
+const arrPerformance = [1, 2, 3, 2, 5, 6, 1];
+const arrAccessibility = [1, 2, 3, 2, 5, 6, 1];
+const arrBestPractice = [1, 2, 3, 2, 5, 6, 1];
+const arrSEO = [1, 2, 3, 2, 5, 6, 1];
 let callOnce = false;
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Performance',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(188, 19, 254)',
-      backgroundColor: 'rgb(188, 19, 254)',
-      // showLine: false, // Removes line but leaves dots
-      pointHoverBackgroundColr: 'black', // Hover DOT background color
-      pointHoverBorderWidth: 25, // Hover DOT border size 
-      pointHoverRadius: 25, // Hover DOT border size 
-    },
-    {
-      label: 'Accessibility',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(4, 217, 255)',
-      backgroundColor: 'rgb(4, 217, 255)',
-    },
-    {
-      label: 'Best Practices',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(12, 255, 12)',
-      backgroundColor: 'rgb(12, 255, 12)',
-    },
-    {
-      label: 'SEO',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(255, 153, 51)',
-      backgroundColor: 'rgb(255, 153, 51)',
-    },
-  ],
-};
-const buildArrOfEndPoints = (userObj) => {// Build array of all user end points
-  const output = [];
-  for (const keys in userObj) {
-    output.push(<option key={uuidv4()} value="">{keys}</option>)
-  }
-  return output;
-}
+
+// export const data = {
+//   labels, // Array of label names
+//   datasets: [
+//     {
+//       label: 'Performance',
+//       data: arrPerformance,
+//       borderColor: 'rgb(188, 19, 254)',
+//       backgroundColor: 'rgb(188, 19, 254)',
+//       // showLine: false, // Removes line but leaves dots
+//       pointHoverBackgroundColr: 'black', // Hover DOT background color
+//       pointHoverBorderWidth: 25, // Hover DOT border size 
+//       pointHoverRadius: 25, // Hover DOT border size 
+//     },
+//     {
+//       label: 'Accessibility',
+//       data: arrAccessibility,
+//       borderColor: 'rgb(4, 217, 255)',
+//       backgroundColor: 'rgb(4, 217, 255)',
+//     },
+//     {
+//       label: 'Best Practices',
+//       data: arrBestPractice,
+//       borderColor: 'rgb(12, 255, 12)',
+//       backgroundColor: 'rgb(12, 255, 12)',
+//     },
+//     {
+//       label: 'SEO',
+//       data: arrSEO,
+//       borderColor: 'rgb(255, 153, 51)',
+//       backgroundColor: 'rgb(255, 153, 51)',
+//     },
+//   ],
+// };
 const austinChart = () => {
   let arrOfEndPoints;
-  const [endPoints, setEndPoints] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+  const [endPoints, setEndPoints] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+  // state data
+  const [performanceData, setPerformanceData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+  const [bestPracticeData, setBestPracticeData] = useState(null)
+  const [accessibilityData, setAccessibilityData] = useState(null)
+  // CHART DATA
+  const buildArrOfEndPoints = (userObj) => {// Build array of all user end points
+    const output = [];
+
+    for (const keys in userObj) {
+      output.push(<option key={uuidv4()} value={keys}>{keys}</option>)
+    }
+    return output;
+  }
+  const data = {
+    labels, // Array of label names
+    datasets: [
+      {
+        label: 'Performance',
+        data: (performanceData ? performanceData : arrPerformance),
+        borderColor: 'rgb(188, 19, 254)',
+        backgroundColor: 'rgb(188, 19, 254)',
+        // showLine: false, // Removes line but leaves dots
+        pointHoverBackgroundColor: 'black', // Hover DOT background color
+        pointHoverBorderWidth: 25, // Hover DOT border size 
+        pointHoverRadius: 25, // Hover DOT border size 
+        fill: true,
+      },
+      {
+        label: 'Accessibility',
+        data: (accessibilityData ? accessibilityData : arrAccessibility),
+        borderColor: 'rgb(4, 217, 255)',
+        backgroundColor: 'rgb(4, 217, 255)',
+
+      },
+      {
+        label: 'Best Practices',
+        data: (bestPracticeData ? bestPracticeData : arrBestPractice),
+        borderColor: 'rgb(12, 255, 12)',
+        backgroundColor: 'rgb(12, 255, 12)',
+      },
+      {
+        label: 'SEO',
+        data: (seoData ? seoData : arrSEO),
+        borderColor: 'rgb(255, 153, 51)',
+        backgroundColor: 'rgb(255, 153, 51)',
+      },
+    ],
+  };
+
+  const performanceArray = [];
+  for (const key in endPoints) {
+    for (const date in endPoints[key]) {
+      performanceArray.push(endPoints[key][date].metrics.performance);
+    }
+  }
+
+  // setPerformanceData([...performanceArray]);
+
+
 
   useEffect(() => {
-    const userObj = getUserData('sampledata');// Get user data from user/[user] API
+    const userObj = getUserData('sampledata'); // Get user data from user/[user] API
   }, []);
+
+
   const getUserData = async (user) => {// Grab api DATA of user
     setLoading(true)
     const config = {// Config for axios
@@ -107,6 +169,8 @@ const austinChart = () => {
       await axios.get(myUrl, config)
         .then((res => {
           setEndPoints(res.data);
+          // getPerformanceData();
+          console.log('perf data: ', performanceData);
           console.log('res data = ', endPoints);
           setLoading(false);
           return res;
@@ -114,14 +178,40 @@ const austinChart = () => {
     }
 
   }
+
+
   if (isLoading) return <p>Loading...</p>
   if (!endPoints) return <p>No profile data</p>
   console.log('res data = ', endPoints);
   arrOfEndPoints = buildArrOfEndPoints(endPoints);
-  // console.log('arrOfEndPoints', arrOfEndPoints);
+
+  const loadEndPointDataToChart = (e) => {
+    console.log('Clicked Dropdown');
+    // performance
+    const performanceArray = [];
+    const seoArray = [];
+    const accessibilityArray = [];
+    const bestPracticeArray = [];
+    for (const key in endPoints) {
+      if (key === e.target.value) {
+        for (const date in endPoints[key]) {
+          performanceArray.push(endPoints[key][date].metrics.performance);
+          seoArray.push(endPoints[key][date].metrics.seo);
+          accessibilityArray.push(endPoints[key][date].metrics.accessibility);
+          bestPracticeArray.push(endPoints[key][date].metrics.bestPractices);
+        }
+      }
+    }
+    setAccessibilityData([...accessibilityArray]);
+    setSeoData([...seoArray]);
+    setBestPracticeData([...bestPracticeArray]);
+    setPerformanceData([...performanceArray]);
+    console.log(performanceData);
+  }
+
   return (<>
     <div>Hello Please choose an end point from your database</div>
-    <select onChange={loadEndPointDataToChart} name="homes" id="pet-select" className="userDropdown">
+    <select onChange={loadEndPointDataToChart} className="userDropdown">
       <option value="">---Please choose an end point---</option>
       {arrOfEndPoints}
     </select>
@@ -129,9 +219,10 @@ const austinChart = () => {
       <Line options={options} data={data} />
     </div>
   </>);
+
+
 }
-const loadEndPointDataToChart = () => {
-  console.log('Clicked Dropdown');
-}
+
+
 export default austinChart;
 
