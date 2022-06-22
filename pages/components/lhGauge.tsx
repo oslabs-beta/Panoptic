@@ -21,7 +21,7 @@ function lhGauge(props: any): JSX.Element {
       {
         label: 'My First Dataset',
         data: [props.score, 100 - props.score],
-        backgroundColor: ['#39ff14', 'white'],
+        backgroundColor: ['rgb(213, 77, 224)', 'white'],
 
         borderAlign: 'center',
       },
@@ -30,6 +30,7 @@ function lhGauge(props: any): JSX.Element {
 
   const options: any = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -37,11 +38,11 @@ function lhGauge(props: any): JSX.Element {
       title: {
         display: true,
         text: props.title,
-        font: { weight: 'bold', size: 18 },
+        font: { size: 18 },
         color: 'white',
         padding: {
-          top: 0,
-          bottom: 10,
+          top: 5,
+          bottom: 5,
         },
       },
     },
@@ -104,11 +105,12 @@ function lhGauge(props: any): JSX.Element {
   console.log({ data });
   console.log({ data2 });
   return (
-    <div className='bodyCH'>
-      <div className='chartContainer'>
-        <Doughnut data={data} plugins={plugins} options={options} />
+
+      <div className="">
+        <Doughnut className={props.className} data={data} plugins={plugins} options={options} />
+
       </div>
-    </div>
+
   );
 }
 

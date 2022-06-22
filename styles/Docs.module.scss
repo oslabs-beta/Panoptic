@@ -1,4 +1,4 @@
-@import './Nav.module.scss';
+@import './Variables.scss';
 
 #docsPage {
   display: flex;
@@ -68,4 +68,3 @@
   box-shadow: 0px 0px 10px 1px $primary-blue;
   transition: 0.3s ease-in-out;
 }
-

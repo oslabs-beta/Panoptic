@@ -1,6 +1,6 @@
 // https://www.chartjs.org/docs/latest/charts/line.html
 import { v4 as uuidv4 } from 'uuid';
-
+import style from '../../styles/Dashboard.module.scss';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 // New
@@ -30,61 +30,40 @@ ChartJS.register(
 export const options = {
   borderWidth: 2,// Width of lines
   responsive: true,
+  maintainAspectRatio: true,
+  chart: {
+    width: '100%',
+    height: '100%'
+  },
   plugins: {
     legend: {
       position: 'bottom',// Postion of datasets aka Performance, SEO etc
     },
     title: {
       // display: true,//
-      text: 'Penoptic Line Chart',
+      text: 'Panoptic Line Chart',
     },
   },
+  scales: {
+    y: {
+      type: 'linear',
+      min: 0,
+      max: 100,
+    }
+  }
 };
 
 // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 
-const labels = ['', '', '', "Commits", '', '', "<3"];
-const arrPerformance = [1, 2, 3, 2, 5, 6, 1];
-const arrAccessibility = [1, 2, 3, 2, 5, 6, 1];
-const arrBestPractice = [1, 2, 3, 2, 5, 6, 1];
-const arrSEO = [1, 2, 3, 2, 5, 6, 1];
+const labels = ['', '', '', "Commits", '', '', "<3", "8", "9"];
+const arrPerformance = [0];
+const arrAccessibility = [0];
+const arrBestPractice = [0];
+const arrSEO = [0];
 let callOnce = false;
 
-// export const data = {
-//   labels, // Array of label names
-//   datasets: [
-//     {
-//       label: 'Performance',
-//       data: arrPerformance,
-//       borderColor: 'rgb(188, 19, 254)',
-//       backgroundColor: 'rgb(188, 19, 254)',
-//       // showLine: false, // Removes line but leaves dots
-//       pointHoverBackgroundColr: 'black', // Hover DOT background color
-//       pointHoverBorderWidth: 25, // Hover DOT border size 
-//       pointHoverRadius: 25, // Hover DOT border size 
-//     },
-//     {
-//       label: 'Accessibility',
-//       data: arrAccessibility,
-//       borderColor: 'rgb(4, 217, 255)',
-//       backgroundColor: 'rgb(4, 217, 255)',
-//     },
-//     {
-//       label: 'Best Practices',
-//       data: arrBestPractice,
-//       borderColor: 'rgb(12, 255, 12)',
-//       backgroundColor: 'rgb(12, 255, 12)',
-//     },
-//     {
-//       label: 'SEO',
-//       data: arrSEO,
-//       borderColor: 'rgb(255, 153, 51)',
-//       backgroundColor: 'rgb(255, 153, 51)',
-//     },
-//   ],
-// };
-const mainLineChart = () => {
+const mainLineChart = (props) => {
   let arrOfEndPoints;
   const [endPoints, setEndPoints] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -108,22 +87,22 @@ const mainLineChart = () => {
       {
         label: 'Performance',
         data: (performanceData ? performanceData : arrPerformance),
-        borderColor: 'rgb(188, 19, 254)',
-        backgroundColor: 'rgb(188, 19, 254)',
+        borderColor: 'rgb(213, 77, 224)',
+        backgroundColor: 'rgb(223, 77, 224)',
         // showLine: false, // Removes line but leaves dots
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 25, // Hover DOT border size 
-        pointHoverRadius: 25, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size 
+        pointHoverRadius: 7, // Hover DOT border size 
         fill: true,
       },
       {
         label: 'Accessibility',
         data: (accessibilityData ? accessibilityData : arrAccessibility),
-        borderColor: 'rgb(4, 217, 255)',
-        backgroundColor: 'rgb(4, 217, 255)',
+        borderColor: 'rgb(4, 221, 205)',
+        backgroundColor: 'rgb(4, 221, 205)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 25, // Hover DOT border size 
-        pointHoverRadius: 25, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size 
+        pointHoverRadius: 7, // Hover DOT border size 
         fill: true,
       },
       {
@@ -132,18 +111,18 @@ const mainLineChart = () => {
         borderColor: 'rgb(12, 255, 12)',
         backgroundColor: 'rgb(12, 255, 12)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 25, // Hover DOT border size 
-        pointHoverRadius: 25, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size 
+        pointHoverRadius: 7, // Hover DOT border size 
         fill: true,
       },
       {
         label: 'SEO',
         data: (seoData ? seoData : arrSEO),
-        borderColor: 'rgb(255, 153, 51)',
-        backgroundColor: 'rgb(255, 153, 51)',
+        borderColor: 'rgb(250, 83, 128)',
+        backgroundColor: 'rgb(250, 83, 128)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 25, // Hover DOT border size 
-        pointHoverRadius: 25, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size 
+        pointHoverRadius: 7, // Hover DOT border size 
         fill: true,
       },
     ],
@@ -156,7 +135,8 @@ const mainLineChart = () => {
     }
   }
   useEffect(() => {
-    const userObj = getUserData('sampledata'); // Get user data from user/[user] API
+    // const userObj = getUserData('sampledata'); // Get user data from user/[user] API
+    const userObj = getUserData(props.username); // Get user data from user/[user] API
   }, []);
 
   const getUserData = async (user) => {// Grab api DATA of user
@@ -212,14 +192,14 @@ const mainLineChart = () => {
     console.log(performanceData);
   }
 
-  return (<div className='lineChartMain'>
-    <div>Hello Please choose an end point from your database</div>
-    <select onChange={loadEndPointDataToChart} className="userDropdown">
+  return (<div>
+    <h2>Choose an endpoint</h2>
+    <select onChange={loadEndPointDataToChart} className={style.selectMe}>
       <option value="">---Please choose an end point---</option>
       {arrOfEndPoints}
     </select>
-    <div className='AChart'>
-      <Line options={options} data={data} />
+    <div>
+      <Line className={props.className} options={options} data={data} />
     </div>
   </div>);
 }

@@ -5,9 +5,10 @@ const getEndPointData = async (username) => {
   console.log('~~~Connected to mongoDB~~~');
   // Find user username": "sampledata"
   // Data we need is endpoints."https://sampledata.coateam"
-  const foundUser = await User.findOne({ username: username });
+  const foundUser = await User.findOne({ _id: username });
   if (foundUser) {
     console.log(username + ' user found');
+    console.log(foundUser.endpoints)
     return (JSON.stringify(foundUser.endpoints))
   } else {
     console.log(username + ' user not found');
