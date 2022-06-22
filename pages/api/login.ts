@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Cookies = require('cookies');
 const bcrypt = require('bcrypt');
-
+import dbConnect from '../../lib/dbConnect';
 import express, {
   Request,
   Response,
@@ -13,14 +13,13 @@ const User = require('../../models/loginModel');
 // Api/login
 
 const handler = async (req: Request, res: Response) => {
+  await dbConnect();
   const cookies = new Cookies(req, res);
   // Check method type ie post/get etc
   if (req.method === 'POST') {
     console.log('LOGIN called with data ', req.body);
-    await mongoose.connect(
-      'mongodb+srv://admin:admin@cluster0.tuf6p.mongodb.net/Panoptic?retryWrites=true&w=majority'
-    );
-    console.log('~~~Connected to mongoDB~~~');
+  
+
     // store username / pass from req.body
     const { username, password } = req.body;
     // Check if user exists and then compare pass if so
@@ -65,16 +64,12 @@ const handler = async (req: Request, res: Response) => {
           return res.status(401).send('Error hashing password');
         } else {
           // Store hash in your password DB.
-          await mongoose.connect(
-            'mongodb+srv://admin:admin@cluster0.tuf6p.mongodb.net/Panoptic?retryWrites=true&w=majority'
-          );
+          
           const newUser = await new User({
             username: username,
             password: hash,
           });
           await newUser.save();
-          mongoose.connection.close();
-          console.log('Closed Mongo connection');
           // Set Login Cookie
           cookies.set('username', username);
           return res.status(201).send(`Created user ` + newUser.username);

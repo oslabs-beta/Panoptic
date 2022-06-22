@@ -5,6 +5,7 @@ import LH_Gauge from './components/lhGauge';
 import Chart from './components/LineChart.jsx';
 import styles from '../styles/Dashboard.module.scss'
 import Sidenav from './components/Sidenav';
+import axios from 'axios';
 import { useSession, getSession } from 'next-auth/react';
 import { parseCookies } from '../lib/parseCookies';
 import EndpointsList from './components/EndpointsList';
@@ -28,6 +29,14 @@ const DataTest: NextPage = ({ initialRememberValue },props: any) => {
   });
   const [scores, setScores] = useState(<h1>Please Wait for Scores</h1>);
 
+  const [currentUser, setCurrentUser] = useState({});
+
+  // Get Current User
+  const getUser = async () => {
+    const result = await axios.get(`/api/user/${initialRememberValue}`)
+    console.log(result);
+    return setCurrentUser(result.data);
+  }
   const didMount = useRef(false);
   // const didMountv2 = useRef(false);
 
@@ -52,15 +61,10 @@ const DataTest: NextPage = ({ initialRememberValue },props: any) => {
     urlData.value = '';
   };
 
-  // if (!lighthouseData.performance) {
-  //   scores;
-  // } else
-
-  console.log(lighthouseData);
-
   console.log(didMount);
 
   useEffect(() => {
+    getUser();
     if (didMount.current) {
       setScores(
  
@@ -121,43 +125,43 @@ const DataTest: NextPage = ({ initialRememberValue },props: any) => {
   // }
 
   return (
-    <div className={styles.threeParts}>
-        {/* <Sidenav /> */}
-        <div className={styles.containerLeft}>
-          <div className={styles.metricsContainer}>
-            <h1 className={styles.enterUrl}>Enter url below</h1>
-            <input
-              id='urlData'
-              type='text'
-              required
-              placeholder='ex: https://YouTube.com/'
-              className={styles.endpointInput}
-            />
-            <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
-              Run Tests
-            </button>
-          </div>
-          <div className={styles.dropdownMenu}>
-            <h1>Put dropdown here</h1>
-            <EndpointsList />
-          </div>
-        </div>
 
-        <div className={styles.containerMid}>
-          <div className={styles.controlPanel}>
-            {scores}
+      <div className={styles.threeParts}>
+          <div className={styles.containerLeft}>
+            <div className={styles.metricsContainer}>
+              <h1 className={styles.enterUrl}>Enter New Endpoint Below</h1>
+              <input
+                id='urlData'
+                type='text'
+                required
+                placeholder='ex: https://YouTube.com/'
+                className={styles.endpointInput}
+              />
+              <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
+                Run Tests
+              </button>
+            </div>
+            <div className={styles.dropdownMenu}>
+              <EndpointsList endPts={currentUser}/>
+            </div>
           </div>
-          <div className={styles.lineChart}>
-            <Chart username={initialRememberValue} className={styles.chartMaybe}/>
-          </div>
-        </div>
 
-        <div className={styles.containerRight}>
-          <div className={styles.detailsList}>
-            <h1>Put details list here</h1>
+          <div className={styles.containerMid}>
+            <div className={styles.controlPanel}>
+              {scores}
+            </div>
+            <div className={styles.lineChart}>
+              <Chart user={currentUser} cookie={initialRememberValue} className={styles.chartMaybe}/>
+            </div>
           </div>
-        </div>
-    </div>
+
+          <div className={styles.containerRight}>
+            <div className={styles.detailsList}>
+              <h1>Put details list here</h1>
+            </div>
+          </div>
+      </div>
+
   );
 };
 DataTest.getInitialProps = async ({ req }) => {

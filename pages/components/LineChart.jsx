@@ -15,7 +15,7 @@ import {
   Tooltip,
   Legend, cx
 } from 'chart.js';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { userInfo } from 'os';
 ChartJS.register(
   CategoryScale,
@@ -54,16 +54,28 @@ export const options = {
 };
 
 // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  // // build array of time endpoint was checked
+  // const arrOfTime = [];
+  // for (const keys in endPoints) {
+  //   const test = Object.keys(endPoints[keys]).map(el => el);
+  //   arrOfTime.push(test);
+  // }  
 
+  
+  const mainLineChart = (props) => {
+      // build array of time endpoint was checked
+  const [times, setTimes] = useState(['0', '1', '2', '3', '4', '5', '6', '7']);
+  // for (const keys in props.user) {
+  //   const test = Object.keys(props.user[keys]).map(el => el);
+  //   arrOfTime.push(test);
+  // }  
+  const labels = times;
+  const arrPerformance = [0];
+  const arrAccessibility = [0];
+  const arrBestPractice = [0];
+  const arrSEO = [0];
+  let callOnce = false;
 
-const labels = ['', '', '', "Commits", '', '', "<3", "8", "9"];
-const arrPerformance = [0];
-const arrAccessibility = [0];
-const arrBestPractice = [0];
-const arrSEO = [0];
-let callOnce = false;
-
-const mainLineChart = (props) => {
   let arrOfEndPoints;
   const [endPoints, setEndPoints] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -75,7 +87,6 @@ const mainLineChart = (props) => {
   // CHART DATA
   const buildArrOfEndPoints = (userObj) => {// Build array of all user end points
     const output = [];
-
     for (const keys in userObj) {
       output.push(<option key={uuidv4()} value={keys}>{keys}</option>)
     }
@@ -133,10 +144,12 @@ const mainLineChart = (props) => {
     for (const date in endPoints[key]) {
       performanceArray.push(endPoints[key][date].metrics.performance);
     }
+
+
   }
   useEffect(() => {
     // const userObj = getUserData('sampledata'); // Get user data from user/[user] API
-    const userObj = getUserData(props.username); // Get user data from user/[user] API
+    getUserData(props.cookie); // Get user data from user/[user] API
   }, []);
 
   const getUserData = async (user) => {// Grab api DATA of user
@@ -166,7 +179,7 @@ const mainLineChart = (props) => {
   if (isLoading) return <p>Loading...</p>
   if (!endPoints) return <p>No profile data</p>
   console.log('res data = ', endPoints);
-  arrOfEndPoints = buildArrOfEndPoints(endPoints);
+  arrOfEndPoints = buildArrOfEndPoints(props.user);
 
   const loadEndPointDataToChart = (e) => {
     console.log('Clicked Dropdown');
@@ -175,8 +188,12 @@ const mainLineChart = (props) => {
     const seoArray = [];
     const accessibilityArray = [];
     const bestPracticeArray = [];
+    let arrOfTime = []
+
     for (const key in endPoints) {
       if (key === e.target.value) {
+        if (arrOfTime.length < 8) arrOfTime.push(Object.keys(endPoints[key]).map(el => el));
+        
         for (const date in endPoints[key]) {
           performanceArray.push(endPoints[key][date].metrics.performance);
           seoArray.push(endPoints[key][date].metrics.seo);
@@ -189,7 +206,7 @@ const mainLineChart = (props) => {
     setSeoData([...seoArray]);
     setBestPracticeData([...bestPracticeArray]);
     setPerformanceData([...performanceArray]);
-    console.log(performanceData);
+    setTimes([...arrOfTime[0]]);
   }
 
   return (<div>

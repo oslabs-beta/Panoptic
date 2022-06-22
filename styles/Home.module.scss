@@ -216,6 +216,16 @@
   color: #0A66C2;
 }
 
+.Ad {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid black;
+}
+
+
+.hideAd {}
 
 @media screen and (max-width: 800px) {
 
