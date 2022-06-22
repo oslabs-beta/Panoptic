@@ -1,21 +1,24 @@
 import type { NextPage } from 'next';
 import { useState, useEffect, useRef } from 'react';
-import styles from '../styles/Home.module.scss';
 import Nav from './components/Nav';
 import LH_Gauge from './components/lhGauge';
 import Chart from './components/LineChart.jsx';
+import styles from '../styles/Dashboard.module.scss'
+import Sidenav from './components/Sidenav';
+import { useSession, getSession } from 'next-auth/react';
+import { parseCookies } from '../lib/parseCookies';
+import EndpointsList from './components/EndpointsList';
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(`http://localhost:3000/api/hello`);
+//   const data = await res.json();
 
+//   // Pass data to the page via props
+//   return { props: { data } };
+// }
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/hello`);
-  const data = await res.json();
-
-  // Pass data to the page via props
-  return { props: { data } };
-}
-
-const DataTest: NextPage = (props: any) => {
+const DataTest: NextPage = ({ initialRememberValue },props: any) => {
+  const { data: session, status } = useSession();
   //   console.log(props['data'].name);
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
@@ -60,27 +63,26 @@ const DataTest: NextPage = (props: any) => {
   useEffect(() => {
     if (didMount.current) {
       setScores(
-        <div id={styles.scoreContainer}>
-          {/* <h1>Performance Score: {lighthouseData.performance}</h1>
-          <h1>Accessibility Score: {lighthouseData.accessibility}</h1>
-          <h1>Best Practice Score: {lighthouseData.bestPractices}</h1>
-          <h1>SEO Score: {lighthouseData.seo}</h1> */}
-          <div className="containerGauge">
+ 
+          <div className={styles.containerGauge}>
             <LH_Gauge
+              className={styles.gauge}
               score={lighthouseData.performance}
               title={'Performance Score:'}
             />
             <LH_Gauge
+              className={styles.gauge} 
               score={lighthouseData.accessibility}
               title={'Accessibility Score:'}
             />
-            <LH_Gauge
+            <LH_Gauge 
+              className={styles.gauge} 
               score={lighthouseData.bestPractices}
               title={'Best Practice Score:'}
             />
-            <LH_Gauge score={lighthouseData.seo} title={'SEO Score:'} />
+            <LH_Gauge className={styles.gauge} score={lighthouseData.seo} title={'SEO Score:'} />
           </div>
-        </div>
+        // </div>
       );
     } else {
       // didMountv2.current = true;
@@ -119,9 +121,8 @@ const DataTest: NextPage = (props: any) => {
   // }
 
   return (
-    <div>
-      <Nav />
-      <div className={styles.threeParts}>
+    <div className={styles.threeParts}>
+        {/* <Sidenav /> */}
         <div className={styles.containerLeft}>
           <div className={styles.metricsContainer}>
             <h1 className={styles.enterUrl}>Enter url below</h1>
@@ -138,26 +139,33 @@ const DataTest: NextPage = (props: any) => {
           </div>
           <div className={styles.dropdownMenu}>
             <h1>Put dropdown here</h1>
+            <EndpointsList />
           </div>
         </div>
+
         <div className={styles.containerMid}>
           <div className={styles.controlPanel}>
             {scores}
           </div>
-            <Chart />
           <div className={styles.lineChart}>
-            <h1>Line Chart</h1>
-           <Chart />
+            <Chart username={initialRememberValue} className={styles.chartMaybe}/>
           </div>
         </div>
+
         <div className={styles.containerRight}>
           <div className={styles.detailsList}>
             <h1>Put details list here</h1>
           </div>
         </div>
-      </div>
     </div>
   );
 };
-
+DataTest.getInitialProps = async ({ req }) => {
+  // Parseing cookie with our own function so we can read it
+  const cookies = parseCookies(req);
+  // Return our cookie and grab name from cookie
+  return {
+    initialRememberValue: cookies.userId
+  };
+}
 export default DataTest;

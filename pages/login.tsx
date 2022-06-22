@@ -27,7 +27,7 @@ function LoginPage() {
         <button type='submit' value='send' className={styles.loginButton}>
           Login
         </button>
-        <a className={styles.oauthBtn}href="http://localhost:3000/api/githublogin">{githubIcon}Sign in with Github</a>
+        <a onClick={() => signIn('github')} className={styles.oauthBtn} href="http://localhost:3000/api/githublogin">{githubIcon}Sign in with Github</a>
       </form>
 
       {/* <a href="api/auth/callback/github">Sign In With Github</a> */}

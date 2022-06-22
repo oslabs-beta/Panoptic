@@ -1,19 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,800;1,900&display=swap');
-
+@import './Variables.scss';
 // Color inspiration
 // https://www.pinterest.com/pin/ice-blue-color-palette-winter-colour-inspiration-color-scheme--574842339932570411/
 
-$primary-font: 'Montserrat', sans-serif;
-$round-dem-edges: 10px;
-$primary-green: HSL(114, 96.1%, 59.6%);
-$primary-black: hsl(225, 6%, 13%);
-$blue-stone: #266ef6;
-$dark-blue: #3a5985;
-$primary-blue: #608fca;
-$secondary-blue: #89afe0;
-$light-blue: #b2caee;
-$gray: #d5deef;
-$lavender: #f0f4fb;
 
 .yeahBoi {
   position: fixed;

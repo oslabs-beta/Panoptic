@@ -32,6 +32,7 @@
     "next-auth": "^4.5.0",
     "next-connect": "^0.12.2",
     "next-session": "^4.0.4",
+    "octokit": "^1.8.0",
     "passport": "^0.6.0",
     "passport-github": "^1.1.0",
     "passport-github2": "^0.1.12",
@@ -39,9 +40,9 @@
     "react-apexcharts": "^1.4.0",
     "react-chartjs-2": "^4.2.0",
     "react-dom": "18.1.0",
-    "uuid": "^8.3.2",
     "react-icons": "^4.4.0",
-    "sass": "^1.52.3"
+    "sass": "^1.52.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
