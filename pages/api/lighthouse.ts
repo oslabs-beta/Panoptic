@@ -28,7 +28,7 @@ export default async function lighthouseRequest(req: Request, res: Response) {
 
   console.log(req.body);
   // url argument being passed from front-end
-  const { url } = req.body;
+  const url = req.body;
   // making the call to lighthouse
   const runnerResult = await lighthouse(url, options);
 

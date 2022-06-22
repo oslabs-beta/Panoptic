@@ -1,6 +1,7 @@
 import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 // import styles from '../styles/Home.module.css';
 import styles from '../styles/Login.module.scss';
+import Nav from './components/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
@@ -13,6 +14,7 @@ function LoginPage() {
 //   console.log(status);
   return (
     <div className={styles.body}>
+      <Nav />
       <form className={styles.loginForm} action='/api/login' method='post' id='login'>
         <input id='username' name='username' placeholder='username' className={styles.username}></input>
         <input

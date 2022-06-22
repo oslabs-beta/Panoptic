@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
+import Nav from './components/Nav';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
 import Hero from './components/Hero';
-import Nav from './components/Nav';
 import EmployeeID from './components/employeeID';
 // export async function getServerSideProps() {
 //   // Fetch data from external API
