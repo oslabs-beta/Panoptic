@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.1",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
@@ -25,6 +28,7 @@
     "express-session": "^1.17.3",
     "faker": "^5.5.3",
     "js-cookie": "^3.0.1",
+    "framer-motion": "^6.3.13",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.7.0",
     "mongoose": "^6.3.8",
@@ -43,6 +47,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
+    "react-spinners": "^0.12.0",
     "sass": "^1.52.3",
     "uuid": "^8.3.2"
   },

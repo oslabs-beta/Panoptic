@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.scss';
 import Hero from './components/Hero';
 import EmployeeID from './components/employeeID';
 import Ad from './components/Ad';
+import Head from 'next/head';
 // export async function getServerSideProps() {
 //   // Fetch data from external API
 //   const res = await fetch(`http://localhost:3000/api/hello`);

@@ -10,10 +10,16 @@ const EndpointsList = (props: any) => {
     const test = Object.keys(props.endPts).map((key) => key);
     return test;
   }
+  // click handler for selecting endpoint
+  const endpointSelector = (e: any) => { 
+    props.setSelected(e.target.textContent)
+    props.setLoaded(true)
+  }
   const endpointsArr = filteredObj();
   const arr = [];
   for (let i = 0; i < endpointsArr.length; i ++) {
-    arr.push(<li key={uuidv4()} className={style.li}><button>{endpointsArr[i]}</button></li>)
+    !arr.length ? arr.push(<li key={uuidv4()} className={style.li}><button onClick={endpointSelector}>{endpointsArr[i]}</button></li>) :
+    arr.push(<li key={uuidv4()} className={style.li}><button onClick={endpointSelector}>{endpointsArr[i]}</button></li>)
   }
   return (
     <div className={style.EndpointsList}>

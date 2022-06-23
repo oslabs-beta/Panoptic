@@ -50,11 +50,15 @@
 }
 
 .leftTitle {
-  color: $blue-stone;
+  color: #121212;
   font-size: 3rem;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   margin: 0;
+}
+
+.panopticWord {
+  color: $blue-stone;
 }
 
 .subText {
@@ -62,12 +66,13 @@
 }
 
 .right {
-  background: url('https://www.vantagenext.com/_next/image?url=%2Fsplash%2Fdashboard-view.png&w=1920&q=75');
-  background-size: cover;
+  background: url('../assets/demoPic.png');
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   height: auto;
+  border-radius: $round-dem-edges;
 }
 
 .heroBtnContainer {
@@ -218,7 +223,6 @@
 
 .Ad {
   margin-top: 80px;
-  display: flex;
   justify-content: space-evenly;
   align-items: center;
   border: 1px solid black;
