@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useState, useEffect, useRef } from 'react';
 import Nav from './components/Nav';
 import LH_Gauge from './components/lhGauge';
-import LoadSpinner from './components/LoadingSpinner';
+import WrightDetails from './components/wrightDetails';
 import Chart from './components/LineChart.jsx';
 import styles from '../styles/Dashboard.module.scss';
 import Sidenav from './components/Sidenav';
@@ -194,6 +194,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
       <div className={styles.containerRight}>
         <div className={styles.detailsList}>
           <h1>Put details list here</h1>
+          <WrightDetails />
         </div>
       </div>
     </div>
