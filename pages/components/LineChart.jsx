@@ -13,7 +13,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend, cx
+  Legend,
+  cx,
 } from 'chart.js';
 import React, { useState, useEffect } from 'react';
 import { userInfo } from 'os';
@@ -26,18 +27,57 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+import { Progress } from '@chakra-ui/react';
+
+// const totalDuration = 1000;
+// const delayBetweenPoints = totalDuration / 10;
+// const previousY = (ctx) =>
+//   ctx.index === 0
+//     ? ctx.chart.scales.y.getPixelForValue(100)
+//     : ctx.chart
+//         .getDatasetMeta(ctx.datasetIndex)
+//         .data[ctx.index - 1].getProps(['y'], true).y;
+// const animation = {
+//   x: {
+//     type: 'number',
+//     easing: 'linear',
+//     duration: delayBetweenPoints,
+//     from: NaN, // the point is initially skipped
+//     delay(ctx) {
+//       if (ctx.type !== 'data' || ctx.xStarted) {
+//         return 0;
+//       }
+//       ctx.xStarted = true;
+//       return ctx.index * delayBetweenPoints;
+//     },
+//   },
+//   y: {
+//     type: 'number',
+//     easing: 'linear',
+//     duration: delayBetweenPoints,
+//     from: previousY,
+//     delay(ctx) {
+//       if (ctx.type !== 'data' || ctx.yStarted) {
+//         return 0;
+//       }
+//       ctx.yStarted = true;
+//       return ctx.index * delayBetweenPoints;
+//     },
+//   },
+// };
 
 export const options = {
-  borderWidth: 2,// Width of lines
+  // animation,
+  borderWidth: 2, // Width of lines
   responsive: true,
   maintainAspectRatio: true,
   chart: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   plugins: {
     legend: {
-      position: 'bottom',// Postion of datasets aka Performance, SEO etc
+      position: 'bottom', // Postion of datasets aka Performance, SEO etc
     },
     title: {
       // display: true,//
@@ -49,14 +89,13 @@ export const options = {
       type: 'linear',
       min: 0,
       max: 100,
-    }
-  }
+    },
+  },
 };
 
 // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-
-const labels = ['', '', '', "Commits", '', '', "<3", "8", "9"];
+const labels = ['', '', '', 'Commits', '', '', '<3', '8', '9'];
 const arrPerformance = [0];
 const arrAccessibility = [0];
 const arrBestPractice = [0];
@@ -70,60 +109,69 @@ const mainLineChart = (props) => {
   // state data
   const [performanceData, setPerformanceData] = useState(null);
   const [seoData, setSeoData] = useState(null);
-  const [bestPracticeData, setBestPracticeData] = useState(null)
-  const [accessibilityData, setAccessibilityData] = useState(null)
+  const [bestPracticeData, setBestPracticeData] = useState(null);
+  const [accessibilityData, setAccessibilityData] = useState(null);
   // CHART DATA
-  const buildArrOfEndPoints = (userObj) => {// Build array of all user end points
+  const buildArrOfEndPoints = (userObj) => {
+    // Build array of all user end points
     const output = [];
 
     for (const keys in userObj) {
-      output.push(<option key={uuidv4()} value={keys}>{keys}</option>)
+      output.push(
+        <option key={uuidv4()} value={keys}>
+          {keys}
+        </option>
+      );
     }
     return output;
-  }
+  };
   const data = {
     labels, // Array of label names
     datasets: [
       {
         label: 'Performance',
-        data: (performanceData ? performanceData : arrPerformance),
+        data: performanceData ? performanceData : arrPerformance,
         borderColor: 'rgb(213, 77, 224)',
         backgroundColor: 'rgb(223, 77, 224)',
         // showLine: false, // Removes line but leaves dots
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 10, // Hover DOT border size 
-        pointHoverRadius: 7, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size
+        pointHoverRadius: 7, // Hover DOT border size
         fill: true,
+        tension: 0.4,
       },
       {
         label: 'Accessibility',
-        data: (accessibilityData ? accessibilityData : arrAccessibility),
+        data: accessibilityData ? accessibilityData : arrAccessibility,
         borderColor: 'rgb(4, 221, 205)',
         backgroundColor: 'rgb(4, 221, 205)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 10, // Hover DOT border size 
-        pointHoverRadius: 7, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size
+        pointHoverRadius: 7, // Hover DOT border size
         fill: true,
+        tension: 0.4,
       },
       {
         label: 'Best Practices',
-        data: (bestPracticeData ? bestPracticeData : arrBestPractice),
+        data: bestPracticeData ? bestPracticeData : arrBestPractice,
         borderColor: 'rgb(12, 255, 12)',
         backgroundColor: 'rgb(12, 255, 12)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 10, // Hover DOT border size 
-        pointHoverRadius: 7, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size
+        pointHoverRadius: 7, // Hover DOT border size
         fill: true,
+        tension: 0.4,
       },
       {
         label: 'SEO',
-        data: (seoData ? seoData : arrSEO),
+        data: seoData ? seoData : arrSEO,
         borderColor: 'rgb(250, 83, 128)',
         backgroundColor: 'rgb(250, 83, 128)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
-        pointHoverBorderWidth: 10, // Hover DOT border size 
-        pointHoverRadius: 7, // Hover DOT border size 
+        pointHoverBorderWidth: 10, // Hover DOT border size
+        pointHoverRadius: 7, // Hover DOT border size
         fill: true,
+        tension: 0.4,
       },
     ],
   };
@@ -139,32 +187,40 @@ const mainLineChart = (props) => {
     const userObj = getUserData(props.username); // Get user data from user/[user] API
   }, []);
 
-  const getUserData = async (user) => {// Grab api DATA of user
-    setLoading(true)
-    const config = {// Config for axios
+  const getUserData = async (user) => {
+    // Grab api DATA of user
+    setLoading(true);
+    const config = {
+      // Config for axios
       headers: {
         Accept: 'application/json',
       },
-    }
+    };
     const myUrl = `http://localhost:3000/api/user/${user}`;
-    if (callOnce) {// API called don't call again
+    if (callOnce) {
+      // API called don't call again
       return;
-    } else {// API not called yet
+    } else {
+      // API not called yet
       callOnce = true;
-      await axios.get(myUrl, config)
-        .then((res => {
-          setEndPoints(res.data);
-          // getPerformanceData();
-          console.log('perf data: ', performanceData);
-          console.log('res data = ', endPoints);
-          setLoading(false);
-          return res;
-        }));
+      await axios.get(myUrl, config).then((res) => {
+        setEndPoints(res.data);
+        // getPerformanceData();
+        console.log('perf data: ', performanceData);
+        console.log('res data = ', endPoints);
+        setLoading(false);
+        return res;
+      });
     }
-  }
+  };
 
-  if (isLoading) return <p>Loading...</p>
-  if (!endPoints) return <p>No profile data</p>
+  if (isLoading)
+    return (
+      <div>
+        <Progress size='xs' isIndeterminate />
+      </div>
+    );
+  if (!endPoints) return <p>No profile data</p>;
   console.log('res data = ', endPoints);
   arrOfEndPoints = buildArrOfEndPoints(endPoints);
 
@@ -190,20 +246,20 @@ const mainLineChart = (props) => {
     setBestPracticeData([...bestPracticeArray]);
     setPerformanceData([...performanceArray]);
     console.log(performanceData);
-  }
+  };
 
-  return (<div>
-    <h2>Choose an endpoint</h2>
-    <select onChange={loadEndPointDataToChart} className={style.selectMe}>
-      <option value="">---Please choose an end point---</option>
-      {arrOfEndPoints}
-    </select>
+  return (
     <div>
-      <Line className={props.className} options={options} data={data} />
+      <h2>Choose an endpoint</h2>
+      <select onChange={loadEndPointDataToChart} className={style.selectMe}>
+        <option value=''>---Please choose an end point---</option>
+        {arrOfEndPoints}
+      </select>
+      <div>
+        <Line className={props.className} options={options} data={data} />
+      </div>
     </div>
-  </div>);
-}
-
+  );
+};
 
 export default mainLineChart;
-

@@ -4,7 +4,8 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   min-height: 100vh;
-  background-color: $dark-bg;
+  // background-color: $dark-bg;
+  background-color: #0b1337;
   overflow: hidden;
 }
 
@@ -14,7 +15,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: $neon-red;
+  // color: $neon-red;
+  color: white;
 }
 
 // SELECT DROPDOWN THING
@@ -25,15 +27,12 @@
   background-color: $neon-blue;
   border: 1px solid whitesmoke;
 
-
   option {
     color: black;
     padding: 80px;
     font-size: 1rem;
-
   }
 }
-
 
 #endpointBtn {
   font-family: $primary-font;
@@ -54,13 +53,15 @@
 }
 
 .containerLeft {
-  padding: 0px 2em;
+  padding: 0em 2em;
   text-align: center;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  color: $neon-red;
-  border-right: 1px solid red;
+  // color: $neon-red;
+  color: white;
+  border-right: 1px solid #89cff0;
+  font-size: 1.2rem;
 
   input {
     text-align: center;
@@ -77,7 +78,7 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-  border-right: 1px solid red;
+  border-right: 1px solid #89cff0;
 }
 
 .containerRight {
@@ -99,10 +100,11 @@
 
 .containerGauge {
   display: flex;
-  height: auto;
-  width: 100%;
+  height: 90%;
+  width: 95%;
   justify-content: center;
   align-items: center;
+  // background: #111c44;
 }
 
 .dropdownMenu {
@@ -148,7 +150,7 @@
   align-items: center;
   width: 100%;
   height: 30%;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #89cff0;
 }
 
 .lineChart {

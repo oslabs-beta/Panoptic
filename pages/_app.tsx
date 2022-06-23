@@ -6,6 +6,7 @@ import React from 'react';
 import Header from './components/Nav';
 import { SessionProvider } from 'next-auth/react';
 import '../styles/lineChart.css';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +14,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/* <React.Fragment>
         <Header />
       </React.Fragment> */}
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
     </SessionProvider>
   );
 }
