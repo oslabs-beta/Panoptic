@@ -11,16 +11,27 @@
   justify-content: space-between;
   padding: 1% 5%;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1rem;
+  max-height: 10vh;
   background-color: $lavender;
   border-bottom: solid rgb(198, 198, 198) 1px;
   box-shadow: 0px 1px 10px 2px rgb(182, 182, 182);
 }
 
 .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   color: $blue-stone;
+  max-width: 150px;
+}
+
+.logoPic {
+  width: 200px;
+  height: auto;
+  cursor: pointer;
 }
 
 // .buttonsContainer {

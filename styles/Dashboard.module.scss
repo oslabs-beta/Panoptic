@@ -1,17 +1,22 @@
 @import './Variables.scss';
 
+
 .threeParts {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   min-height: 100vh;
-  // background-color: $dark-bg;
-  background-color: #0b1337;
+  width: 100%;
+  height: 100%;
+  background-color: $dark-bg;
   overflow: hidden;
+}
+
+.dataLoading {
+  margin-bottom: 20px;
 }
 
 .metricsContainer {
   display: flex;
-  margin-top: 5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -53,7 +58,6 @@
 }
 
 .containerLeft {
-  padding: 0em 2em;
   text-align: center;
   display: flex;
   flex-direction: column;

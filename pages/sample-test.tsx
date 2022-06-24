@@ -6,7 +6,7 @@ import WrightDetails from './components/wrightDetails';
 import Chart from './components/LineChart.jsx';
 import styles from '../styles/Dashboard.module.scss';
 import Sidenav from './components/Sidenav';
-import { useSession, getSession } from 'next-auth/react';
+import axios from 'axios';
 import { parseCookies } from '../lib/parseCookies';
 import EndpointsList from './components/EndpointsList';
 import {
@@ -30,7 +30,6 @@ import { RingLoader, PacmanLoader } from 'react-spinners';
 // }
 
 const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
-  const { data: session, status } = useSession();
   //   console.log(props['data'].name);
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
@@ -41,7 +40,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   const [scores, setScores] = useState(
     <Box>
       <VStack spacing={0}>
-        <Heading>Please Wait for Scores</Heading>
+        <Heading>Waiting For Tests...</Heading>
         <Center>
           <PacmanLoader size={24} color='Yellow' />
         </Center>
@@ -49,6 +48,13 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     </Box>
   );
 
+  const [currentUser, setCurrentUser] = useState({});
+
+  // Get Current User
+  const getUser = async () => {
+    const result = await axios.get(`/api/user/${initialRememberValue}`)
+    return setCurrentUser(result.data);
+  }
   const didMount = useRef(false);
   // const didMountv2 = useRef(false);
 
@@ -57,9 +63,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     setScores(
       <Box>
         <VStack spacing={0}>
-          <Heading>Data Loading</Heading>
+          <Heading className={styles.dataLoading}>Data Loading</Heading>
           <Center>
-            <RingLoader size={160} color='white' />
+            <RingLoader size={120} color='white' />
           </Center>
         </VStack>
       </Box>
@@ -82,15 +88,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     urlData.value = '';
   };
 
-  // if (!lighthouseData.performance) {
-  //   scores;
-  // } else
-
-  console.log(lighthouseData);
-
-  console.log(didMount);
 
   useEffect(() => {
+    getUser();
     if (didMount.current) {
       setScores(
         <div className={styles.containerGauge}>
@@ -155,12 +155,17 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   //   );
   // }
 
+  const [ selected, setSelected ] = useState('Select An Endpoint');
+  const [ loadData, setLoadData ] = useState();
+  const [ isLoaded, setLoaded ] = useState(false);
+
+
   return (
+
     <div className={styles.threeParts}>
-      {/* <Sidenav /> */}
       <div className={styles.containerLeft}>
         <div className={styles.metricsContainer}>
-          <h1 className={styles.enterUrl}>Enter url below</h1>
+          <h1 className={styles.enterUrl}>Enter New Endpoint Below</h1>
           <input
             id='urlData'
             type='text'
@@ -173,21 +178,16 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           </button>
         </div>
         <div className={styles.dropdownMenu}>
-          <h1>Put dropdown here</h1>
-          <EndpointsList />
-          {/* <LoadSpinner /> */}
+          <EndpointsList func={loadData} selected={selected} setSelected={setSelected} endPts={currentUser} setLoaded={setLoaded} />
         </div>
       </div>
 
       <div className={styles.containerMid}>
-        <div className={styles.controlPanel}>{scores}</div>
+        <div className={styles.controlPanel}>
+          {scores}
+        </div>
         <div className={styles.lineChart}>
-          <Box borderRadius='lg' bg='#111c44'>
-            <Chart
-              username={initialRememberValue}
-              className={styles.chartMaybe}
-            />
-          </Box>
+          <Chart setLoad={setLoadData} user={currentUser} selectedEndpoint={selected} cookie={initialRememberValue} className={styles.chartMaybe} isLoaded={isLoaded}  />
         </div>
       </div>
 
@@ -198,6 +198,48 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
         </div>
       </div>
     </div>
+
+    // <div className={styles.threeParts}>
+    //   {/* <Sidenav /> */}
+    //   <div className={styles.containerLeft}>
+    //     <div className={styles.metricsContainer}>
+    //       <h1 className={styles.enterUrl}>Enter url below</h1>
+    //       <input
+    //         id='urlData'
+    //         type='text'
+    //         required
+    //         placeholder='ex: https://YouTube.com/'
+    //         className={styles.endpointInput}
+    //       />
+    //       <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
+    //         Run Tests
+    //       </button>
+    //     </div>
+    //     <div className={styles.dropdownMenu}>
+    //       <h1>Put dropdown here</h1>
+    //       <EndpointsList />
+    //       {/* <LoadSpinner /> */}
+    //     </div>
+    //   </div>
+
+    //   <div className={styles.containerMid}>
+    //     <div className={styles.controlPanel}>{scores}</div>
+    //     <div className={styles.lineChart}>
+    //       <Box borderRadius='lg' bg='#111c44'>
+    //         <Chart
+    //           username={initialRememberValue}
+    //           className={styles.chartMaybe}
+    //         />
+    //       </Box>
+    //     </div>
+    //   </div>
+
+    //   <div className={styles.containerRight}>
+    //     <div className={styles.detailsList}>
+    //       <h1>Put details list here</h1>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 DataTest.getInitialProps = async ({ req }) => {
