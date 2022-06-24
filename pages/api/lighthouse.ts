@@ -4,12 +4,14 @@ const chromeLauncher = require('chrome-launcher');
 const mongoose = require('mongoose');
 const User = require('../../models/loginModel.ts');
 const Cookies = require('cookies');
+import dbConnect from '../../lib/dbConnect';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import express, { Request, Response, NextFunction } from 'express';
 
 export default async function lighthouseRequest(req: Request, res: Response) {
-  await mongoose.connect('mongodb+srv://admin:admin@cluster0.tuf6p.mongodb.net/Panoptic?retryWrites=true&w=majority');
-  const cookies = new Cookies(req, res);
+  await dbConnect();
+    const cookies = new Cookies(req, res);
   // creates headless chrome browser to test metrics
   const chrome = await chromeLauncher.launch({ chromeFlags: [
     '--no-first-run',
@@ -267,7 +269,5 @@ export default async function lighthouseRequest(req: Request, res: Response) {
   await currentUser.markModified('endpoints');
   await currentUser.save();
  
-  // close the mongoose connection and send response back
-  await mongoose.connection.close();
   res.status(200).json(scores);
 };

@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 const User = require('../../../models/loginModel');
+import dbConnect from '../../../lib/dbConnect';
 const getEndPointData = async (username) => {
-  await mongoose.connect(process.env.MONGO_URI)
-  console.log('~~~Connected to mongoDB~~~');
+  await dbConnect();
+
   // Find user username": "sampledata"
   // Data we need is endpoints."https://sampledata.coateam"
   const foundUser = await User.findOne({ _id: username });

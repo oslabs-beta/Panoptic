@@ -1,6 +1,8 @@
 import styles from '../../styles/Nav.module.scss';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import logoPic from '../../assets/PanLogo.png';
 const Nav = (): JSX.Element => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -8,7 +10,7 @@ const Nav = (): JSX.Element => {
     <nav className={styles.yeahBoi}>
       <span className={styles.logo}>
         <Link href='/'>
-          Panoptic
+          <Image className={styles.logoPic} alt="Panoptic Logo" src={logoPic}/>
         </Link>
       </span>
 
