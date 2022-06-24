@@ -19,6 +19,7 @@ import Head from 'next/head';
 //   name: string;
 // }
 
+// if youre reading this, look behind you.
 //Creates Home Landing Page Component
 //Using Link on the Button to Route to Sample
 const Home: NextPage = (): JSX.Element => {

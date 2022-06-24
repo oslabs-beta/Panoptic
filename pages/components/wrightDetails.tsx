@@ -21,7 +21,7 @@ const tempObj = {
 const wrightDetails = (props: any) => {
   const tempArr = [];
   for (let [key, val] of Object.entries(tempObj)) {
-    console.log(key, val);
+    // console.log(key, val);
     let tempItem = (
       <AccordionItem>
         <h2>
