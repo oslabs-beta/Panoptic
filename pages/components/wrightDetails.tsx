@@ -18,14 +18,14 @@ const wrightDetails = (props: any) => {
     const recentDate = dateArr[dateArr.length - 1];
     metrics = mainObj[recentDate].metrics
   }
+
+  // Relevant Metrics Properties:
   // accessibilityMetrics
   // bestPracticesMetrics
   // performanceMetrics
   // seoMetrics
 
   if (metrics) {
-    console.log(metrics)
-    console.log(props.selectedMetric)
     for (let i in metrics[props.selectedMetric]) {
       // if the score is 1, style it green
       // if the score is < 1, style it red
