@@ -1,0 +1,71 @@
+@import './Variables.scss';
+
+#docsPage {
+  display: flex;
+  height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 50px;
+  // background-color: red;
+}
+
+#docsNav {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+#docsList {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  margin-top: 10vh;
+  justify-content: flex-start;
+}
+
+#rightside {
+  width: 100vw;
+}
+
+#docsContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 7vw;
+  margin-top: 9vh;
+  // align-items: center;
+  height: 100vh;
+  // background-color: red;
+}
+
+.docsListItem {
+  display: flex;
+  margin-bottom: 0.5vh;
+}
+
+.listButton {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  // border: 2px solid $blue-stone;
+  border: none;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  max-width: 140px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.listButton:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}
+
+.listButton:disabled {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease-in-out;
+}

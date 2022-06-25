@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,800;1,900&display=swap');
+@import './Variables.scss';
+// Color inspiration
+// https://www.pinterest.com/pin/ice-blue-color-palette-winter-colour-inspiration-color-scheme--574842339932570411/
+
+.yeahBoi {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 5%;
+  align-items: center;
+  font-size: 1rem;
+  max-height: 10vh;
+  background-color: $lavender;
+  border-bottom: solid rgb(198, 198, 198) 1px;
+  box-shadow: 0px 1px 10px 2px rgb(182, 182, 182);
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  color: $blue-stone;
+  max-width: 150px;
+}
+
+.logoPic {
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+}
+
+// .buttonsContainer {
+
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 200px;
+// }
+
+.loginBtn {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.readDocsNav {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $blue-stone;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: $blue-stone;
+  color: $lavender;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+.loginBtn:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease;
+}
+
+.readDocsNav:hover {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease;
+}
+
+#navBtns {
+  display: flex;
+  justify-content: space-between;
+}
+
+// .signupBtn {
+//   font-family: $primary-font;
+//   padding: 0.5em 1.5em;
+//   border: 2px solid HSL(114, 96.1%, 59.6%);
+//   border-radius: $round-dem-edges;
+//   box-shadow: 0px 0px 10px 2px HSL(114, 96.1%, 59.6%);
+//   font-weight: 700;
+//   background-color: #010a01;
+//   color: HSL(114, 96.1%, 59.6%);
+// }
