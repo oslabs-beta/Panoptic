@@ -9,7 +9,7 @@ const getEndPointData = async (username) => {
   const foundUser = await User.findOne({ _id: username });
   if (foundUser) {
     console.log(username + ' user found');
-    console.log(foundUser.endpoints)
+    console.log(foundUser)
     return (JSON.stringify(foundUser.endpoints))
   } else {
     console.log(username + ' user not found');

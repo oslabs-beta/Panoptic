@@ -281,7 +281,7 @@ export const options = {
     const seoArray = [];
     const accessibilityArray = [];
     const bestPracticeArray = [];
-    let arrOfTime = []
+    const arrOfTime = []
 
 
     for (const key in endPoints) {

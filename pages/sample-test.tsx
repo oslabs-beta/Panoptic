@@ -178,7 +178,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           </button>
         </div>
         <div className={styles.dropdownMenu}>
-          <EndpointsList func={loadData} selected={selected} setSelected={setSelected} endPts={currentUser} setLoaded={setLoaded} />
+          <EndpointsList func={setLoadData} selected={selected} setSelected={setSelected} endPts={currentUser} setLoaded={setLoaded} />
         </div>
       </div>
 
@@ -187,7 +187,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           {scores}
         </div>
         <div className={styles.lineChart}>
-          <Chart setLoad={setLoadData} user={currentUser} selectedEndpoint={selected} cookie={initialRememberValue} className={styles.chartMaybe} isLoaded={isLoaded}  />
+          <Chart setLoad={loadData} user={currentUser} selectedEndpoint={selected} cookie={initialRememberValue} className={styles.chartMaybe} isLoaded={isLoaded}  />
         </div>
       </div>
 

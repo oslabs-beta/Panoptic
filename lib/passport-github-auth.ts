@@ -12,6 +12,7 @@ passport.use(new Strategy(
   
     function (accessToken, refreshToken, profile, cb) {
     profile.token = accessToken;
+    profile.refreshToken = refreshToken;
     console.log('test')
     console.log(accessToken, profile, refreshToken);
     return cb(null, profile);

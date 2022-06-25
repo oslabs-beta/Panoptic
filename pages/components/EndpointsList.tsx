@@ -13,7 +13,7 @@ const EndpointsList = (props: any) => {
   // click handler for selecting endpoint
   const endpointSelector = (e: any) => { 
     props.setSelected(e.target.textContent)
-    props.setLoaded(true)
+    props.func(props.endPts[e.target.textContent])
   }
   const endpointsArr = filteredObj();
   const arr = [];
