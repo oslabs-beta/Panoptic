@@ -62,7 +62,6 @@ const MainLineChartRE = (props) => {
   const arrSEO = [0];
 
   // CHART DATA
-
   const data = {
     labels, // Array of label names
     datasets: [
