@@ -27,11 +27,21 @@
 
 .EndpointsList {
   margin-top: 2em;
+  padding: 1rem;
+  width: 100%;
 }
 
 .endpointsTitle {
   font-family: $primary-font;
   font-size: 2rem;
   font-weight: 900;
+  border-bottom: 1px solid $lavender;
   color: $neon-blue;
+}
+
+.endpointContainer {
+  border: 1px solid $lavender;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
 }

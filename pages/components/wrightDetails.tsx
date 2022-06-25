@@ -6,11 +6,11 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react';
+import style from '../../styles/Dashboard.module.scss'
 
 const wrightDetails = (props: any) => {
   const tempArr = [];
   let metrics;
-  console.log(props.selectedEndpoint)
   // extract the most current date of the user's history
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     const mainObj = props.user[props.selectedEndpoint];
@@ -18,34 +18,38 @@ const wrightDetails = (props: any) => {
     const recentDate = dateArr[dateArr.length - 1];
     metrics = mainObj[recentDate].metrics
   }
-  console.log(metrics)
-  if (metrics) {
-    for (let i in metrics.accessibilityMetrics) {
+  // accessibilityMetrics
+  // bestPracticesMetrics
+  // performanceMetrics
+  // seoMetrics
 
+  if (metrics) {
+    console.log(metrics)
+    console.log(props.selectedMetric)
+    for (let i in metrics[props.selectedMetric]) {
       // if the score is 1, style it green
       // if the score is < 1, style it red
-      if (metrics.accessibilityMetrics[i].score === 1) {
-        let myCard = (
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box flex='1' textAlign='left'>
-                  {metrics.accessibilityMetrics[i].title}
-                </Box>
-              <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>{metrics.accessibilityMetrics[i].description}</AccordionPanel>
-          </AccordionItem>
-        )
-        tempArr.push(myCard)
-      }
-      console.log(metrics.accessibilityMetrics[i])
+      let elementStyle;
+      metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
+      let myCard = (
+        <AccordionItem className={elementStyle}>
+          <h2>
+            <AccordionButton>
+              <Box flex='1' textAlign='left'>
+                {metrics[props.selectedMetric][i].title}
+              </Box>
+            <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>{metrics[props.selectedMetric][i].description}</AccordionPanel>
+        </AccordionItem>
+      )
+      tempArr.push(myCard)
     }
   }
   
   return (
-    <Accordion defaultIndex={[0]} allowMultiple>
+    <Accordion allowMultiple width='100%'>
       {tempArr}
     </Accordion>
   );

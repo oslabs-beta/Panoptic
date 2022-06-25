@@ -151,6 +151,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     '9',
   ]);
 
+  // selected metric type state
+  const [selectedMetric, setSelectedMetric] = useState('seoMetrics');
+
   const loadEndPointDataToChart = (e) => {
     // performance
     const performanceArray = [];
@@ -243,8 +246,8 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
 
       <div className={styles.containerRight}>
         <div className={styles.detailsList}>
-          <h2 className={styles.detailsHeader}>{selected}</h2>
-          <WrightDetails selectedEndpoint={selected} user={currentUser}/>
+          <h2 className={styles.detailsHeader}>{selected}・{selectedMetric}</h2>
+          <WrightDetails selectedEndpoint={selected} user={currentUser} selectedMetric={selectedMetric}/>
         </div>
       </div>
     </div>
