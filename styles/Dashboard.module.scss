@@ -112,6 +112,8 @@
 
 .dropdownMenu {
   display: flex;
+  width: 100%;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -129,17 +131,31 @@
   height: 2.5rem;
   min-width: 15vw;
   width: 65%;
-  border: 0;
+  border-bottom: 2px solid $neon-pink;
   font-weight: 500;
   outline: 0;
   background: transparent;
   transition: border-color 0.2s;
-  border-bottom: 2px solid $primary-black;
 }
 
 .endpointInput:focus {
   border-bottom: 2px solid $neon-pink;
   font-weight: 700;
+  animation-name: lineAnimation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lineAnimation {
+  0% {
+    border-bottom: 2px solid $neon-pink;
+  }
+  50% {
+    border-bottom: 2px solid $neon-blue;
+  }
+  100% {
+    border-bottom: 2px solid $neon-pink;
+  }
 }
 
 .dropdownMenu {
@@ -174,6 +190,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .detailsHeader {
@@ -189,4 +206,14 @@
   border-radius: 4px 4px 0px 0px;
 }
 .samplePagContainer {
+}
+
+.detailElement {
+  width: 100%;
+  background-color: $neon-blue;
+}
+
+.detailElementFlaw {
+  width: 100%;
+  background-color: $neon-red;
 }
