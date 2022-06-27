@@ -44,7 +44,7 @@ const EndpointsList = (props: any) => {
   }
   return (
     <div className={style.EndpointsList}>
-      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+      <Box className={style.endpointContainer}>
         <h1 className={style.endpointsTitle}>My Endpoints:</h1>
         <ul className={style.ul}>{arr}</ul>
       </Box>
