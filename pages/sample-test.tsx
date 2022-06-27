@@ -2,8 +2,9 @@ import type { NextPage } from 'next';
 import { useState, useEffect, useRef } from 'react';
 import Nav from './components/Nav';
 import LH_Gauge from './components/lhGauge';
-import LoadSpinner from './components/LoadingSpinner';
+import WrightDetails from './components/wrightDetails';
 import Chart from './components/LineChart.jsx';
+import MainLineChartRE from './components/MainLineChartRE';
 import styles from '../styles/Dashboard.module.scss';
 import Sidenav from './components/Sidenav';
 import axios from 'axios';
@@ -19,6 +20,7 @@ import {
   Progress,
 } from '@chakra-ui/react';
 import { RingLoader, PacmanLoader } from 'react-spinners';
+import { any } from 'webidl-conversions';
 
 // export async function getServerSideProps() {
 //   // Fetch data from external API
@@ -52,9 +54,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
 
   // Get Current User
   const getUser = async () => {
-    const result = await axios.get(`/api/user/${initialRememberValue}`)
+    const result = await axios.get(`/api/user/${initialRememberValue}`);
     return setCurrentUser(result.data);
-  }
+  };
   const didMount = useRef(false);
   // const didMountv2 = useRef(false);
 
@@ -87,7 +89,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     // clear input value after clicking
     urlData.value = '';
   };
-
 
   useEffect(() => {
     getUser();
@@ -129,39 +130,61 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     lighthouseData.seo,
   ]);
 
-  // if (lighthouseData.performance) {
-  //   setScores(
-  //     <div>
-  //       <h1>Performance Score: {lighthouseData.performance}</h1>
-  //       <h1>Accessibility Score: {lighthouseData.accessibility}</h1>
-  //       <h1>Best Practice Score: {lighthouseData.bestPractices}</h1>
-  //       <h1>SEO Score: {lighthouseData.seo}</h1>
-  //       <div className='containerGauge'>
-  //         <LH_Gauge
-  //           score={lighthouseData.performance}
-  //           title={'Performance Score:'}
-  //         />
-  //         <LH_Gauge
-  //           score={lighthouseData.accessibility}
-  //           title={'Accessibility Score:'}
-  //         />
-  //         <LH_Gauge
-  //           score={lighthouseData.bestPractices}
-  //           title={'Best Practice Score:'}
-  //         />
-  //         <LH_Gauge score={lighthouseData.seo} title={'SEO Score:'} />
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  const [selected, setSelected] = useState('Select An Endpoint');
+  const [loadData, setLoadData] = useState(null);
+  const [isLoaded, setLoaded] = useState(false);
 
-  const [ selected, setSelected ] = useState('Select An Endpoint');
-  const [ loadData, setLoadData ] = useState();
-  const [ isLoaded, setLoaded ] = useState(false);
+  const [performanceData, setPerformanceData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+  const [bestPracticeData, setBestPracticeData] = useState(null);
+  const [accessibilityData, setAccessibilityData] = useState(null);
+  const [times, setTimes] = useState([
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+  ]);
 
+  const loadEndPointDataToChart = (e) => {
+    // performance
+    const performanceArray = [];
+    const seoArray = [];
+    const accessibilityArray = [];
+    const bestPracticeArray = [];
+    let arrOfTime = [];
 
+    for (const key in currentUser) {
+      if (key === e.target.textContent) {
+        // currentUser[key];
+        if (arrOfTime.length < 8)
+          arrOfTime.push(Object.keys(currentUser[key]).map((el) => el));
+
+        for (const date in currentUser[key]) {
+          performanceArray.push(currentUser[key][date].metrics.performance);
+          seoArray.push(currentUser[key][date].metrics.seo);
+          accessibilityArray.push(currentUser[key][date].metrics.accessibility);
+          bestPracticeArray.push(currentUser[key][date].metrics.bestPractices);
+        }
+      }
+    }
+    setAccessibilityData([...accessibilityArray]);
+    setSeoData([...seoArray]);
+    setBestPracticeData([...bestPracticeArray]);
+    setPerformanceData([...performanceArray]);
+    arrOfTime[0].length === 1
+      ? setTimes([...arrOfTime[0], ...arrOfTime[0]])
+      : setTimes([...arrOfTime[0]]);
+  };
+
+  // console.log(performanceData);
+  // console.log(currentUser);
   return (
-
     <div className={styles.threeParts}>
       <div className={styles.containerLeft}>
         <div className={styles.metricsContainer}>
@@ -178,22 +201,58 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           </button>
         </div>
         <div className={styles.dropdownMenu}>
+<<<<<<< HEAD
           <EndpointsList func={setLoadData} selected={selected} setSelected={setSelected} endPts={currentUser} setLoaded={setLoaded} />
+=======
+          <EndpointsList
+            // func={loadData}
+            func={loadEndPointDataToChart}
+            selected={selected}
+            setSelected={setSelected}
+            endPts={currentUser}
+            setLoaded={setLoaded}
+          />
+>>>>>>> dev
         </div>
       </div>
 
       <div className={styles.containerMid}>
-        <div className={styles.controlPanel}>
-          {scores}
-        </div>
+        <div className={styles.controlPanel}>{scores}</div>
+        {/* <div className={styles.lineChart}>
+          <Chart
+            setLoad={setLoadData}
+            user={currentUser}
+            selectedEndpoint={selected}
+            cookie={initialRememberValue}
+            className={styles.chartMaybe}
+            isLoaded={isLoaded}
+          />
+        </div> */}
         <div className={styles.lineChart}>
+<<<<<<< HEAD
           <Chart setLoad={loadData} user={currentUser} selectedEndpoint={selected} cookie={initialRememberValue} className={styles.chartMaybe} isLoaded={isLoaded}  />
+=======
+          <MainLineChartRE
+            setLoad={setLoadData}
+            user={currentUser}
+            selectedEndpoint={selected}
+            cookie={initialRememberValue}
+            className={styles.chartMaybe}
+            isLoaded={isLoaded}
+            performanceData={performanceData}
+            bestPracticeData={bestPracticeData}
+            seoData={seoData}
+            accessibilityData={accessibilityData}
+            labelTimes={times}
+          />
+>>>>>>> dev
         </div>
       </div>
 
       <div className={styles.containerRight}>
         <div className={styles.detailsList}>
-          <h1>Put details list here</h1>
+          <h2 className={styles.detailsHeader}>{selected}</h2>
+          <WrightDetails selectedEndpoint={selected} user={currentUser}/>
         </div>
       </div>
     </div>

@@ -94,21 +94,20 @@ export const options = {
 };
 
 // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  // // build array of time endpoint was checked
-  // const arrOfTime = [];
-  // for (const keys in endPoints) {
-  //   const test = Object.keys(endPoints[keys]).map(el => el);
-  //   arrOfTime.push(test);
-  // }  
+// // build array of time endpoint was checked
+// const arrOfTime = [];
+// for (const keys in endPoints) {
+//   const test = Object.keys(endPoints[keys]).map(el => el);
+//   arrOfTime.push(test);
+// }
 
-  
-  const mainLineChart = (props) => {
-      // build array of time endpoint was checked
+const mainLineChart = (props) => {
+  // build array of time endpoint was checked
   const [times, setTimes] = useState(['0', '1', '2', '3', '4', '5', '6', '7']);
   // for (const keys in props.user) {
   //   const test = Object.keys(props.user[keys]).map(el => el);
   //   arrOfTime.push(test);
-  // }  
+  // }
   const labels = times;
   const arrPerformance = [0];
   const arrAccessibility = [0];
@@ -207,7 +206,7 @@ export const options = {
   //     console.log(key)
   //     if (key.toString() == props.selectedEndpoint) {
   //       if (arrOfTime.length < 8) arrOfTime.push(Object.keys(endPoints[key]).map(el => el));
-        
+
   //       for (const date in endPoints[key]) {
   //         performanceArray.push(endPoints[key][date].metrics.performance);
   //         seoArray.push(endPoints[key][date].metrics.seo);
@@ -281,13 +280,13 @@ export const options = {
     const seoArray = [];
     const accessibilityArray = [];
     const bestPracticeArray = [];
-    const arrOfTime = []
-
+    const arrOfTime = [];
 
     for (const key in endPoints) {
       if (key === e.target.value) {
-        if (arrOfTime.length < 8) arrOfTime.push(Object.keys(endPoints[key]).map(el => el));
-        
+        if (arrOfTime.length < 8)
+          arrOfTime.push(Object.keys(endPoints[key]).map((el) => el));
+
         for (const date in endPoints[key]) {
           performanceArray.push(endPoints[key][date].metrics.performance);
           seoArray.push(endPoints[key][date].metrics.seo);
@@ -300,11 +299,14 @@ export const options = {
     setSeoData([...seoArray]);
     setBestPracticeData([...bestPracticeArray]);
     setPerformanceData([...performanceArray]);
-    arrOfTime[0].length === 1 ? setTimes([...arrOfTime[0], ...arrOfTime[0]]) :
-    setTimes([...arrOfTime[0]]);
-  }
-      // console.log('line303',props.user[props])
-      // console.log('line303',props.user[props.selectedEndpoint])
+    arrOfTime[0].length === 1
+      ? setTimes([...arrOfTime[0], ...arrOfTime[0]])
+      : setTimes([...arrOfTime[0]]);
+  };
+  // console.log('line303',props.user[props])
+  // console.log('line303',props.user[props.selectedEndpoint])
+  console.log(performanceData);
+
   return (
     <div>
       {/* <h2>{props.selectedEndpoint}</h2> */}
@@ -314,10 +316,10 @@ export const options = {
         {arrOfEndPoints}
       </select>
       <div>
-        <Line className={props.className} options={options} data={data}  />
+        <Line className={props.className} options={options} data={data} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default mainLineChart;
