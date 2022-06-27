@@ -20,6 +20,7 @@ import {
   Progress,
 } from '@chakra-ui/react';
 import { RingLoader, PacmanLoader } from 'react-spinners';
+import { any } from 'webidl-conversions';
 
 // export async function getServerSideProps() {
 //   // Fetch data from external API
@@ -150,9 +151,11 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     '9',
   ]);
 
+  // selected metric type state
+  const [selectedMetric, setSelectedMetric] = useState('seoMetrics');
+
   const loadEndPointDataToChart = (e) => {
     // performance
-    console.log(e.target.value);
     const performanceArray = [];
     const seoArray = [];
     const accessibilityArray = [];
@@ -160,7 +163,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     let arrOfTime = [];
 
     for (const key in currentUser) {
-      console.log(key);
       if (key === e.target.textContent) {
         // currentUser[key];
         if (arrOfTime.length < 8)
@@ -244,8 +246,8 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
 
       <div className={styles.containerRight}>
         <div className={styles.detailsList}>
-          <h1>Put details list here</h1>
-          <WrightDetails />
+          <h2 className={styles.detailsHeader}>{selected}・{selectedMetric}</h2>
+          <WrightDetails selectedEndpoint={selected} user={currentUser} selectedMetric={selectedMetric}/>
         </div>
       </div>
     </div>

@@ -6,39 +6,50 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react';
-
-const tempObj = {
-  title:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at scelerisque elit. Sed finibus massa finibus porta placerat. Pellentesque id dictum risus. Nullam bibendum pharetra. ',
-  title2:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at scelerisque elit. Sed finibus massa finibus porta placerat. Pellentesque id dictum risus. Nullam bibendum pharetra. ',
-  title3:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at scelerisque elit. Sed finibus massa finibus porta placerat. Pellentesque id dictum risus. Nullam bibendum pharetra. ',
-  title4:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at scelerisque elit. Sed finibus massa finibus porta placerat. Pellentesque id dictum risus. Nullam bibendum pharetra. ',
-};
+import style from '../../styles/Dashboard.module.scss'
 
 const wrightDetails = (props: any) => {
   const tempArr = [];
-  for (let [key, val] of Object.entries(tempObj)) {
-    // console.log(key, val);
-    let tempItem = (
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              {key}
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>{val}</AccordionPanel>
-      </AccordionItem>
-    );
-    tempArr.push(tempItem);
+  let metrics;
+  // extract the most current date of the user's history
+  if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
+    const mainObj = props.user[props.selectedEndpoint];
+    const dateArr = Object.keys(mainObj);
+    const recentDate = dateArr[dateArr.length - 1];
+    metrics = mainObj[recentDate].metrics
   }
+
+  // Relevant Metrics Properties:
+  // accessibilityMetrics
+  // bestPracticesMetrics
+  // performanceMetrics
+  // seoMetrics
+
+  if (metrics) {
+    for (let i in metrics[props.selectedMetric]) {
+      // if the score is 1, style it green
+      // if the score is < 1, style it red
+      let elementStyle;
+      metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
+      let myCard = (
+        <AccordionItem className={elementStyle}>
+          <h2>
+            <AccordionButton>
+              <Box flex='1' textAlign='left'>
+                {metrics[props.selectedMetric][i].title}
+              </Box>
+            <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>{metrics[props.selectedMetric][i].description}</AccordionPanel>
+        </AccordionItem>
+      )
+      tempArr.push(myCard)
+    }
+  }
+  
   return (
-    <Accordion defaultIndex={[0]} allowMultiple>
+    <Accordion allowMultiple width='100%'>
       {tempArr}
     </Accordion>
   );
