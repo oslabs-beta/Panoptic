@@ -246,12 +246,17 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
 
       <div className={styles.containerRight}>
         <div className={styles.detailsList}>
-          <h2 className={styles.detailsHeader}>{selected}・{selectedMetric}</h2>
-          <WrightDetails selectedEndpoint={selected} user={currentUser} selectedMetric={selectedMetric}/>
+          <h2 className={styles.detailsHeader}>
+            {selected}・{selectedMetric}
+          </h2>
+          <WrightDetails
+            selectedEndpoint={selected}
+            user={currentUser}
+            selectedMetric={selectedMetric}
+          />
         </div>
       </div>
     </div>
-
     // <div className={styles.threeParts}>
     //   {/* <Sidenav /> */}
     //   <div className={styles.containerLeft}>
@@ -292,7 +297,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     //       <h1>Put details list here</h1>
     //     </div>
     //   </div>
-    // </div>
   );
 };
 DataTest.getInitialProps = async ({ req }) => {
