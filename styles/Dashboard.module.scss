@@ -1,6 +1,5 @@
 @import './Variables.scss';
 
-
 .threeParts {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -42,7 +41,7 @@
 #endpointBtn {
   font-family: $primary-font;
   padding: 0.7em 1em;
-  border: 2px solid $neon-pink;
+  border: 0.1rem solid $neon-pink;
   border-radius: $round-dem-edges;
   font-weight: 700;
   background-color: $neon-pink;
@@ -137,7 +136,6 @@
   outline: 0;
   background: transparent;
   transition: border-color 0.2s;
-  
 }
 
 .endpointInput:focus {
@@ -149,9 +147,15 @@
 }
 
 @keyframes lineAnimation {
-  0% {border-bottom: 2px solid $neon-pink}
-  50% {border-bottom: 2px solid $neon-blue}
-  100% {border-bottom: 2px solid $neon-pink}
+  0% {
+    border-bottom: 2px solid $neon-pink;
+  }
+  50% {
+    border-bottom: 2px solid $neon-blue;
+  }
+  100% {
+    border-bottom: 2px solid $neon-pink;
+  }
 }
 
 .dropdownMenu {
@@ -183,7 +187,7 @@
 
 .detailsList {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -201,7 +205,8 @@
   background-color: $lavender;
   border-radius: 4px 4px 0px 0px;
 }
-
+.samplePagContainer {
+}
 
 .detailElement {
   width: 100%;
