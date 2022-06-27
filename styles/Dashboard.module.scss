@@ -1,6 +1,5 @@
 @import './Variables.scss';
 
-
 .threeParts {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -42,7 +41,7 @@
 #endpointBtn {
   font-family: $primary-font;
   padding: 0.7em 1em;
-  border: 2px solid $neon-pink;
+  border: 0.1rem solid $neon-pink;
   border-radius: $round-dem-edges;
   font-weight: 700;
   background-color: $neon-pink;
@@ -172,7 +171,7 @@
 
 .detailsList {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -188,4 +187,6 @@
   height: 2rem;
   background-color: $lavender;
   border-radius: 4px 4px 0px 0px;
+}
+.samplePagContainer {
 }

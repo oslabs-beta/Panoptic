@@ -185,36 +185,37 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   // console.log(performanceData);
   // console.log(currentUser);
   return (
-    <div className={styles.threeParts}>
-      <div className={styles.containerLeft}>
-        <div className={styles.metricsContainer}>
-          <h1 className={styles.enterUrl}>Enter New Endpoint Below</h1>
-          <input
-            id='urlData'
-            type='text'
-            required
-            placeholder='ex: https://YouTube.com/'
-            className={styles.endpointInput}
-          />
-          <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
-            Run Tests
-          </button>
+    <div className='samplePagContainer'>
+      <div className={styles.threeParts}>
+        <div className={styles.containerLeft}>
+          <div className={styles.metricsContainer}>
+            <h1 className={styles.enterUrl}>Enter New Endpoint Below</h1>
+            <input
+              id='urlData'
+              type='text'
+              required
+              placeholder='ex: https://YouTube.com/'
+              className={styles.endpointInput}
+            />
+            <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
+              Run Tests
+            </button>
+          </div>
+          <div className={styles.dropdownMenu}>
+            <EndpointsList
+              // func={loadData}
+              func={loadEndPointDataToChart}
+              selected={selected}
+              setSelected={setSelected}
+              endPts={currentUser}
+              setLoaded={setLoaded}
+            />
+          </div>
         </div>
-        <div className={styles.dropdownMenu}>
-          <EndpointsList
-            // func={loadData}
-            func={loadEndPointDataToChart}
-            selected={selected}
-            setSelected={setSelected}
-            endPts={currentUser}
-            setLoaded={setLoaded}
-          />
-        </div>
-      </div>
 
-      <div className={styles.containerMid}>
-        <div className={styles.controlPanel}>{scores}</div>
-        {/* <div className={styles.lineChart}>
+        <div className={styles.containerMid}>
+          <div className={styles.controlPanel}>{scores}</div>
+          {/* <div className={styles.lineChart}>
           <Chart
             setLoad={setLoadData}
             user={currentUser}
@@ -224,31 +225,31 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
             isLoaded={isLoaded}
           />
         </div> */}
-        <div className={styles.lineChart}>
-          <MainLineChartRE
-            setLoad={setLoadData}
-            user={currentUser}
-            selectedEndpoint={selected}
-            cookie={initialRememberValue}
-            className={styles.chartMaybe}
-            isLoaded={isLoaded}
-            performanceData={performanceData}
-            bestPracticeData={bestPracticeData}
-            seoData={seoData}
-            accessibilityData={accessibilityData}
-            labelTimes={times}
-          />
+          <div className={styles.lineChart}>
+            <MainLineChartRE
+              setLoad={setLoadData}
+              user={currentUser}
+              selectedEndpoint={selected}
+              cookie={initialRememberValue}
+              className={styles.chartMaybe}
+              isLoaded={isLoaded}
+              performanceData={performanceData}
+              bestPracticeData={bestPracticeData}
+              seoData={seoData}
+              accessibilityData={accessibilityData}
+              labelTimes={times}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className={styles.containerRight}>
-        <div className={styles.detailsList}>
-          <h2 className={styles.detailsHeader}>{selected}</h2>
-          <WrightDetails selectedEndpoint={selected} user={currentUser}/>
+        <div className={styles.containerRight}>
+          <div className={styles.detailsList}>
+            <h2 className={styles.detailsHeader}>{selected}</h2>
+            <WrightDetails selectedEndpoint={selected} user={currentUser} />
+          </div>
         </div>
       </div>
     </div>
-
     // <div className={styles.threeParts}>
     //   {/* <Sidenav /> */}
     //   <div className={styles.containerLeft}>
