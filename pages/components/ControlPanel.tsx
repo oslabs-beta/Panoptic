@@ -1,14 +1,11 @@
 import styles from '../../styles/Dashboard.module.scss';
-import Link from 'next/link';
 import { Box, HStack, Button } from '@chakra-ui/react';
 import LH_Gauge from './lhGauge';
 
 const controlPanel = (props: any): JSX.Element => {
-  console.log({ props });
-  const tempArr = [];
-
+  const tempArr:JSX.Element[] = [];
   if (props.lhdata)
-    for (let key in props.lhdata) {
+    for (const key in props.lhdata) {
       if (typeof props.lhdata[key] == 'number') {
         tempArr.push(
           <LH_Gauge

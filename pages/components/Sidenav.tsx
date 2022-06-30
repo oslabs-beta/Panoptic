@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import styles from '../../styles/Sidenav.module.scss'
-const Sidenav = (props: any) => {
+const Sidenav = (props: any):JSX.Element => {
   return (
     <nav className={styles.Sidenav}>
       <Link href="/"><h1 className={styles.logo}>Panoptic</h1></Link>

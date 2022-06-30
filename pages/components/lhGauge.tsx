@@ -6,7 +6,6 @@ import { Box } from '@chakra-ui/react';
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
 function lhGauge(props: any): JSX.Element {
-  console.log(props.title, props.score);
   const [data2, setData] = useState(null);
   const numberScore = props.score;
   //   const [plugins2, setPlugins] = useState(null);
@@ -23,7 +22,7 @@ function lhGauge(props: any): JSX.Element {
       {
         label: 'My First Dataset',
         data: [props.score, 100 - props.score],
-        backgroundColor: ['rgb(213, 77, 224)', 'white'],
+        backgroundColor: ['#266ef6', 'white'],
 
         borderAlign: 'center',
       },
