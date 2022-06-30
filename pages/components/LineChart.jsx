@@ -255,7 +255,7 @@ const mainLineChart = (props) => {
       // API not called yet
       callOnce = true;
       await axios.get(myUrl, config).then((res) => {
-        setEndPoints(res.data);
+        setEndPoints(res.data.endpoints);
         // getPerformanceData();
 
         console.log('res data = ', endPoints);

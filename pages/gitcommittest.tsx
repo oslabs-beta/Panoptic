@@ -38,8 +38,9 @@ const DataTest: NextPage = (props: any) => {
   const printInfo = async () => {
     // get user access token (getting mine (marc's))
     const result = await axios.get('/api/all');
+    console.log(result);
     // store the github access token in a variable
-    const token = await result.data[2].github.token;
+    const token = await result.data[8].github.token;
     // octokit (just cuz github used examples with this and it seemed simpler)
     const octokit = new Octokit({ auth: `${token}`}); // give auth the token as a string
     // store commit history result in variable
@@ -51,6 +52,19 @@ const DataTest: NextPage = (props: any) => {
     console.log(test);
   }
 
+    // getting commit history for a specific repo
+    const repoInfo = async () => {
+      // get user access token (getting mine (marc's))
+      const result = await axios.get('/api/all');
+      // store the github access token in a variable
+      const token = await result.data[8].github.token;
+      // octokit (just cuz github used examples with this and it seemed simpler)
+      const octokit = new Octokit({ auth: `${token}`}); // give auth the token as a string
+      // store commit history result in variable
+      const test = await octokit.request('GET /user/repos');
+      // see it here (in browser)
+      console.log(test);
+    }
 
   let scores;
   if (!lighthouseData.performance) {
@@ -77,6 +91,9 @@ const DataTest: NextPage = (props: any) => {
       />
       <button type='button' onClick={printInfo}>
         if it doesnt work, my token probably expired
+      </button>
+      <button type='button' onClick={repoInfo}>
+        click for repo maybe
       </button>
       {scores}
     </div>

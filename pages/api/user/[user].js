@@ -10,7 +10,7 @@ const getEndPointData = async (username) => {
   if (foundUser) {
     console.log(username + ' user found');
     console.log(foundUser)
-    return (JSON.stringify(foundUser.endpoints))
+    return foundUser;
   } else {
     console.log(username + ' user not found');
     return;// Empty return it triggers No profile data

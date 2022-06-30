@@ -9,24 +9,17 @@ const EndpointsList = (props: any) => {
   const [endpoints, setEndpoints] = useState([]);
   // filter user obj for only endpoints
   const filteredObj = () => {
-    const test = Object.keys(props.endPts).map((key) => key);
+    const test = Object.keys(props.endPts.endpoints).map((key) => key);
     return test;
   };
 
   // click handler for selecting endpoint
-<<<<<<< HEAD
-  const endpointSelector = (e: any) => { 
-    props.setSelected(e.target.textContent)
-    props.func(props.endPts[e.target.textContent])
-  }
-=======
   const endpointSelector = (e: any) => {
     props.setSelected(e.target.textContent);
     props.setLoaded(true);
     // console.log(e.target.textContent);
     props.func(e);
   };
->>>>>>> dev
   const endpointsArr = filteredObj();
   const arr = [];
   for (let i = 0; i < endpointsArr.length; i++) {
@@ -44,7 +37,7 @@ const EndpointsList = (props: any) => {
   }
   return (
     <div className={style.EndpointsList}>
-      <Box className={style.endpointContainer}>
+      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
         <h1 className={style.endpointsTitle}>My Endpoints:</h1>
         <ul className={style.ul}>{arr}</ul>
       </Box>

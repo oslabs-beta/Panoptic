@@ -19,7 +19,15 @@
   list-style: none;
 }
 
-.li:hover {
+.li button {
+  text-align: center;
+  padding: 0.8em;
+  font-size: 1.2rem;
+  list-style: none;
+}
+
+.li button:hover {
+  padding: 0.8em;
   background: $neon-pink;
   // color: $neon-blue;
   border-radius: $round-dem-edges;

@@ -10,6 +10,7 @@ import Sidenav from './components/Sidenav';
 import axios from 'axios';
 import { parseCookies } from '../lib/parseCookies';
 import EndpointsList from './components/EndpointsList';
+import Repos from './components/Repos';
 import {
   Flex,
   Box,
@@ -55,6 +56,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   // Get Current User
   const getUser = async () => {
     const result = await axios.get(`/api/user/${initialRememberValue}`);
+    console.log(result)
     return setCurrentUser(result.data);
   };
   const didMount = useRef(false);
@@ -162,17 +164,17 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     const bestPracticeArray = [];
     let arrOfTime = [];
 
-    for (const key in currentUser) {
+    for (const key in currentUser.endpoints) {
       if (key === e.target.textContent) {
         // currentUser[key];
         if (arrOfTime.length < 8)
-          arrOfTime.push(Object.keys(currentUser[key]).map((el) => el));
+          arrOfTime.push(Object.keys(currentUser.endpoints[key]).map((el) => el));
 
-        for (const date in currentUser[key]) {
-          performanceArray.push(currentUser[key][date].metrics.performance);
-          seoArray.push(currentUser[key][date].metrics.seo);
-          accessibilityArray.push(currentUser[key][date].metrics.accessibility);
-          bestPracticeArray.push(currentUser[key][date].metrics.bestPractices);
+        for (const date in currentUser.endpoints[key]) {
+          performanceArray.push(currentUser.endpoints[key][date].metrics.performance);
+          seoArray.push(currentUser.endpoints[key][date].metrics.seo);
+          accessibilityArray.push(currentUser.endpoints[key][date].metrics.accessibility);
+          bestPracticeArray.push(currentUser.endpoints[key][date].metrics.bestPractices);
         }
       }
     }
@@ -204,9 +206,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           </button>
         </div>
         <div className={styles.dropdownMenu}>
-<<<<<<< HEAD
-          <EndpointsList func={setLoadData} selected={selected} setSelected={setSelected} endPts={currentUser} setLoaded={setLoaded} />
-=======
           <EndpointsList
             // func={loadData}
             func={loadEndPointDataToChart}
@@ -215,7 +214,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
             endPts={currentUser}
             setLoaded={setLoaded}
           />
->>>>>>> dev
+          <Repos user={currentUser}/>
         </div>
       </div>
 
@@ -232,12 +231,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           />
         </div> */}
         <div className={styles.lineChart}>
-<<<<<<< HEAD
-          <Chart setLoad={loadData} user={currentUser} selectedEndpoint={selected} cookie={initialRememberValue} className={styles.chartMaybe} isLoaded={isLoaded}  />
-=======
           <MainLineChartRE
             setLoad={setLoadData}
-            user={currentUser}
+            user={currentUser.endpoints}
             selectedEndpoint={selected}
             cookie={initialRememberValue}
             className={styles.chartMaybe}
@@ -248,7 +244,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
             accessibilityData={accessibilityData}
             labelTimes={times}
           />
->>>>>>> dev
         </div>
       </div>
 
@@ -259,7 +254,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           </h2>
           <WrightDetails
             selectedEndpoint={selected}
-            user={currentUser}
+            user={currentUser.endpoints}
             selectedMetric={selectedMetric}
           />
         </div>
