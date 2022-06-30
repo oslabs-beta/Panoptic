@@ -38,7 +38,7 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { useState } from 'react'
 
-function Sidenav() {
+function Sidenav(props: any): JSX.Element {
 
   const router = useRouter();
   const handleClick = (e: any) => {

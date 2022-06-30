@@ -1,17 +1,16 @@
-import Sidenav from './components/Sidenav';
 import styles from '../styles/Dashboard.module.scss';
-import LH_Gauge from './components/lhGauge';
 import ControlPanel from './components/ControlPanel';
 import WrightDetails from './components/wrightDetails';
 import EndpointsList from './components/EndpointsList';
 import { useState, useEffect, useRef } from 'react';
-import { Flex, Box, VStack, Grid, GridItem, Heading } from '@chakra-ui/react';
+import { Box, VStack, Grid, GridItem, Heading } from '@chakra-ui/react';
 import MainLineChartRE from './components/MainLineChartRE';
 import { RingLoader } from 'react-spinners';
 import axios from 'axios';
 import type { NextPage } from 'next';
 import { parseCookies } from '../lib/parseCookies';
 import { Octokit } from 'octokit';
+import Sidenav from './components/Sidenav';
 
 const Dashboard: NextPage = ({ initialRememberValue }) => {
   // React Hooks
@@ -25,7 +24,6 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
 
   const [selected, setSelected] = useState('Select An Endpoint');
-
   const [scores, setScores] = useState(
     <Box>
       <ControlPanel lhdata={lighthouseData} />
@@ -36,18 +34,16 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
   // Get Current User
   const getUser = async () => {
+
     const result = await axios.get(`/api/user/${initialRememberValue}`);
-    // console.log(result);
     setCurrentUser(result.data);
-    // if (Object.keys(currentUser).length > 0) {
+  
     if (Object.keys(result.data).length > 0) {
+
       let defaultKey = Object.keys(result.data)[0];
-      // console.log(defaultKey);
       let defaultList = Object.keys(result.data[defaultKey]);
-      // console.log(defaultList[defaultList.length - 1]);
       let tempLatestVAl = defaultList[defaultList.length - 1];
-      // console.log(tempLatestVAl);
-      // console.log(result.data[defaultKey][tempLatestVAl]);
+
       setLighthouseData(result.data[defaultKey][tempLatestVAl].metrics);
       loadEndPointDataToChart(result.data[defaultKey], defaultKey);
     }
@@ -59,26 +55,21 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   }, []);
   
   useEffect(() => {
-    // getUser();
-    // console.log(currentUser);
-    // console.log(Object.values(currentUser)[0]);
-    // setGaugeData(Object.values(currentUser)[0]);
     if (didMount.current) {
       setScores(
         <div className={styles.containerGauge}>
-          <ControlPanel lhdata={lighthouseData} />
+          <ControlPanel lhdata={lighthouseData} selectedMetric={selectedMetric} setSelectedMetric={setSelectedMetric}/>
         </div>
       );
-    } else {
-      // didMountv2.current = true;
     }
-  }, [
+  },[
+    lighthouseData,
     lighthouseData.performance,
     lighthouseData.accessibility,
     lighthouseData.bestPractices,
-    lighthouseData.seo,
+    lighthouseData.seo
   ]);
-  // const repoNames = [];
+  
   const repoNames = {};
   for (const item in currentUser) {
     if (
@@ -94,12 +85,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     }
   }
 
-  // console.log(repoNames);
-  // console.log(GaugeData);
-  // if (GaugeData) {
-  //   console.log(GaugeData[GaugeData.length - 2]);
-  // }
-  // console.log(lighthouseData);
+
   const [selectedMetric, setSelectedMetric] = useState('seoMetrics');
   const [performanceData, setPerformanceData] = useState(null);
   const [seoData, setSeoData] = useState(null);
@@ -119,12 +105,11 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   ]);
 
   const loadEndPointDataToChart = (e, defaultKey) => {
-    // performance
-    // console.log(e);
-    const performanceArray = [];
-    const seoArray = [];
-    const accessibilityArray = [];
-    const bestPracticeArray = [];
+    
+    const performanceArray:number[] = [];
+    const seoArray:number[] = [];
+    const accessibilityArray:number[] = [];
+    const bestPracticeArray:number[] = [];
     let arrOfTime = [];
     let defaultList;
     let tempLatestVAl;
@@ -151,8 +136,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
       defaultList = Object.keys(currentUser[defaultKey]);
       tempLatestVAl = defaultList[defaultList.length - 1];
-      // console.log(tempLatestVAl);
-      // console.log(currentUser[defaultKey][tempLatestVAl]);
+      
       setLighthouseData(currentUser[defaultKey][tempLatestVAl].metrics);
     }
 
@@ -165,63 +149,8 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
         ? setTimes([...arrOfTime[0], ...arrOfTime[0]])
         : setTimes([...arrOfTime[0]]);
     }
-
-    // console.log(defaultKey);
-    // const tempData = {
-    //   performance: 0,
-    //   accessibility: 0,
-    //   bestPractices: 0,
-    //   seo: 0,
-    // };
-    // console.log(currentUser);
-    // console.log(defaultKey);
-
-    // setLighthouseData(result.data[defaultKey][tempLatestVAl].metrics);
-
-    // setScores(
-    //   <div className={styles.containerGauge}>
-    //     <ControlPanel lhdata={lighthouseData} selected={selected} />
-    //   </div>
-    // );
   };
 
-  // let lhData = '';
-
-  // if (Object.keys(currentUser).length > 0) {
-  //   console.log(currentUser);
-  //   console.log(Object.values(currentUser)[0]);
-  //   console.log(Object.keys(currentUser)[0]);
-
-  //   let defaultKey = Object.keys(currentUser)[0];
-  //   console.log(defaultKey);
-  //   // console.log(Object.keys(currentUser[defaultKey]));
-  //   // console.log(Object.keys(currentUser[defaultKey]));
-  //   let defaultList = Object.keys(currentUser[defaultKey]);
-  //   console.log(defaultList[defaultList.length - 1]);
-  //   let tempLatestVAl = defaultList[defaultList.length - 1];
-  //   console.log(tempLatestVAl);
-  //   console.log(currentUser[defaultKey][tempLatestVAl]);
-  //   // setLighthouseData(currentUser[defaultKey][tempLatestVAl].metrics);
-  //   lhData = currentUser[defaultKey][tempLatestVAl];
-  //   // console.log(Object.keys(Math.max(...currentUser[defaultKey])));
-  //   // console.log(
-  //   //   Object.keys(currentUser[defaultKey]).map((e, idx) => {
-  //   //     console.log(e.split('@')[0]);
-  //   //     return new Date(e.split('@')[0]);
-  //   //   })
-  //   // );
-  //   // console.log(
-  //   //   new Date(
-  //   //     Math.max(
-  //   //       ...Object.keys(currentUser[defaultKey]).map((e, idx) => new Date(idx))
-  //   //     )
-  //   //   )
-  //   // );
-
-  //   // console.log(new Date(Math.max(...Object.keys(currentUser[defaultKey]).map((e, idx )=> new Date(idx))));
-  //   // )
-  // }
-  // console.log(scores);
   return (
     // className={styles.Dashboard}
     <div className='DashBoard'>
@@ -273,8 +202,8 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
         <GridItem>
           <WrightDetails
-              selectedEndpoint={selected}
-              user={currentUser}
+              selectedMetric={selectedMetric}
+              data={lighthouseData}
             />
         </GridItem>
 
