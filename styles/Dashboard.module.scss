@@ -6,14 +6,12 @@
   min-height: 100vh;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    45deg,
-    $dark-blue 0%,
-    $primary-blue 20%,
-    $primary-blue 45%,
-    $secondary-blue 70%,
-    $dark-blue 100%
-  );
+  background: linear-gradient(45deg,
+      $dark-blue 0%,
+      $primary-blue 20%,
+      $primary-blue 45%,
+      $secondary-blue 70%,
+      $dark-blue 100%);
   overflow: hidden;
 }
 
@@ -27,6 +25,7 @@
   justify-content: center;
   align-items: center;
   color: white;
+  padding-top: 3rem;
 }
 
 // SELECT DROPDOWN THING
@@ -42,6 +41,15 @@
     padding: 80px;
     font-size: 1rem;
   }
+}
+
+.Grid {
+  background: linear-gradient(45deg,
+      $dark-blue 0%,
+      $primary-blue 20%,
+      $primary-blue 45%,
+      $secondary-blue 70%,
+      $dark-blue 100%);
 }
 
 #endpointBtn {
@@ -157,9 +165,11 @@
   0% {
     border-bottom: 2px solid $secondary-blue;
   }
+
   50% {
     border-bottom: 2px solid $dark-blue;
   }
+
   100% {
     border-bottom: 2px solid $secondary-blue;
   }
@@ -218,6 +228,8 @@
   background-color: $lavender;
   border-radius: 4px 4px 0px 0px;
 }
+
+
 
 .detailElement {
   width: 100%;

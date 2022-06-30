@@ -11,8 +11,9 @@ import { RingLoader } from 'react-spinners';
 import axios from 'axios';
 import type { NextPage } from 'next';
 import { parseCookies } from '../lib/parseCookies';
+import { Octokit } from 'octokit';
 
-const Dashboard: NextPage = ({ initialRememberValue }, props: any) => {
+const Dashboard: NextPage = ({ initialRememberValue }) => {
   // React Hooks
   const [currentUser, setCurrentUser] = useState({});
   const [lighthouseData, setLighthouseData] = useState({
@@ -21,6 +22,7 @@ const Dashboard: NextPage = ({ initialRememberValue }, props: any) => {
     bestPractices: 0,
     seo: 0,
   });
+
 
   const [selected, setSelected] = useState('Select An Endpoint');
 
@@ -55,7 +57,7 @@ const Dashboard: NextPage = ({ initialRememberValue }, props: any) => {
   useEffect(() => {
     getUser();
   }, []);
-
+  
   useEffect(() => {
     // getUser();
     // console.log(currentUser);
@@ -98,7 +100,7 @@ const Dashboard: NextPage = ({ initialRememberValue }, props: any) => {
   //   console.log(GaugeData[GaugeData.length - 2]);
   // }
   // console.log(lighthouseData);
-
+  const [selectedMetric, setSelectedMetric] = useState('seoMetrics');
   const [performanceData, setPerformanceData] = useState(null);
   const [seoData, setSeoData] = useState(null);
   const [bestPracticeData, setBestPracticeData] = useState(null);
@@ -222,57 +224,62 @@ const Dashboard: NextPage = ({ initialRememberValue }, props: any) => {
   // console.log(scores);
   return (
     // className={styles.Dashboard}
-    <Grid bg='#0B1337' templateColumns={'.8fr 2.8fr 1.4fr'} w='100%' h='100vh'>
-      {/* <Sidenav /> */}
-      <GridItem>
-        Left
-        <Box className={styles.metricsContainer}>
-          <Heading textAlign={'center'} className={styles.enterUrl}>
-            Enter New Endpoint Below
-          </Heading>
-          <input
-            id='urlData'
-            type='text'
-            required
-            placeholder='ex: https://YouTube.com/'
-            className={styles.endpointInput}
-          />
-          <button type='button' id={styles.endpointBtn} onClick=''>
-            Run Tests
-          </button>
-          <EndpointsList
-            reponames={repoNames}
-            // func={loadData}
-            func={loadEndPointDataToChart}
-            selected={selected}
-            setSelected={setSelected}
-            endPts={currentUser}
-            // setLoaded={setLoaded}
-          />
-        </Box>
-      </GridItem>
-
-      <GridItem>
-        Mid
-        <VStack>
-          <Box>{scores}</Box>
-          <Box w={'75%'}>
-            <MainLineChartRE
-              labelTimes={times}
-              performanceData={performanceData}
-              bestPracticeData={bestPracticeData}
-              seoData={seoData}
-              accessibilityData={accessibilityData}
+    <div className='DashBoard'>
+      <Sidenav />
+      <Grid className={styles.Grid} templateColumns={'1fr 3fr 1fr'} gap={5} w='100vw' h='100vh'>
+        {/* <Sidenav /> */}
+        <GridItem>
+          <Box className={styles.metricsContainer}>
+            <Heading textAlign={'center'} className={styles.enterUrl}>
+              Enter New Endpoint Below
+            </Heading>
+            <input
+              id='urlData'
+              type='text'
+              required
+              placeholder='ex: https://YouTube.com/'
+              className={styles.endpointInput}
+            />
+            <button type='button' id={styles.endpointBtn} onClick=''>
+              Run Tests
+            </button>
+            <EndpointsList
+              reponames={repoNames}
+              // func={loadData}
+              func={loadEndPointDataToChart}
+              selected={selected}
+              setSelected={setSelected}
+              endPts={currentUser}
+              // setLoaded={setLoaded}
             />
           </Box>
-          <Box>Second</Box>
-        </VStack>
-      </GridItem>
-      <GridItem bg='green'>
-        Right
-        <WrightDetails />
-      </GridItem>
-    </Grid>
+        </GridItem>
+
+        <GridItem>
+          <VStack>
+            <Box w={'100%'}>{scores}</Box>
+            <Box w={'90%'}>
+              <MainLineChartRE
+                labelTimes={times}
+                performanceData={performanceData}
+                bestPracticeData={bestPracticeData}
+                seoData={seoData}
+                accessibilityData={accessibilityData}
+              />
+            </Box>
+            <Box>Second</Box>
+          </VStack>
+        </GridItem>
+
+        <GridItem>
+          <WrightDetails
+              selectedEndpoint={selected}
+              user={currentUser}
+            />
+        </GridItem>
+
+      </Grid>
+    </div>
   );
 };
 

@@ -1,0 +1,110 @@
+@import './Variables.scss';
+
+.repoendpoints {
+  background: linear-gradient(45deg,
+      $dark-blue 0%,
+      $primary-blue 20%,
+      $primary-blue 45%,
+      $secondary-blue 70%,
+      $dark-blue 100%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hideIt {
+  display: none;
+}
+
+.inputContainer {
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $dark-blue;
+  height: 500px;
+  width: 450px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: $round-dem-edges;
+  box-shadow: 0px 2px 5px 1px $secondary-blue;
+}
+
+.inputMenu {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  border-radius: $round-dem-edges;
+
+  input {
+    border: 1px solid black;
+    border-radius: $round-dem-edges;
+    background-color: whitesmoke;
+    padding: 0.5em 1em;
+    width: 80%;
+  }
+}
+
+.linkIt {
+  margin-top: 25px;
+  color: white;
+  border: 1px solid white;
+  border-radius: $round-dem-edges;
+  padding: 0.5em 1em;
+  width: 50%;
+}
+
+.linkIt:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.closeMenu {
+  position: relative;
+  top: -180px;
+  left: -180px;
+  font-weight: 900;
+}
+
+.command {
+  color: black;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.repoList {
+  border: 2px solid black;
+  padding: 1em 3em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 400px;
+  height: auto;
+  max-height: 800px;
+  border-radius: $round-dem-edges;
+  overflow-y: auto;
+
+  li {
+    padding: 0.7em;
+    font-size: 1.2rem;
+    font-weight: 900;
+  }
+
+  li:hover {
+    background-color: white;
+    cursor: pointer;
+  }
+}
+
+.repoClicked {
+  color: white;
+}

@@ -17,6 +17,7 @@ const getEndPointData = async (username) => {
   }
 }
 const handler = async (req, res) => {
+  console.log('in austins handler')
   const userData = await getEndPointData(req.query.user);//req.query.user
   res.send((userData))
 }
