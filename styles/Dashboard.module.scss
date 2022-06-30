@@ -6,7 +6,14 @@
   min-height: 100vh;
   width: 100%;
   height: 100%;
-  background-color: $dark-bg;
+  background: linear-gradient(
+    45deg,
+    $dark-blue 0%,
+    $primary-blue 20%,
+    $primary-blue 45%,
+    $secondary-blue 70%,
+    $dark-blue 100%
+  );
   overflow: hidden;
 }
 
@@ -19,7 +26,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // color: $neon-red;
   color: white;
 }
 
@@ -28,7 +34,7 @@
   color: black;
   padding: 0.5em 2em;
   border-radius: 30px;
-  background-color: $neon-blue;
+  background-color: $primary-blue;
   border: 1px solid whitesmoke;
 
   option {
@@ -41,19 +47,19 @@
 #endpointBtn {
   font-family: $primary-font;
   padding: 0.7em 1em;
-  border: 0.1rem solid $neon-pink;
+  border: 2px solid $secondary-blue;
   border-radius: $round-dem-edges;
   font-weight: 700;
-  background-color: $neon-pink;
-  color: $dark-bg;
+  background-color: $secondary-blue;
+  color: $lavender;
   white-space: nowrap;
   margin-top: 1rem;
   cursor: pointer;
 }
 
 #endpointBtn:hover {
-  color: $neon-pink;
-  background-color: $dark-bg;
+  color: $secondary-blue;
+  background-color: $lavender;
 }
 
 .containerLeft {
@@ -61,9 +67,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  // color: $neon-red;
+  background: black;
+  opacity: 55%;
   color: white;
-  border-right: 1px solid #89cff0;
+  margin-right: 3rem;
   font-size: 1.2rem;
 
   input {
@@ -81,15 +88,15 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-  border-right: 1px solid #89cff0;
 }
 
 .containerRight {
   color: white;
   display: flex;
   height: 100%;
-  padding: 0em 2em;
   justify-content: center;
+
+  padding: 0rem 3rem;
   // background-color: rgb(27, 3, 111);
 }
 
@@ -122,7 +129,7 @@
 .enterUrl {
   margin: 10% 0 10% 0;
   font-family: $primary-font;
-  color: $neon-pink;
+  color: $lavender;
 }
 
 .endpointInput {
@@ -131,7 +138,7 @@
   height: 2.5rem;
   min-width: 15vw;
   width: 65%;
-  border-bottom: 2px solid $neon-pink;
+  border-bottom: 2px solid $secondary-blue;
   font-weight: 500;
   outline: 0;
   background: transparent;
@@ -139,7 +146,7 @@
 }
 
 .endpointInput:focus {
-  border-bottom: 2px solid $neon-pink;
+  border-bottom: 2px solid $secondary-blue;
   font-weight: 700;
   animation-name: lineAnimation;
   animation-duration: 4s;
@@ -148,13 +155,13 @@
 
 @keyframes lineAnimation {
   0% {
-    border-bottom: 2px solid $neon-pink;
+    border-bottom: 2px solid $secondary-blue;
   }
   50% {
-    border-bottom: 2px solid $neon-blue;
+    border-bottom: 2px solid $dark-blue;
   }
   100% {
-    border-bottom: 2px solid $neon-pink;
+    border-bottom: 2px solid $secondary-blue;
   }
 }
 
@@ -169,7 +176,10 @@
   align-items: center;
   width: 100%;
   height: 30%;
-  border-bottom: 1px solid #89cff0;
+  background: black;
+  opacity: 55%;
+  margin-bottom: 3rem;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .lineChart {
@@ -178,6 +188,9 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  background: black;
+  opacity: 75%;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .chartMaybe {
@@ -199,21 +212,19 @@
   align-items: center;
   font-size: large;
   font-weight: 700;
-  color: $neon-blue;
+  color: $primary-blue;
   width: 100%;
   height: 2rem;
   background-color: $lavender;
   border-radius: 4px 4px 0px 0px;
 }
-.samplePagContainer {
-}
 
 .detailElement {
   width: 100%;
-  background-color: $neon-blue;
+  background-color: $primary-blue;
 }
 
 .detailElementFlaw {
   width: 100%;
-  background-color: $neon-red;
+  background-color: $secondary-blue;
 }
