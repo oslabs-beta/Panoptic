@@ -40,7 +40,7 @@ export default nextConnect().use(session({
         if (foundUser) {
           console.log('Login username found');
           cookies.set('userId', foundUser._id);
-          return res.status(201).redirect('/sample-test');
+          return res.status(201).redirect('/dashboard');
           //  User exist
           // Checking password with hash password on server
         } else {

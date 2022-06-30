@@ -196,6 +196,8 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
 
   console.log();
   return (
+    <div>
+      <Sidenav />
     <div className={styles.threeParts}>
       <div className={styles.containerLeft}>
         <div className={styles.metricsContainer}>
@@ -255,6 +257,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };
