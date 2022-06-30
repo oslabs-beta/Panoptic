@@ -9,29 +9,22 @@ import {
 import style from '../../styles/Dashboard.module.scss'
 
 const wrightDetails = (props: any) => {
-  const tempArr = [];
+  const tempArr:JSX.Element[] = [];
   let metrics;
   // extract the most current date of the user's history
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
+    // typing is a bit odd here, will come back to this
     const mainObj = props.user[props.selectedEndpoint];
     const dateArr = Object.keys(mainObj);
     const recentDate = dateArr[dateArr.length - 1];
     metrics = mainObj[recentDate].metrics
   }
 
-  // Relevant Metrics Properties:
-  // accessibilityMetrics
-  // bestPracticesMetrics
-  // performanceMetrics
-  // seoMetrics
-
   if (metrics) {
     for (let i in metrics[props.selectedMetric]) {
-      // if the score is 1, style it green
-      // if the score is < 1, style it red
       let elementStyle;
       metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
-      let myCard = (
+      let myCard:JSX.Element = (
         <AccordionItem className={elementStyle}>
           <h2>
             <AccordionButton>
@@ -45,8 +38,8 @@ const wrightDetails = (props: any) => {
         </AccordionItem>
       )
       tempArr.push(myCard)
-    }
-  }
+    };
+  };
   
   return (
     <Accordion allowMultiple width='100%'>

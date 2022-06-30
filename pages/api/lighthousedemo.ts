@@ -1,14 +1,9 @@
 const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
-const User = require('../../models/loginModel.ts');
-const Cookies = require('cookies');
-import dbConnect from '../../lib/dbConnect';
 import { LHData, LHOptions } from '../../types';
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 
 export default async function lighthouseRequest(req: Request, res: Response) {
-  await dbConnect();
-  const cookies = new Cookies(req, res);
   const chrome = await chromeLauncher.launch({
     chromeFlags: [
       '--no-first-run',
@@ -23,12 +18,12 @@ export default async function lighthouseRequest(req: Request, res: Response) {
     onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
     port: chrome.port,
   };
-  const url:string = req.body;
 
+  const url = req.body;
   const runnerResult = await lighthouse(url, options);
 
   await chrome.kill();
-
+  // grab all the info to return to the front-end
   const scores: LHData = {
     performance: Math.ceil(runnerResult.lhr.categories.performance.score * 100),
     accessibility: Math.ceil(
@@ -263,34 +258,5 @@ export default async function lighthouseRequest(req: Request, res: Response) {
       },
     },
   };
-
-  const id:string = cookies.get('userId');
-  let currentUser;
-  if (id) {
-    currentUser = await User.findOne({ _id: id });
-    const currentdate = new Date();
-    const datetime =
-      currentdate.getDate() +
-      '/' +
-      (currentdate.getMonth() + 1) +
-      '/' +
-      currentdate.getFullYear() +
-      '@' +
-      currentdate.getHours() +
-      ':' +
-      currentdate.getMinutes() +
-      ':' +
-      currentdate.getSeconds();
-    if (!currentUser.endpoints[url]) {
-      currentUser.endpoints[url] = {};
-    }
-    currentUser.endpoints[url][datetime] = {
-      metrics: scores,
-    };
-  };
-
-  await currentUser.markModified('endpoints');
-  await currentUser.save();
-
   res.status(200).json(scores);
 }
