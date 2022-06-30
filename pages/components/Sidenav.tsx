@@ -41,10 +41,10 @@ import { useState } from 'react'
 function Sidenav(props: any): JSX.Element {
 
   const router = useRouter();
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    router.push(e.target.classList[1])
-  }
+  // const handleClick = (e: any) => {
+  //   e.preventDefault();
+  //   router.push(e.target.classList[1])
+  // }
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [currentLink, setCurrentLink] = useState('');
   return (
@@ -57,9 +57,9 @@ function Sidenav(props: any): JSX.Element {
         <DrawerContent className={styles.drawerContent}>
           <DrawerHeader className={styles.logo} borderBottomWidth='1px'>Panoptic</DrawerHeader>
           <DrawerBody className={styles.drawerBody}>
-            <a className={`${styles.link} /dashboard`} href="" onClick={handleClick}>Metrics</a>
-            <a className={`${styles.link} /repoendpoints`} href="" onClick={handleClick}>Link Your Github Repo</a>
-            <a className={`${styles.link} /manager`} href="" onClick={handleClick}>Manage Endpoints</a>
+            <a className={`${styles.link} /dashboard`} href="/dashboard">Metrics</a>
+            <a className={`${styles.link} /repoendpoints`} href="/repoendpoints">Link Your Github Repo</a>
+            <a className={`${styles.link} /manager`} href="/manager">Manage Endpoints</a>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

@@ -201,10 +201,16 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
         </GridItem>
 
         <GridItem>
+    
+          <h2 className={styles.detailsHeader}>
+            {selected} | {selectedMetric}
+          </h2>
           <WrightDetails
-              selectedMetric={selectedMetric}
-              data={lighthouseData}
+            selectedEndpoint={selected}
+            user={currentUser}
+            selectedMetric={selectedMetric}
             />
+
         </GridItem>
 
       </Grid>

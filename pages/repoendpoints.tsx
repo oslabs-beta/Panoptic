@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const repoendpoints = ({ initialRememberValue }) => {
   // list of repos
-  const [ repos, setRepos ] = useState(null);
+  const [ repos, setRepos ] = useState([false]);
   // toggle input menu - initially false so it wont show up
   // get input value
   const [ repoClicked, setRepoClicked ] = useState(null);
@@ -64,7 +64,7 @@ const repoendpoints = ({ initialRememberValue }) => {
       <div className={styles.repoList}>
         <h1>Select A Repo to Link with an Endpoint</h1>
         <ul>
-          {repos ? repos : 'Loading Repos...'}
+          {repos[0] ? repos : 'Loading Repos...'}
         </ul>
       </div>
     </div>
