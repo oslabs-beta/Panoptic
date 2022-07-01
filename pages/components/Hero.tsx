@@ -1,7 +1,8 @@
 import styles from '../../styles/Home.module.scss';
 import Link from 'next/link';
+import React, { FC } from 'react';
 
-const Hero = (): JSX.Element => {
+const Hero:FC = ():JSX.Element => {
 return (
     <div className={styles.hero}>
       <div className={styles.left}>

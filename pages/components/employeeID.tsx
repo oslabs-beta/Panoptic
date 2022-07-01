@@ -1,8 +1,8 @@
-import React from 'react';
 import styles from '../../styles/Home.module.scss';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import React, { FC } from 'react';
 
-const employeeID = (props: any): JSX.Element => {
+const employeeID:FC = (props: any): JSX.Element => {
   const githubIcon:JSX.Element = <FaGithub className={styles.githubIcon}/>;
   const linkedinIcon:JSX.Element = <FaLinkedin className={styles.linkedinIcon} />;
   return (

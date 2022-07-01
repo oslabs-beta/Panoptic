@@ -1,8 +1,9 @@
 import styles from '../../styles/Demo.module.scss';
 import { Box, HStack, Button } from '@chakra-ui/react';
 import LH_Gauge from './lhGauge';
+import React, { FC } from 'react';
 
-const controlPanelDemo = (props: any): JSX.Element => {
+const controlPanelDemo:FC = (props: any): JSX.Element => {
   const tempArr:JSX.Element[] = [];
   if (props.lhdata)
     for (const key in props.lhdata) {
