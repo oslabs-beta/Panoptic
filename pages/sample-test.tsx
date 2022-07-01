@@ -77,6 +77,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
       headers: {
         'Content-Type': 'application/json',
       },
+      // need to pass url, last commit, reponame, and platform(mobile/desktop)
+      // req.body.reponame, req.body.url, req.body.commit, req.body.platform
+      // assumes reponame and commit are null if not logged in with github
       body: JSON.stringify(urlData.value),
     })
       .then((res) => res.json())

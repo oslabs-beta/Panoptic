@@ -10,6 +10,10 @@ import axios from 'axios';
 import type { NextPage } from 'next';
 import { parseCookies } from '../lib/parseCookies';
 
+// when we make the api call to back end
+// need to pass url, last commit, reponame, and platform(mobile/desktop)
+// req.body.reponame, req.body.url, req.body.commit, req.body.platform
+
 const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
 
   const [currentUser, setCurrentUser] = useState({});
