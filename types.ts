@@ -1,3 +1,8 @@
+// typed components
+// AboutLH, ControlPanel, ControlPanelDemo, employeeID, EndpointsList, Hero, 
+
+// typed pages
+
 export interface LHData {
   performance: number;
   accessibility: number;
@@ -7,14 +12,14 @@ export interface LHData {
   accessibilityMetrics?: {};
   bestPracticesMetrics?: {};
   seoMetrics?: {};
-}
+};
 
 export interface LHOptions {
   logLevel: string;
   output: string;
   onlyCategories: string[];
   port: number;
-}
+};
 
 export interface MainLCOptions {
   borderWidth: number;
@@ -56,4 +61,5 @@ export interface LCDatasets {
 export interface ChartData {
   labels: String[];
   datasets: LCDatasets[] 
-}
+};
+
