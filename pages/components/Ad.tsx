@@ -1,6 +1,8 @@
 import styles from '../../styles/Home.module.scss';
 import { useState } from 'react';
-const Ad = (props: any) => {
+import React, { FC } from 'react';
+
+const Ad:FC = (props: any) => {
   const [showMe, setShowMe] = useState(true);
   const hideAd = () => {
     showMe ? setShowMe(false) : setShowMe(true);

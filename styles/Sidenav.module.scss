@@ -1,17 +1,55 @@
 @import './Variables.scss';
 
 .Sidenav {
+  z-index: 999;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 180px;
-  background-image: linear-gradient(180deg, $grad1 0%, $grad2 74%);
-  border-right: 1px solid white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  // height: 100vh;
+  // width: 180px;
+  // background-image: linear-gradient(180deg, $grad1 0%, $grad2 74%);
+  // border-right: 1px solid white;
+}
+
+.drawerContent {
+  background: linear-gradient(180deg,
+      $primary-blue 0%,
+      $primary-blue 20%,
+      $primary-blue 45%,
+      $secondary-blue 70%,
+      $dark-blue 100%) !important;
+}
+
+.drawerBody {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.5rem;
+
+  p {
+    padding: 1em 0;
+  }
+}
+
+.burgerIcon {
+  background-color: $grad2  !important;
+  font-size: 1.4rem !important;
+}
+
+.logo {
+  font-size: 2rem !important;
+  font-family: $primary-font;
+  color: white;
+  font-weight: 900 !important;
+}
+
+.link {
+  cursor: pointer;
 }
 
 .logo {

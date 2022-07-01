@@ -43,7 +43,7 @@ const handler = async (req: Request, res: Response) => {
               // Set Login Cookie
               cookies.set('userId', foundUser._id);
               // return res.status(200).send('Logged in and new cookie set');
-              return res.status(201).redirect('/sample-test');
+              return res.status(201).redirect('/dashboard');
             } else {
               // Login pass wrong
               return res.status(401).send('Password wrong');

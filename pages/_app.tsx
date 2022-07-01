@@ -6,7 +6,6 @@ import React from 'react';
 import Header from './components/Nav';
 import { SessionProvider } from 'next-auth/react';
 import '../styles/lineChart.css';
-import { CookiesProvider } from 'react-cookie';
 import { ChakraProvider } from '@chakra-ui/react';
 
 function MyApp({ Component, pageProps }: AppProps) {

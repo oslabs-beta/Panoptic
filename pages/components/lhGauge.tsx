@@ -2,20 +2,11 @@ import { Chart as ChartJs, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/react';
+import React, { FC } from 'react';
 
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
-function lhGauge(props: any): JSX.Element {
-  console.log(props.title, props.score);
-  const [data2, setData] = useState(null);
-  const numberScore = props.score;
-  //   const [plugins2, setPlugins] = useState(null);
-  //   const [options2, setoptions] = useState(null);
-  //   const [state, setState] = useState(false);
-
-  //   if (props.score) {
-  //     setState(true);
-  //   }
+function lhGauge(props: any):JSX.Element {
 
   const data: any = {
     labels: ['%', '-'],
@@ -23,7 +14,7 @@ function lhGauge(props: any): JSX.Element {
       {
         label: 'My First Dataset',
         data: [props.score, 100 - props.score],
-        backgroundColor: ['rgb(213, 77, 224)', 'white'],
+        backgroundColor: ['#266ef6', 'white'],
 
         borderAlign: 'center',
       },
@@ -63,12 +54,10 @@ function lhGauge(props: any): JSX.Element {
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        // let text = props.score + '%',
         let text = chart.data.datasets[0].data[0] + '%',
           textX = (chart.chartArea.left + chart.chartArea.right) / 2,
           textY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
         ctx.fillText(text, textX, textY);
-
         ctx.save();
       },
     },

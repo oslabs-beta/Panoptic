@@ -1,12 +1,10 @@
-import React from 'react';
 import styles from '../../styles/Home.module.scss';
-import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import React, { FC } from 'react';
 
-const employeeID = (props: any): JSX.Element => {
-  const githubIcon = <FaGithub className={styles.githubIcon}/>;
-  const linkedinIcon = <FaLinkedin className={styles.linkedinIcon} />;
+const employeeID:FC = (props: any): JSX.Element => {
+  const githubIcon:JSX.Element = <FaGithub className={styles.githubIcon}/>;
+  const linkedinIcon:JSX.Element = <FaLinkedin className={styles.linkedinIcon} />;
   return (
         <div>
           <div id={props.employeeID}></div>

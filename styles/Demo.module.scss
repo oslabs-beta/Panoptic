@@ -6,12 +6,14 @@
   min-height: 100vh;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg,
-      $dark-blue 0%,
-      $primary-blue 20%,
-      $primary-blue 45%,
-      $secondary-blue 70%,
-      $dark-blue 100%);
+  background: linear-gradient(
+    45deg,
+    $dark-blue 0%,
+    $primary-blue 20%,
+    $primary-blue 45%,
+    $secondary-blue 70%,
+    $dark-blue 100%
+  );
   overflow: hidden;
 }
 
@@ -25,31 +27,6 @@
   justify-content: center;
   align-items: center;
   color: white;
-  padding-top: 3rem;
-}
-
-// SELECT DROPDOWN THING
-.selectMe {
-  color: black;
-  padding: 0.5em 2em;
-  border-radius: 30px;
-  background-color: $primary-blue;
-  border: 1px solid whitesmoke;
-
-  option {
-    color: black;
-    padding: 80px;
-    font-size: 1rem;
-  }
-}
-
-.Grid {
-  background: linear-gradient(45deg,
-      $dark-blue 0%,
-      $primary-blue 20%,
-      $primary-blue 45%,
-      $secondary-blue 70%,
-      $dark-blue 100%);
 }
 
 #endpointBtn {
@@ -74,6 +51,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100vh;
   background: black;
   opacity: 55%;
@@ -165,11 +143,9 @@
   0% {
     border-bottom: 2px solid $secondary-blue;
   }
-
   50% {
     border-bottom: 2px solid $dark-blue;
   }
-
   100% {
     border-bottom: 2px solid $secondary-blue;
   }
@@ -192,22 +168,6 @@
   border-radius: 0px 0px 10px 10px;
 }
 
-.lineChart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background: black;
-  opacity: 75%;
-  border-radius: 10px 10px 0px 0px;
-}
-
-.chartMaybe {
-  height: 100vh;
-  width: 100%;
-}
-
 .detailsList {
   display: flex;
   flex-direction: column;
@@ -228,8 +188,6 @@
   background-color: $lavender;
   border-radius: 4px 4px 0px 0px;
 }
-
-
 
 .detailElement {
   width: 100%;

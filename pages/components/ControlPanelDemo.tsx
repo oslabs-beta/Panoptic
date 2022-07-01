@@ -1,19 +1,21 @@
-import styles from '../../styles/Dashboard.module.scss';
+import styles from '../../styles/Demo.module.scss';
 import { Box, HStack, Button } from '@chakra-ui/react';
 import LH_Gauge from './lhGauge';
 import React, { FC } from 'react';
 
-const controlPanel:FC = (props: any): JSX.Element => {
+const controlPanelDemo:FC = (props: any): JSX.Element => {
   const tempArr:JSX.Element[] = [];
   if (props.lhdata)
     for (const key in props.lhdata) {
-      if (typeof props.lhdata[key] == 'number') {
+      if (typeof props.lhdata[key] === 'number') {
         tempArr.push(
-          <LH_Gauge
+          <button type='button' onClick={()=> {props.setSelectedMetric(`${key}Metrics`)}}>
+            <LH_Gauge
             className={styles.gauge}
             score={props.lhdata[key]}
-            title={`${key} Score:`}
+            title={key !== 'seo' && key !== 'bestPractices' ? key[0].toUpperCase() + key.substring(1) + ' Score:' : key === 'seo' ? 'SEO Score:' : 'Best Practices Score:'}
           />
+          </button>
         );
       }
     }
@@ -26,4 +28,4 @@ const controlPanel:FC = (props: any): JSX.Element => {
   );
 };
 
-export default controlPanel;
+export default controlPanelDemo;

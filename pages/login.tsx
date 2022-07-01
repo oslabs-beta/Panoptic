@@ -6,12 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 // Login page serving file
-function LoginPage() {
-  const githubIcon = <FaGithub className={styles.githubLogin} />;
+function LoginPage(): JSX.Element {
+  const githubIcon: JSX.Element = <FaGithub className={styles.githubLogin} />;
   const { data: session, status } = useSession();
-  //   const sesh = getSession();
-  //   console.log('SESH: ', sesh);
-  //   console.log(status);
   return (
     <div className={styles.body}>
       <Nav />
@@ -50,37 +47,6 @@ function LoginPage() {
           {githubIcon}Sign in with Github
         </a>
       </form>
-
-      {/* <a href="api/auth/callback/github">Sign In With Github</a> */}
-      {/* <button onClick={() => signIn("github")}> Sign in with Github</button> */}
-
-      {/* {!session ? (
-          <>
-            <button
-              onClick={() =>
-                signIn('github', {
-                //   callbackUrl: 'http://localhost:3000/sample-test',
-                })
-              }
-            >
-              Sign in with Github
-            </button>
-          </>
-        ) : (
-          <>
-            <p>
-              {console.log(session)}
-              Logged in as: {session.user.name || session.user.email}
-            </p>
-            <img
-              src={session.user.image}
-              alt='avi'
-              width='100px'
-              height='100px'
-            />
-            <button onClick={signOut}>Logout</button> <br />
-          </>
-        )} */}
     </div>
   );
 }
