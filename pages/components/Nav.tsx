@@ -10,10 +10,9 @@ const Nav = (): JSX.Element => {
     <nav className={styles.yeahBoi}>
       <span className={styles.logo}>
         <Link href='/'>
-          <Image className={styles.logoPic} alt="Panoptic Logo" src={logoPic}/>
+          <Image className={styles.logoPic} alt='Panoptic Logo' src={logoPic} />
         </Link>
       </span>
-
 
       {/* if user is logged in, display their info
       else, display login button */}
@@ -21,8 +20,10 @@ const Nav = (): JSX.Element => {
         <Link href='/docs'>
           <button className={styles.readDocsNav}>Documentation</button>
         </Link>
-        <Link  href='/login'>
-          <button className={styles.loginBtn}>Login / Signup</button>
+        <Link href='/login'>
+          <button id='navLoginBtn' className={styles.loginBtn}>
+            Login / Signup
+          </button>
         </Link>
       </div>
       {/* <div className={styles.buttonsContainer}>

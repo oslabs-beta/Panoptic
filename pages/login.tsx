@@ -7,16 +7,26 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 // Login page serving file
 function LoginPage() {
-  const githubIcon = <FaGithub className={styles.githubLogin}/>;
+  const githubIcon = <FaGithub className={styles.githubLogin} />;
   const { data: session, status } = useSession();
-//   const sesh = getSession();
-//   console.log('SESH: ', sesh);
-//   console.log(status);
+  //   const sesh = getSession();
+  //   console.log('SESH: ', sesh);
+  //   console.log(status);
   return (
     <div className={styles.body}>
       <Nav />
-      <form className={styles.loginForm} action='/api/login' method='post' id='login'>
-        <input id='username' name='username' placeholder='username' className={styles.username}></input>
+      <form
+        className={styles.loginForm}
+        action='/api/login'
+        method='post'
+        id='login'
+      >
+        <input
+          id='username'
+          name='username'
+          placeholder='username'
+          className={styles.username}
+        ></input>
         <input
           id='password'
           name='password'
@@ -24,17 +34,27 @@ function LoginPage() {
           type='text'
           className={styles.password}
         ></input>
-        <button type='submit' value='send' className={styles.loginButton}>
+        <button
+          id='loginBtn'
+          type='submit'
+          value='send'
+          className={styles.loginButton}
+        >
           Login
         </button>
-        <a onClick={() => signIn('github')} className={styles.oauthBtn} href="http://localhost:3000/api/githublogin">{githubIcon}Sign in with Github</a>
+        <a
+          onClick={() => signIn('github')}
+          className={styles.oauthBtn}
+          href='http://localhost:3000/api/githublogin'
+        >
+          {githubIcon}Sign in with Github
+        </a>
       </form>
 
       {/* <a href="api/auth/callback/github">Sign In With Github</a> */}
       {/* <button onClick={() => signIn("github")}> Sign in with Github</button> */}
 
- 
-        {/* {!session ? (
+      {/* {!session ? (
           <>
             <button
               onClick={() =>
