@@ -52,7 +52,9 @@ const AboutUs = () => {
             color='#276CF4'
           >
             {/* <Icon as={arr.icon} boxSize={14} color='blue.600' mb='5' /> */}
-            <Heading size='lg'>{arr.title}</Heading>
+            <Heading size='lg' textShadow='1px 1px black'>
+              {arr.title}
+            </Heading>
             <Text>{arr.info}</Text>
           </Box>
           <Spacer />

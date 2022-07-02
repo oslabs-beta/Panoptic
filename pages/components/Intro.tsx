@@ -26,6 +26,8 @@ const Intro: FC = (): JSX.Element => {
         w={'100%'}
         h={'300'}
         p={2}
+        boxShadow='2xl'
+        textShadow='2px 2px black'
       >
         <Heading size='2xl' color={'white'} mt={5} fontFamily={'Chalkboard SE'}>
           Panoptic
