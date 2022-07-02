@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import EmployeeID from './components/employeeID';
 import Ad from './components/Ad';
 import Head from 'next/head';
+import Newsletter from './components/Newsletter';
 // export async function getServerSideProps() {
 //   // Fetch data from external API
 //   const res = await fetch(`http://localhost:3000/api/hello`);
@@ -29,6 +30,7 @@ const Home: NextPage = (): JSX.Element => {
       <div className={styles.home}>
         <Hero />
         <Ad />
+        <Newsletter />
         <div className={styles.lowcontainer}>
           <h3 className={styles.mdeak}>Meet Our Team</h3>
           <div className={styles.staffcontainer}>

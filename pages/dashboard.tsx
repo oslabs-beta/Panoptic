@@ -3,7 +3,7 @@ import ControlPanel from './components/ControlPanel';
 import WrightDetails from './components/wrightDetails';
 import EndpointsList from './components/EndpointsList';
 import { useState, useEffect, useRef } from 'react';
-import { Box, VStack, Grid, GridItem, Heading } from '@chakra-ui/react';
+import { Box, VStack, Grid, GridItem, Heading, Center } from '@chakra-ui/react';
 import MainLineChartRE from './components/MainLineChartRE';
 import { RingLoader } from 'react-spinners';
 import axios from 'axios';
@@ -72,6 +72,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   
   const repoNames = {};
   for (const item in currentUser) {
+    console.log(currentUser);
     if (
       currentUser[item]['reponame'] &&
       Object.hasOwn(repoNames, currentUser[item]['reponame'])
@@ -85,6 +86,34 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     }
   }
 
+  const helperFunc = async () => {
+    const urlData: any = document.querySelector('#urlData');
+    setScores(
+      <Box>
+        <VStack spacing={0}>
+          <Heading className={styles.dataLoading}>Data Loading</Heading>
+          <Center>
+            <RingLoader size={120} color='white' />
+          </Center>
+        </VStack>
+      </Box>
+    );
+    // get data from lighthouse api
+    await fetch(`http://localhost:3000/api/lighthouse`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(urlData.value),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        didMount.current = true;
+        setLighthouseData(data);
+      });
+    // clear input value after clicking
+    urlData.value = '';
+  };
 
   const [selectedMetric, setSelectedMetric] = useState('seoMetrics');
   const [performanceData, setPerformanceData] = useState(null);
@@ -116,7 +145,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
     if (currentUser[defaultKey]) {
       for (const date in currentUser[defaultKey]) {
-        if (date !== 'reponame') {
+        if (date != 'reponame') {
           // console.log(currentUser[defaultKey][date].metrics.performance);
 
           performanceArray.push(
@@ -153,15 +182,15 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
   return (
     // className={styles.Dashboard}
-    <div className='DashBoard'>
+    <div className={styles.Dashboard}>
       <Sidenav />
       <Grid className={styles.Grid} templateColumns={'1fr 3fr 1fr'} gap={5} w='100vw' h='100vh'>
         {/* <Sidenav /> */}
-        <GridItem>
+        <GridItem className={styles.containerLeft}>
           <Box className={styles.metricsContainer}>
-            <Heading textAlign={'center'} className={styles.enterUrl}>
+            <h2 className={styles.enterUrl}>
               Enter New Endpoint Below
-            </Heading>
+            </h2>
             <input
               id='urlData'
               type='text'
@@ -169,7 +198,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
               placeholder='ex: https://YouTube.com/'
               className={styles.endpointInput}
             />
-            <button type='button' id={styles.endpointBtn} onClick=''>
+            <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
               Run Tests
             </button>
             <EndpointsList
@@ -184,10 +213,10 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
           </Box>
         </GridItem>
 
-        <GridItem>
-          <VStack>
-            <Box w={'100%'}>{scores}</Box>
-            <Box w={'90%'}>
+        <GridItem className={styles.containerMid}>
+          <VStack width='100%' height='100%'>
+            <Box className={styles.controlPanel}>{scores}</Box>
+            <Box w='100%' h='100%' className={styles.lineChart}>
               <MainLineChartRE
                 labelTimes={times}
                 performanceData={performanceData}
@@ -200,16 +229,18 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
           </VStack>
         </GridItem>
 
-        <GridItem>
-    
-          <h2 className={styles.detailsHeader}>
-            {selected} | {selectedMetric}
-          </h2>
-          <WrightDetails
-            selectedEndpoint={selected}
-            user={currentUser}
-            selectedMetric={selectedMetric}
-            />
+        <GridItem className={styles.containerRight}>
+          <Center className={styles.detailsList}>
+            <h2 className={styles.detailsHeader}>
+              {selected} | {selectedMetric==='seoMetrics'?'SEO Metrics': selectedMetric==='bestPracticesMetrics'?'Best Practices Metrics':selectedMetric==='accessibilityMetrics'?'Accessibility Metrics':'Performance Metrics'}
+            </h2>
+            <WrightDetails
+              selectedEndpoint={selected}
+              user={currentUser}
+              selectedMetric={selectedMetric}
+              />
+
+          </Center>
 
         </GridItem>
 

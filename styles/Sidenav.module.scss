@@ -41,21 +41,25 @@
   font-size: 1.4rem !important;
 }
 
+.imageContainer {
+  width: 70%;
+}
+
+.logoPic {
+  width: 100%;
+}
+
 .logo {
-  font-size: 2rem !important;
-  font-family: $primary-font;
-  color: white;
-  font-weight: 900 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .link {
   cursor: pointer;
 }
 
-.logo {
-  font-size: 2rem;
-  border-bottom: 1px solid white;
-}
+
 
 .listLink {
   width: 100%;

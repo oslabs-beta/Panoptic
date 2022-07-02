@@ -1,11 +1,15 @@
 import styles from '../../styles/Home.module.scss';
 import { useState } from 'react';
+
 const Ad = (props: any) => {
+  // state to hide ad
   const [showMe, setShowMe] = useState(true);
+  // function to hide ad, toggles state
   const hideAd = () => {
     showMe ? setShowMe(false) : setShowMe(true);
   };
   return (
+    // styling dependent on showMe state
     <div style={{ display: showMe ? 'flex' : 'none' }} className={styles.Ad}>
       <p>Ad</p>
       <div className={styles.adImgContainer}>

@@ -26,6 +26,7 @@ const EndpointsList = (props: any) => {
   // filter user obj for only endpoints
   const filteredObj = () => {
     const test:String[] = Object.keys(props.endPts).map((key) => key);
+    console.log('in filtered obj func', test);
     return test;
   };
 
@@ -37,6 +38,7 @@ const EndpointsList = (props: any) => {
   const endpointsArr:String[] = filteredObj();
   const arr:JSX.Element[] = [];
   for (const key in props.reponames) {
+    console.log('props.reponames', props.reponames);
     const tempArr = props.reponames[key].map((el:String) => (
       <Button key='Button' onClick={endpointSelector}>{el}</Button>
     ));

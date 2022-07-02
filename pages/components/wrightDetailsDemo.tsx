@@ -37,8 +37,8 @@ const wrightDetailsDemo = (props: any) => {
                 {metrics[props.selectedMetric][i].title}
                 </div>
                 <div style={{display:'flex', justifyContent: 'space-between', width: '17%'}}>
-                  <p>{metrics[props.selectedMetric][i].displayValue}</p>
-                  <p>{`Score: ${(metrics[props.selectedMetric][i].score) * 100}`}</p>
+                  <p>{metrics[props.selectedMetric][i].displayValue !== 'numeric' ? metrics[props.selectedMetric][i].displayValue : ''}</p>
+                  <p>{`Score: ${Math.round((metrics[props.selectedMetric][i].score) * 100)}`}</p>
                 </div>
                 
               </Box>

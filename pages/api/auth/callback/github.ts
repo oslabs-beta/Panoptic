@@ -73,7 +73,7 @@ export default nextConnect().use(session({
               console.log('Closed Mongo connection');
               // Set Login Cookie
               cookies.set('userId', newUser._id);
-              return res.status(201).redirect('/sample-test');
+              return res.status(201).redirect('/dashboard');
             }
           });
         

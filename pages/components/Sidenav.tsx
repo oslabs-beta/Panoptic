@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import styles from '../../styles/Sidenav.module.scss'
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import logoPic from '../../assets/PanLogo.png';
 // import { Show, Hide } from '@chakra-ui/react'
 
 // const Sidenav = (props: any) => {
@@ -55,7 +57,13 @@ function Sidenav(props: any): JSX.Element {
       <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent className={styles.drawerContent}>
-          <DrawerHeader className={styles.logo} borderBottomWidth='1px'>Panoptic</DrawerHeader>
+          <DrawerHeader className={styles.logo} borderBottomWidth='2px'>
+            <div className={styles.imageContainer}>
+              <Link className={styles.logoLink} href='/'>
+                <Image className={styles.logoPic} alt="Panoptic Logo" src={logoPic}/>
+              </Link>
+            </div>
+          </DrawerHeader>
           <DrawerBody className={styles.drawerBody}>
             <a className={`${styles.link} /dashboard`} href="/dashboard">Metrics</a>
             <a className={`${styles.link} /repoendpoints`} href="/repoendpoints">Link Your Github Repo</a>
