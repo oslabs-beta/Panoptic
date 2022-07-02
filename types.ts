@@ -1,7 +1,11 @@
-// typed components
-// AboutLH, ControlPanel, ControlPanelDemo, employeeID, EndpointsList, Hero, 
+// components
+// AboutLH, ControlPanel, ControlPanelDemo, employeeID, EndpointsList, Hero, LHGauge, LineChart, LoadingSpinner, MainLineChartRE, Nav, Sidenav, UsingApp, UsingMetrics, wrightDetails, wrightDetailsDemo
 
-// typed pages
+// pages 
+// _app, dashboard, demo, docs, Index, Login, manager, repoEndpoints, signup
+
+// backend
+// all, createUser, githubLogin, lighthouse, lighthouseDemo, 
 
 export interface LHData {
   performance: number;
@@ -46,16 +50,39 @@ export interface MainLCOptions {
   };
 };
 
+export interface LHGaugeOptions {
+  responsive: boolean;
+  maintainAspectRatio: boolean;
+  plugins: {
+    legend: {
+      display: boolean;
+    };
+    title: {
+      display: boolean;
+      text: string;
+      font: {
+        size: number;
+      };
+      color: string;
+      padding: {
+        top: number;
+        bottom:number;
+      };
+    };
+  };
+};
+
 export interface LCDatasets {
   label: string;
   data: number | number[];
-  borderColor: string;
-  backgroundColor: string;
-  pointHoverBackgroundColor: string;
-  pointHoverBorderWidth: number;
-  pointHoverRadius: number;
-  fill: boolean;
-  tension: number;
+  borderColor?: string;
+  backgroundColor: string | string[];
+  pointHoverBackgroundColor?: string;
+  pointHoverBorderWidth?: number;
+  pointHoverRadius?: number;
+  fill?: boolean;
+  tension?: number;
+  borderAlign?: string;
 };
 
 export interface ChartData {
@@ -63,3 +90,35 @@ export interface ChartData {
   datasets: LCDatasets[] 
 };
 
+export interface ChartieDatasets {
+  label?: String;
+  data: Number[];
+  backgroundColor: String[];
+  borderAlign?: String;
+};
+
+export interface ChartieData {
+  datasets: ChartieDatasets[];
+  labels: String[];
+};
+
+export interface ChartieOptions {
+  plugins: {
+    legend: {
+      display: Boolean;
+    };
+  };
+};
+
+export interface CreateUser {
+  username: string;
+  password: string;
+  endpoints: any;
+};
+
+export interface MongoUser {
+  username: string;
+  password: string;
+  endpoints: any;
+  github: any;
+};

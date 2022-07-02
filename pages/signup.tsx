@@ -7,7 +7,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Box } from '@chakra-ui/react';
 
 // Sign Up page serving file
-function signupPage() {
+function signupPage():JSX.Element {
   const githubIcon = <FaGithub className={styles.githubLogin} />;
   const { data: session, status } = useSession();
 
@@ -78,6 +78,6 @@ function signupPage() {
       </form>
     </div>
   );
-}
+};
 
 export default signupPage;

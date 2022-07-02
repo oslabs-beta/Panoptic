@@ -6,23 +6,24 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react';
-import style from '../../styles/Dashboard.module.scss'
+import style from '../../styles/Dashboard.module.scss';
+import { FC } from 'react';
 
-const wrightDetails = (props: any) => {
+const wrightDetails:FC = (props: any) => {
   const tempArr:JSX.Element[] = [];
   let metrics;
   // extract the most current date of the user's history
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     // typing is a bit odd here, will come back to this
-    const mainObj = props.user[props.selectedEndpoint];
-    const dateArr = Object.keys(mainObj);
-    const recentDate = dateArr[dateArr.length - 1];
+    const mainObj:any = props.user[props.selectedEndpoint];
+    const dateArr:string[] = Object.keys(mainObj);
+    const recentDate:string = dateArr[dateArr.length - 1];
     metrics = mainObj[recentDate].metrics
   }
 
   if (metrics) {
-    for (let i in metrics[props.selectedMetric]) {
-      let elementStyle;
+    for (const i in metrics[props.selectedMetric]) {
+      let elementStyle:string;
       metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
       let myCard:JSX.Element = (
         <AccordionItem className={elementStyle}>

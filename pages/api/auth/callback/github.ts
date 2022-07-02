@@ -76,9 +76,7 @@ export default nextConnect().use(session({
               return res.status(201).redirect('/sample-test');
             }
           });
-        
-      }
-
+      };
     //  return res.redirect("/api/login");
     }
 );

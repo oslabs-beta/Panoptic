@@ -27,8 +27,7 @@ ChartJS.register(
 );
 
 export const options:MainLCOptions = {
-  // animation,
-  borderWidth: 2, // Width of lines
+  borderWidth: 2,
   responsive: true,
   maintainAspectRatio: true,
   chart: {
@@ -37,10 +36,9 @@ export const options:MainLCOptions = {
   },
   plugins: {
     legend: {
-      position: 'bottom', // Postion of datasets aka Performance, SEO etc
+      position: 'bottom',
     },
     title: {
-      // display: true,//
       text: 'Panoptic Line Chart',
     },
   },
