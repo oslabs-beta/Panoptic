@@ -1,25 +1,22 @@
 import mongoose from 'mongoose';
 const User = require('../../../models/loginModel');
 import dbConnect from '../../../lib/dbConnect';
-const getEndPointData = async (username) => {
+import { Request, Response } from 'express';
+
+
+const getEndPointData = async (username:string):Promise<string | void> => {
   await dbConnect();
 
-  // Find user username": "sampledata"
-  // Data we need is endpoints."https://sampledata.coateam"
   const foundUser = await User.findOne({ _id: username });
   if (foundUser) {
-    console.log(username + ' user found');
-    console.log(foundUser.endpoints)
     return (JSON.stringify(foundUser.endpoints))
   } else {
-    console.log(username + ' user not found');
-    return;// Empty return it triggers No profile data
-  }
-}
-const handler = async (req, res) => {
-  console.log('in austins handler')
+    return;
+  };
+};
+const handler = async (req:Request | any, res:Response) => {
   const userData = await getEndPointData(req.query.user);//req.query.user
   res.send((userData))
-}
+};
 
 export default handler;

@@ -5,7 +5,7 @@
 // _app, dashboard, demo, docs, Index, Login, manager, repoEndpoints, signup
 
 // backend
-// all, createUser, githubLogin, lighthouse, lighthouseDemo, 
+// all, createUser, githubLogin, lighthouse, lighthouseDemo, login, [user], [getUser], github, loginModel, dbConnect, parseCookies, passport-github-auth
 
 export interface LHData {
   performance: number;
@@ -117,8 +117,14 @@ export interface CreateUser {
 };
 
 export interface MongoUser {
+  _id?: number;
   username: string;
   password: string;
-  endpoints: any;
-  github: any;
+  endpoints?: any;
+  github?: any;
+};
+
+export interface DBOptions {
+  useNewUrlParser: boolean;
+  useUnifiedTopology: boolean;
 };
