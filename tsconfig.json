@@ -14,19 +14,14 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true
-    // "types": [
-    //   "jest",
-    //   "puppeteer",
-    //   "jest-environment-puppeteer",
-    //   "expect-puppeteer"
-    // ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "pages/login.tsx",
-    "pages/login.tsx"
+    "pages/login.tsx",
+    "__test__/pages/home.test.js"
   ],
   "exclude": ["node_modules"]
 }

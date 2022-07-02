@@ -3,9 +3,15 @@ import Nav from './components/Nav';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
 import Hero from './components/Hero';
+import Intro from './components/Intro';
+import InfoSect from './components/InfoSection';
+import FeatureSect from './components/FeatureSection';
 import EmployeeID from './components/employeeID';
+import Footer from './components/Footer';
 import Ad from './components/Ad';
 import Head from 'next/head';
+import { Divider } from '@chakra-ui/react';
+
 // export async function getServerSideProps() {
 //   // Fetch data from external API
 //   const res = await fetch(`http://localhost:3000/api/hello`);
@@ -27,8 +33,10 @@ const Home: NextPage = (): JSX.Element => {
     <div id='homePage'>
       <Nav />
       <div className={styles.home}>
-        <Hero />
-        <Ad />
+        {/* <Hero /> */}
+        <Intro />
+        <InfoSect />
+        <FeatureSect />
         <div className={styles.lowcontainer}>
           <h3 className={styles.mdeak}>Meet Our Team</h3>
           <div className={styles.staffcontainer}>
@@ -64,7 +72,9 @@ const Home: NextPage = (): JSX.Element => {
             />
           </div>
         </div>
+        <Ad />
       </div>
+      <Footer />
     </div>
   );
 };

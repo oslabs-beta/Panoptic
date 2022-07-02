@@ -6,8 +6,7 @@ import React, { FC } from 'react';
 
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
-function lhGauge(props: any):JSX.Element {
-
+function lhGauge(props: any): JSX.Element {
   const data: any = {
     labels: ['%', '-'],
     datasets: [
@@ -64,7 +63,7 @@ function lhGauge(props: any):JSX.Element {
   ];
 
   return (
-    <Box>
+    <Box id={`${props.title}Box`}>
       <Doughnut
         className={props.className}
         data={data}
