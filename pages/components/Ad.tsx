@@ -1,8 +1,14 @@
 import styles from '../../styles/Home.module.scss';
 import { useState } from 'react';
+<<<<<<< HEAD
 
 const Ad = (props: any) => {
   // state to hide ad
+=======
+import React, { FC } from 'react';
+
+const Ad:FC = (props: any) => {
+>>>>>>> dbchanges
   const [showMe, setShowMe] = useState(true);
   // function to hide ad, toggles state
   const hideAd = () => {

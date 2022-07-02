@@ -12,8 +12,17 @@ import { parseCookies } from '../lib/parseCookies';
 import { Octokit } from 'octokit';
 import Sidenav from './components/Sidenav';
 
+<<<<<<< HEAD
 const Dashboard: NextPage = ({ initialRememberValue }) => {
   // React Hooks
+=======
+// when we make the api call to back end
+// need to pass url, last commit, reponame, and platform(mobile/desktop)
+// req.body.reponame, req.body.url, req.body.commit, req.body.platform
+
+const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
+
+>>>>>>> dbchanges
   const [currentUser, setCurrentUser] = useState({});
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
