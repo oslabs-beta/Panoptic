@@ -40,7 +40,6 @@ const wrightDetailsDemo = (props: any) => {
                   <p>{metrics[props.selectedMetric][i].displayValue !== 'numeric' ? metrics[props.selectedMetric][i].displayValue : ''}</p>
                   <p>{`Score: ${Math.round((metrics[props.selectedMetric][i].score) * 100)}`}</p>
                 </div>
-                
               </Box>
             <AccordionIcon />
             </AccordionButton>

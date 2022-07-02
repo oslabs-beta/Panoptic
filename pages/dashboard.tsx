@@ -12,17 +12,12 @@ import { parseCookies } from '../lib/parseCookies';
 import { Octokit } from 'octokit';
 import Sidenav from './components/Sidenav';
 
-<<<<<<< HEAD
-const Dashboard: NextPage = ({ initialRememberValue }) => {
-  // React Hooks
-=======
 // when we make the api call to back end
 // need to pass url, last commit, reponame, and platform(mobile/desktop)
 // req.body.reponame, req.body.url, req.body.commit, req.body.platform
 
-const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
+const Dashboard: NextPage = ({ initialRememberValue }) => {
 
->>>>>>> dbchanges
   const [currentUser, setCurrentUser] = useState({});
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
@@ -46,15 +41,17 @@ const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
 
     const result = await axios.get(`/api/user/${initialRememberValue}`);
     setCurrentUser(result.data);
-  
-    if (Object.keys(result.data).length > 0) {
-
-      let defaultKey = Object.keys(result.data)[0];
-      let defaultList = Object.keys(result.data[defaultKey]);
-      let tempLatestVAl = defaultList[defaultList.length - 1];
-
-      setLighthouseData(result.data[defaultKey][tempLatestVAl].metrics);
-      loadEndPointDataToChart(result.data[defaultKey], defaultKey);
+    console.log(result.data)
+    if (Object.keys(result.data).length > 0) { // length gives 2 even tho its empty?
+      let keyEndpoint = Object.keys(result.data)[0];
+      console.log('logging var', keyEndpoint)
+      let keyDesktop = Object.keys(result.data[keyEndpoint]);
+      console.log('logging var', keyDesktop);
+      let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
+      console.log('logging var', keyDate);
+      console.log('FINAL BOSS FIGHT', result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]].metrics);
+      setLighthouseData(result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]].metrics);
+      loadEndPointDataToChart(result.data[keyEndpoint], keyEndpoint);
     }
     didMount.current = true;
   };
@@ -65,6 +62,7 @@ const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
   
   useEffect(() => {
     if (didMount.current) {
+      console.log('LHDATA IN USEEFFECT', lighthouseData);
       setScores(
         <div className={styles.containerGauge}>
           <ControlPanel lhdata={lighthouseData} selectedMetric={selectedMetric} setSelectedMetric={setSelectedMetric}/>
@@ -81,7 +79,7 @@ const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
   
   const repoNames = {};
   for (const item in currentUser) {
-    console.log(currentUser);
+    console.log(currentUser[item]);
     if (
       currentUser[item]['reponame'] &&
       Object.hasOwn(repoNames, currentUser[item]['reponame'])
@@ -108,15 +106,10 @@ const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
       </Box>
     );
     // get data from lighthouse api
-    await fetch(`http://localhost:3000/api/lighthouse`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(urlData.value),
+    await axios.post(`http://localhost:3000/api/lighthouse`, {
+      url: urlData.value,
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then((data: any) => {
         didMount.current = true;
         setLighthouseData(data);
       });
@@ -151,31 +144,37 @@ const Dashboard: NextPage = ({ initialRememberValue }, props:any) => {
     let arrOfTime = [];
     let defaultList;
     let tempLatestVAl;
-
+    let date;
     if (currentUser[defaultKey]) {
-      for (const date in currentUser[defaultKey]) {
+      console.log('LINE 147', currentUser[defaultKey])
+      for (const date in currentUser[defaultKey].desktop) {
         if (date != 'reponame') {
           // console.log(currentUser[defaultKey][date].metrics.performance);
 
           performanceArray.push(
-            currentUser[defaultKey][date].metrics.performance
+            currentUser[defaultKey].desktop[date].metrics.performance
           );
-          seoArray.push(currentUser[defaultKey][date].metrics.seo);
+          seoArray.push(currentUser[defaultKey].desktop[date].metrics.seo);
           accessibilityArray.push(
-            currentUser[defaultKey][date].metrics.accessibility
+            currentUser[defaultKey].desktop[date].metrics.accessibility
           );
           bestPracticeArray.push(
-            currentUser[defaultKey][date].metrics.bestPractices
+            currentUser[defaultKey].desktop[date].metrics.bestPractices
           );
         }
       }
       if (arrOfTime.length < 8)
-        arrOfTime.push(Object.keys(currentUser[defaultKey]).map((el) => el));
-
-      defaultList = Object.keys(currentUser[defaultKey]);
-      tempLatestVAl = defaultList[defaultList.length - 1];
-      
-      setLighthouseData(currentUser[defaultKey][tempLatestVAl].metrics);
+      // CONSOLE LOG BATTLES
+      arrOfTime.push(Object.keys(currentUser[defaultKey].desktop).map((el) => el));
+      console.log('ARR?', arrOfTime)
+      console.log('what we pushing?', currentUser[defaultKey].desktop); // ROUND 1 - correct
+      defaultList = Object.keys(currentUser[defaultKey]); // ROUND 2 - desktop - got it
+      console.log('defList', defaultList) // ROUND 3 - Low Level Boss Fight - correct
+      date = Object.keys(currentUser[defaultKey][defaultList]); // date
+      console.log('DATE ', date)
+        console.log('FINAL BOSS FIGHT: ', currentUser[defaultKey][defaultList][date])
+        console.log('FINAL BOSS FIGHT 2: ', currentUser[defaultKey][defaultList][date[date.length - 1]].metrics)
+        setLighthouseData(currentUser[defaultKey][defaultList][date[date.length - 1]].metrics);
     }
 
     setAccessibilityData([...accessibilityArray]);

@@ -25,14 +25,8 @@ const EndpointsList:FC = (props: any) => {
   const [endpoints, setEndpoints] = useState([]);
 
   // filter user obj for only endpoints
-<<<<<<< HEAD
-  const filteredObj = () => {
-    const test:String[] = Object.keys(props.endPts).map((key) => key);
-    console.log('in filtered obj func', test);
-=======
   const filteredObj = ():string[] => {
     const test:string[] = Object.keys(props.endPts).map((key) => key);
->>>>>>> dbchanges
     return test;
   };
 
@@ -44,12 +38,8 @@ const EndpointsList:FC = (props: any) => {
   const endpointsArr:String[] = filteredObj();
   const arr:JSX.Element[] = [];
   for (const key in props.reponames) {
-<<<<<<< HEAD
-    console.log('props.reponames', props.reponames);
-    const tempArr = props.reponames[key].map((el:String) => (
-=======
+    console.log('props.reponames', props.reponames)
     const tempArr:JSX.Element[] = props.reponames[key].map((el:String) => (
->>>>>>> dbchanges
       <Button key='Button' onClick={endpointSelector}>{el}</Button>
     ));
     arr.push(

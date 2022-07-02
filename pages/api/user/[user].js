@@ -2,10 +2,8 @@ import mongoose from 'mongoose';
 const User = require('../../../models/loginModel');
 import dbConnect from '../../../lib/dbConnect';
 const getEndPointData = async (username) => {
-  await dbConnect();
+  dbConnect();
 
-  // Find user username": "sampledata"
-  // Data we need is endpoints."https://sampledata.coateam"
   const foundUser = await User.findOne({ _id: username });
   if (foundUser) {
     console.log(username + ' user found');
@@ -17,9 +15,9 @@ const getEndPointData = async (username) => {
   }
 }
 const handler = async (req, res) => {
-  console.log('in austins handler')
-  const userData = await getEndPointData(req.query.user);//req.query.user
-  res.send((userData))
+  console.log('in api/user handler')
+  const userData = await getEndPointData(req.query.user); //req.query.user
+  return res.send(userData)
 }
 
 export default handler;

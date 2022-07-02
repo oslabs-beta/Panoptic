@@ -33,8 +33,8 @@ export default nextConnect().use(session({
         );
         console.log('~~~Connected to mongoDB~~~');
         // store username / pass from req.body
-        const { username, nodeId, token } = req.user;
-        const { url } = req.user._json
+        const { username, nodeId, token, photos, refresh } = req.user;
+        console.log(req.user);
         // Check if user exists and then compare pass if so
         const foundUser = await User.findOne({ username: username });
         if (foundUser) {
@@ -45,8 +45,8 @@ export default nextConnect().use(session({
           // Checking password with hash password on server
         } else {
           // create user as they don't exist
-          console.log('Create user called');
-          console.log('req.user', username, nodeId, token, url);
+          console.log('Create user called in github.ts');
+          console.log('req.user', username, nodeId, token);
           // Assign username / pass to varibles so we can hash pass
           // const { username, password } = req.body;
           // Hashing function with bcrypt
@@ -64,13 +64,13 @@ export default nextConnect().use(session({
                 username: username,
                 password: hash,
                 github: {
+                  profilePic: photos[0].value,
                   token: token,
-                  url: url
+                  refresh: refresh,
+                  repos: {}
                 }
               });
               await newUser.save();
-              mongoose.connection.close();
-              console.log('Closed Mongo connection');
               // Set Login Cookie
               cookies.set('userId', newUser._id);
               return res.status(201).redirect('/dashboard');
