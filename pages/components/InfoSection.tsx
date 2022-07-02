@@ -46,10 +46,11 @@ const AboutUs = () => {
             // justifyContent='center'
             borderRadius='md'
             // flexDirection='column'
-            // textAlign='center'
+            textAlign='center'
             // mb={isLargerThan48 ? '0' : '4'}
             border='1px solid #C4DDFF'
             color='#276CF4'
+            boxShadow='xl'
           >
             {/* <Icon as={arr.icon} boxSize={14} color='blue.600' mb='5' /> */}
             <Heading size='lg' textShadow='1px 1px black'>
