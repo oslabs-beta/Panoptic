@@ -1,13 +1,12 @@
 import styles from '../../styles/Docs.module.scss';
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
 
-const UsingApp: NextPage = (props): JSX.Element => {
+const UsingApp: FC = (props): JSX.Element => {
   return (
     <div id={styles.docsContainer}>
       <VStack>
         <Heading>Stuff</Heading>
-
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae
           lacus sit amet mi fermentum gravida. Nunc eget mi eros. Aliquam

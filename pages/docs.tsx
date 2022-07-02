@@ -23,9 +23,6 @@ const Docs: NextPage = (props): JSX.Element => {
   const [activeBtn, setActiveBtn] = useState(0);
   let buttons;
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
-
   if (activeBtn === 0) {
     buttons = (
       <div id={styles.docsNav}>
@@ -152,58 +149,7 @@ const Docs: NextPage = (props): JSX.Element => {
   return (
     <div id={styles.docsPage}>
       <Nav />
-      {/* {buttons} */}
-      <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-        Open
-      </Button>
-      <Drawer
-        isOpen={isOpen}
-        placement='left'
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <div id={styles.docsNav}>
-            <div>
-              <ul id={styles.docsList}>
-                <li className={styles.docsListItem}>
-                  <button
-                    disabled
-                    id='listButton1'
-                    className={styles.listButton}
-                    onClick={() => setActiveBtn(0)}
-                  >
-                    Using our Application
-                  </button>
-                </li>
-                <li className={styles.docsListItem}>
-                  <button
-                    id='listButton2'
-                    className={styles.listButton}
-                    onClick={() => setActiveBtn(1)}
-                  >
-                    About Google Lighthouse
-                  </button>
-                </li>
-                <li className={styles.docsListItem}>
-                  <button
-                    id='listButton3'
-                    className={styles.listButton}
-                    onClick={() => setActiveBtn(2)}
-                  >
-                    Using the Metrics
-                  </button>
-                </li>
-              </ul>
-            </div>
-            {/* <div id={styles.rightside}>
-              <UsingApp />
-            </div> */}
-          </div>
-        </DrawerContent>
-      </Drawer>
-      <UsingApp />
+      {buttons}
     </div>
   );
 };

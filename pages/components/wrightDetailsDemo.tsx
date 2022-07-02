@@ -6,26 +6,18 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react';
-import style from '../../styles/Demo.module.scss'
+import style from '../../styles/Demo.module.scss';
+import { FC } from 'react';
 
-const wrightDetailsDemo = (props: any) => {
+const wrightDetailsDemo:FC = (props: any) => {
   const tempArr:JSX.Element[] = [];
   let metrics;
-  // extract the most current date of the user's history
-  // if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
-  //   const mainObj:String = props.user[props.selectedEndpoint];
-  //   const dateArr:String[] = Object.keys(mainObj);
-  //   const recentDate:String = dateArr[dateArr.length - 1];
-  //   metrics = mainObj[recentDate].metrics
-  // }
   if (props.data) {
     metrics = props.data;
   }
 
   if (metrics) {
     for (let i in metrics[props.selectedMetric]) {
-      // if the score is 1, style it green
-      // if the score is < 1, style it red
       let elementStyle;
       metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
       let myCard:JSX.Element = (
@@ -40,7 +32,6 @@ const wrightDetailsDemo = (props: any) => {
                   <p>{metrics[props.selectedMetric][i].displayValue}</p>
                   <p>{`Score: ${(metrics[props.selectedMetric][i].score) * 100}`}</p>
                 </div>
-                
               </Box>
             <AccordionIcon />
             </AccordionButton>

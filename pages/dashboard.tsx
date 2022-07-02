@@ -21,8 +21,6 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     bestPractices: 0,
     seo: 0,
   });
-
-
   const [selected, setSelected] = useState('Select An Endpoint');
   const [scores, setScores] = useState(
     <Box>
@@ -33,16 +31,16 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   const didMount = useRef(false);
 
   // Get Current User
-  const getUser = async () => {
+  const getUser = async ():Promise<any> => {
 
-    const result = await axios.get(`/api/user/${initialRememberValue}`);
+    const result:any = await axios.get(`/api/user/${initialRememberValue}`);
     setCurrentUser(result.data);
   
     if (Object.keys(result.data).length > 0) {
 
-      let defaultKey = Object.keys(result.data)[0];
-      let defaultList = Object.keys(result.data[defaultKey]);
-      let tempLatestVAl = defaultList[defaultList.length - 1];
+      let defaultKey:any = Object.keys(result.data)[0];
+      let defaultList:any = Object.keys(result.data[defaultKey]);
+      let tempLatestVAl:any = defaultList[defaultList.length - 1];
 
       setLighthouseData(result.data[defaultKey][tempLatestVAl].metrics);
       loadEndPointDataToChart(result.data[defaultKey], defaultKey);
@@ -50,11 +48,11 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     didMount.current = true;
   };
 
-  useEffect(() => {
+  useEffect(():void => {
     getUser();
   }, []);
   
-  useEffect(() => {
+  useEffect(():void => {
     if (didMount.current) {
       setScores(
         <div className={styles.containerGauge}>
@@ -70,7 +68,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     lighthouseData.seo
   ]);
   
-  const repoNames = {};
+  const repoNames:{} = {};
   for (const item in currentUser) {
     if (
       currentUser[item]['reponame'] &&
@@ -104,7 +102,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     '9',
   ]);
 
-  const loadEndPointDataToChart = (e, defaultKey) => {
+  const loadEndPointDataToChart = (e, defaultKey):void => {
     
     const performanceArray:number[] = [];
     const seoArray:number[] = [];
@@ -138,7 +136,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
       tempLatestVAl = defaultList[defaultList.length - 1];
       
       setLighthouseData(currentUser[defaultKey][tempLatestVAl].metrics);
-    }
+    };
 
     setAccessibilityData([...accessibilityArray]);
     setSeoData([...seoArray]);
@@ -148,7 +146,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
       arrOfTime[0].length === 1
         ? setTimes([...arrOfTime[0], ...arrOfTime[0]])
         : setTimes([...arrOfTime[0]]);
-    }
+    };
   };
 
   return (
@@ -218,7 +216,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   );
 };
 
-Dashboard.getInitialProps = async ({ req }) => {
+Dashboard.getInitialProps = async ({ req }):Promise<{}> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie

@@ -1,7 +1,7 @@
 import styles from '../../styles/Docs.module.scss';
-import type { NextPage } from 'next';
+import { FC } from 'react';
 
-const UsingMetrics: NextPage = (props): JSX.Element => {
+const UsingMetrics: FC = (props): JSX.Element => {
   return (
     <div id={styles.docsContainer}>
       <h1>more other stuff</h1>
