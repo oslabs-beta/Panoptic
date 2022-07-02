@@ -18,6 +18,10 @@ const wrightDetailsDemo:FC = (props: any) => {
 
   if (metrics) {
     for (let i in metrics[props.selectedMetric]) {
+      const fullDescription = metrics[props.selectedMetric][i].description;
+      const descritpionText = fullDescription.substring(0, fullDescription.indexOf('Learn more') - 1)
+      const descriptionLink = fullDescription.substring(fullDescription.indexOf('https'), fullDescription.length - 2)
+      
       let elementStyle;
       metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
       let myCard:JSX.Element = (
@@ -36,8 +40,9 @@ const wrightDetailsDemo:FC = (props: any) => {
             <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4}>
-            {metrics[props.selectedMetric][i].description}
+          <AccordionPanel pb={4} className={style.desContainer}>
+            {descritpionText}
+            <a href={descriptionLink} rel='noreferrer' target='_blank'><div className={style.learnMoreBtn}>Learn More</div></a>
           </AccordionPanel>
         </AccordionItem>
       )

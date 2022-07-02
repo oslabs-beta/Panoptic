@@ -1,8 +1,11 @@
-// typed components
+// components
 // AboutLH, ControlPanel, ControlPanelDemo, employeeID, EndpointsList, Hero, LHGauge, LineChart, LoadingSpinner, MainLineChartRE, Nav, Sidenav, UsingApp, UsingMetrics, wrightDetails, wrightDetailsDemo
 
-// typed pages 
-// _app, 
+// pages 
+// _app, dashboard, demo, docs, Index, Login, manager, repoEndpoints, signup
+
+// backend
+// all, createUser, githubLogin, lighthouse, lighthouseDemo, 
 
 export interface LHData {
   performance: number;
@@ -105,4 +108,17 @@ export interface ChartieOptions {
       display: Boolean;
     };
   };
+};
+
+export interface CreateUser {
+  username: string;
+  password: string;
+  endpoints: any;
+};
+
+export interface MongoUser {
+  username: string;
+  password: string;
+  endpoints: any;
+  github: any;
 };

@@ -216,7 +216,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   );
 };
 
-Dashboard.getInitialProps = async ({ req }):Promise<{}> => {
+Dashboard.getInitialProps = async ({ req }):Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie

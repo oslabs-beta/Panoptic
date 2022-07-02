@@ -5,24 +5,49 @@ import AboutLH from './components/AboutLH';
 import UsingMetrics from './components/UsingMetrics';
 import styles from '../styles/Docs.module.scss';
 import { useState } from 'react';
-
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Button,
-  useDisclosure,
-} from '@chakra-ui/react';
 import React from 'react';
 
-const Docs: NextPage = (props): JSX.Element => {
+const Docs: NextPage = (): JSX.Element => {
   const [activeBtn, setActiveBtn] = useState(0);
-  let buttons;
-
+  let buttons:JSX.Element = (
+    <div id={styles.docsNav}>
+      <div>
+        <ul id={styles.docsList}>
+          <li className={styles.docsListItem}>
+            <button
+              disabled
+              id='listButton1'
+              className={styles.listButton}
+              onClick={():void => setActiveBtn(0)}
+            >
+              Using our Application
+            </button>
+          </li>
+          <li className={styles.docsListItem}>
+            <button
+              id='listButton2'
+              className={styles.listButton}
+              onClick={():void => setActiveBtn(1)}
+            >
+              About Google Lighthouse
+            </button>
+          </li>
+          <li className={styles.docsListItem}>
+            <button
+              id='listButton3'
+              className={styles.listButton}
+              onClick={():void => setActiveBtn(2)}
+            >
+              Using the Metrics
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div id={styles.rightside}>
+        <UsingApp />
+      </div>
+    </div>
+  );
   if (activeBtn === 0) {
     buttons = (
       <div id={styles.docsNav}>
@@ -33,7 +58,7 @@ const Docs: NextPage = (props): JSX.Element => {
                 disabled
                 id='listButton1'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(0)}
+                onClick={():void => setActiveBtn(0)}
               >
                 Using our Application
               </button>
@@ -42,7 +67,7 @@ const Docs: NextPage = (props): JSX.Element => {
               <button
                 id='listButton2'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(1)}
+                onClick={():void => setActiveBtn(1)}
               >
                 About Google Lighthouse
               </button>
@@ -51,7 +76,7 @@ const Docs: NextPage = (props): JSX.Element => {
               <button
                 id='listButton3'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(2)}
+                onClick={():void => setActiveBtn(2)}
               >
                 Using the Metrics
               </button>
@@ -63,7 +88,7 @@ const Docs: NextPage = (props): JSX.Element => {
         </div>
       </div>
     );
-  }
+  };
   if (activeBtn === 1) {
     buttons = (
       <div id={styles.docsNav}>
@@ -73,7 +98,7 @@ const Docs: NextPage = (props): JSX.Element => {
               <button
                 id='listButton1'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(0)}
+                onClick={():void => setActiveBtn(0)}
               >
                 Using our Application
               </button>
@@ -83,7 +108,7 @@ const Docs: NextPage = (props): JSX.Element => {
                 disabled
                 id='listButton2'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(1)}
+                onClick={():void => setActiveBtn(1)}
               >
                 About Google Lighthouse
               </button>
@@ -92,7 +117,7 @@ const Docs: NextPage = (props): JSX.Element => {
               <button
                 id='listButton3'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(2)}
+                onClick={():void => setActiveBtn(2)}
               >
                 Using the Metrics
               </button>
@@ -104,7 +129,7 @@ const Docs: NextPage = (props): JSX.Element => {
         </div>
       </div>
     );
-  }
+  };
   if (activeBtn === 2) {
     buttons = (
       <div id={styles.docsNav}>
@@ -114,7 +139,7 @@ const Docs: NextPage = (props): JSX.Element => {
               <button
                 id='listButton1'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(0)}
+                onClick={():void => setActiveBtn(0)}
               >
                 Using our Application
               </button>
@@ -123,7 +148,7 @@ const Docs: NextPage = (props): JSX.Element => {
               <button
                 id='listButton2'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(1)}
+                onClick={():void => setActiveBtn(1)}
               >
                 About Google Lighthouse
               </button>
@@ -133,7 +158,7 @@ const Docs: NextPage = (props): JSX.Element => {
                 disabled
                 id='listButton3'
                 className={styles.listButton}
-                onClick={() => setActiveBtn(2)}
+                onClick={():void => setActiveBtn(2)}
               >
                 Using the Metrics
               </button>
@@ -145,7 +170,7 @@ const Docs: NextPage = (props): JSX.Element => {
         </div>
       </div>
     );
-  }
+  };
   return (
     <div id={styles.docsPage}>
       <Nav />
