@@ -10,24 +10,7 @@ import EmployeeID from './components/employeeID';
 import Footer from './components/Footer';
 import Ad from './components/Ad';
 import Head from 'next/head';
-import { Divider } from '@chakra-ui/react';
 
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await fetch(`http://localhost:3000/api/hello`);
-//   const data = await res.json();
-
-//   return { props: { name: data.name } };
-// }
-
-// // Props interface with name set to string
-// interface Props {
-//   name: string;
-// }
-
-// if youre reading this, look behind you.
-//Creates Home Landing Page Component
-//Using Link on the Button to Route to Sample
 const Home: NextPage = (): JSX.Element => {
   return (
     <div id='homePage'>

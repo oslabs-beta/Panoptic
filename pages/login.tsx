@@ -49,6 +49,6 @@ function LoginPage(): JSX.Element {
       </form>
     </div>
   );
-}
+};
 
 export default LoginPage;

@@ -144,14 +144,9 @@ const mainLineChart = (props) => {
     currentlySelected = props.selectedEndpoint;
   }
   useEffect(() => {
-    // const userObj = getUserData('sampledata'); // Get user data from user/[user] API
-    getUserData(props.cookie); // Get user data from user/[user] API
-    // if(props.isLoaded)    props.setLoad(loadEndPointDataToChart);
+    getUserData(props.cookie);
   }, []);
 
-  // useEffect(() => {
-  //   if (didUpdate.current) loadEndPointDataToChart();
-  // }, []);
   const getUserData = async (user) => {
     // Grab api DATA of user
     setLoading(true);
@@ -170,7 +165,6 @@ const mainLineChart = (props) => {
       callOnce = true;
       await axios.get(myUrl, config).then((res) => {
         setEndPoints(res.data);
-        // getPerformanceData();
 
         console.log('res data = ', endPoints);
         setLoading(false);

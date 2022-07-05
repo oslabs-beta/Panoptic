@@ -22,7 +22,7 @@ import { RingLoader } from 'react-spinners';
 import { any } from 'webidl-conversions';
 import { ClassNames } from '@emotion/react';
 
-const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
+const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => {
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
     accessibility: 0,
@@ -40,8 +40,8 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   const [selectedMetric, setSelectedMetric] = useState('performanceMetrics');
   const didMount = useRef(false);
 
-  const helperFunc = async () => {
-    const urlData: any = document.querySelector('#urlData');
+  const helperFunc = async ():Promise<void> => {
+    const urlData:any = document.querySelector('#urlData');
     setScores(
       <Box>
         <VStack spacing={0}>
@@ -69,7 +69,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     urlData.value = '';
   };
 
-  useEffect(() => {
+  useEffect(():void => {
     if (didMount.current) {
       setScores(
         <div id='controlGauges' className={styles.containerGauge}>
@@ -80,9 +80,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
           />
         </div>
       );
-    } else {
-      // didMountv2.current = true;
-    }
+    };
   }, [
     lighthouseData.performance,
     lighthouseData.accessibility,
@@ -143,7 +141,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     </div>
   );
 };
-DataTest.getInitialProps = async ({ req }) => {
+DataTest.getInitialProps = async ({ req }):Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie

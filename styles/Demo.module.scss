@@ -86,14 +86,6 @@
   // background-color: rgb(27, 3, 111);
 }
 
-// #scoreContainer {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-// }
-
 .containerGauge {
   display: flex;
   height: 90%;
@@ -197,4 +189,17 @@
 .detailElementFlaw {
   width: 100%;
   background-color: $secondary-blue;
+}
+
+.desContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learnMoreBtn {
+  border-radius: 6px;
+  padding: 0rem 1rem;
+  background: $lavender;
+  color: $primary-blue;
+  font-weight: 500;
 }

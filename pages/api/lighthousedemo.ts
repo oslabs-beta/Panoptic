@@ -3,8 +3,8 @@ const chromeLauncher = require('chrome-launcher');
 import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
 
-export default async function lighthouseRequest(req: Request, res: Response) {
-  const chrome = await chromeLauncher.launch({
+export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
+  const chrome:any = await chromeLauncher.launch({
     chromeFlags: [
       '--no-first-run',
       '--headless',
@@ -24,7 +24,7 @@ export default async function lighthouseRequest(req: Request, res: Response) {
 
   await chrome.kill();
   // grab all the info to return to the front-end
-  const scores: LHData = {
+  const scores:LHData = {
     performance: Math.ceil(runnerResult.lhr.categories.performance.score * 100),
     accessibility: Math.ceil(
       runnerResult.lhr.categories.accessibility.score * 100

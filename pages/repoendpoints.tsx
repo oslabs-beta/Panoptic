@@ -5,8 +5,9 @@ import { Octokit } from "octokit";
 import { parseCookies } from '../lib/parseCookies';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { NextPage } from 'next';
 
-const repoendpoints = ({ initialRememberValue }) => {
+const Repoendpoints:NextPage = ({ initialRememberValue }):JSX.Element => {
   // list of repos
   const [ repos, setRepos ] = useState([false]);
   // toggle input menu - initially false so it wont show up
@@ -19,11 +20,11 @@ const repoendpoints = ({ initialRememberValue }) => {
     inputToggle ? setInputToggle(false) : setInputToggle(true)
   }
   // change input value
-  const inputChange = async (e) => {
+  const inputChange = async (e:any) => {
     setInputValue(e.target.value)
   }
   // function for clicking a repo to link, should open up an input menu, then save to DB
-  const selectRepo = (e) => {
+  const selectRepo = (e:any) => {
     setRepoClicked(e.target.textContent);
     toggleInput();
   }
@@ -40,7 +41,7 @@ const repoendpoints = ({ initialRememberValue }) => {
     // store repos result in variable
     const test = await octokit.request(`GET /user/repos`);
     // Loop through array of objects (result (test))
-    const displayRepos = [];
+    const displayRepos:any = [];
     for (const key of test.data) {
         displayRepos.push(<li onClick={selectRepo} key={uuidv4()}>{key.name}</li>)
     }
@@ -72,7 +73,7 @@ const repoendpoints = ({ initialRememberValue }) => {
 }
 
 // cookies
-repoendpoints.getInitialProps = async ({ req }) => {
+Repoendpoints.getInitialProps = async ({ req }) => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie
@@ -81,4 +82,4 @@ repoendpoints.getInitialProps = async ({ req }) => {
   };
 };
 
-export default repoendpoints
+export default Repoendpoints;
