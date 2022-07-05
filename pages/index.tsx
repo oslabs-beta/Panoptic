@@ -3,17 +3,23 @@ import Nav from './components/Nav';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
 import Hero from './components/Hero';
+import Intro from './components/Intro';
+import InfoSect from './components/InfoSection';
+import FeatureSect from './components/FeatureSection';
 import EmployeeID from './components/employeeID';
+import Footer from './components/Footer';
 import Ad from './components/Ad';
 import Head from 'next/head';
 
-const Home:NextPage = ():JSX.Element => {
+const Home: NextPage = (): JSX.Element => {
   return (
     <div id='homePage'>
       <Nav />
       <div className={styles.home}>
-        <Hero />
-        <Ad />
+        {/* <Hero /> */}
+        <Intro />
+        <InfoSect />
+        <FeatureSect />
         <div className={styles.lowcontainer}>
           <h3 className={styles.mdeak}>Meet Our Team</h3>
           <div className={styles.staffcontainer}>
@@ -49,7 +55,9 @@ const Home:NextPage = ():JSX.Element => {
             />
           </div>
         </div>
+        <Ad />
       </div>
+      <Footer />
     </div>
   );
 };

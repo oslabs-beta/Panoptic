@@ -9,8 +9,8 @@ import {
 import style from '../../styles/Demo.module.scss';
 import { FC } from 'react';
 
-const wrightDetailsDemo:FC = (props: any) => {
-  const tempArr:JSX.Element[] = [];
+const wrightDetailsDemo: FC = (props: any) => {
+  const tempArr: JSX.Element[] = [];
   let metrics;
   if (props.data) {
     metrics = props.data;
@@ -19,39 +19,59 @@ const wrightDetailsDemo:FC = (props: any) => {
   if (metrics) {
     for (let i in metrics[props.selectedMetric]) {
       const fullDescription = metrics[props.selectedMetric][i].description;
-      const descritpionText = fullDescription.substring(0, fullDescription.indexOf('Learn more') - 1)
-      const descriptionLink = fullDescription.substring(fullDescription.indexOf('https'), fullDescription.length - 2)
-      
+      const descritpionText = fullDescription.substring(
+        0,
+        fullDescription.indexOf('Learn more') - 1
+      );
+      const descriptionLink = fullDescription.substring(
+        fullDescription.indexOf('https'),
+        fullDescription.length - 2
+      );
+
       let elementStyle;
-      metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
-      let myCard:JSX.Element = (
+      metrics[props.selectedMetric][i].score < 1
+        ? (elementStyle = style.detailElementFlaw)
+        : (elementStyle = style.detailElement);
+      let myCard: JSX.Element = (
         <AccordionItem className={elementStyle}>
           <h2>
             <AccordionButton display={'flex'} justifyContent={'space-between'}>
-              <Box display={'flex'} justifyContent='space-between' width={'97%'}>
-                <div>
-                {metrics[props.selectedMetric][i].title}
-                </div>
-                <div style={{display:'flex', justifyContent: 'space-between', width: '17%'}}>
+              <Box
+                display={'flex'}
+                justifyContent='space-between'
+                width={'97%'}
+              >
+                <div>{metrics[props.selectedMetric][i].title}</div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '17%',
+                  }}
+                >
                   <p>{metrics[props.selectedMetric][i].displayValue}</p>
-                  <p>{`Score: ${(metrics[props.selectedMetric][i].score) * 100}`}</p>
+                  <p>{`Score: ${
+                    metrics[props.selectedMetric][i].score * 100
+                  }`}</p>
                 </div>
               </Box>
-            <AccordionIcon />
+              <AccordionIcon />
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4} className={style.desContainer}>
             {descritpionText}
-            <a href={descriptionLink} rel='noreferrer' target='_blank'><div className={style.learnMoreBtn}>Learn More</div></a>
+            <a href={descriptionLink} rel='noreferrer' target='_blank'>
+              <div className={style.learnMoreBtn}>Learn More</div>
+            </a>
           </AccordionPanel>
         </AccordionItem>
-      )
-      tempArr.push(myCard)
+      );
+      tempArr.push(myCard);
     }
   }
-  
+
   return (
-    <Accordion allowMultiple width='100%'>
+    <Accordion id='accordionDemo' allowMultiple width='100%'>
       {tempArr}
     </Accordion>
   );

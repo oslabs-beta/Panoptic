@@ -29,7 +29,7 @@
   color: white;
 }
 
-#endpointBtn {
+.endpointBtn {
   font-family: $primary-font;
   padding: 0.7em 1em;
   border: 2px solid $secondary-blue;
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-#endpointBtn:hover {
+.endpointBtn:hover {
   color: $secondary-blue;
   background-color: $lavender;
 }

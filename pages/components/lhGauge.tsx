@@ -7,8 +7,7 @@ import { ChartData, LHGaugeOptions } from '../../types';
 
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
-function lhGauge(props: any):JSX.Element {
-
+function lhGauge(props: any): JSX.Element {
   const data: ChartData = {
     labels: ['%', '-'],
     datasets: [
@@ -42,7 +41,7 @@ function lhGauge(props: any):JSX.Element {
     },
   };
 
-  const plugins:{}[] = [
+  const plugins: {}[] = [
     {
       beforeDraw: function (chart: any) {
         //   beforeRender: function (chart) {
@@ -65,7 +64,7 @@ function lhGauge(props: any):JSX.Element {
   ];
 
   return (
-    <Box>
+    <Box id={`${props.title}Box`}>
       <Doughnut
         className={props.className}
         data={data}
@@ -74,6 +73,6 @@ function lhGauge(props: any):JSX.Element {
       />
     </Box>
   );
-};
+}
 
 export default lhGauge;

@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { RingLoader } from 'react-spinners';
 import { any } from 'webidl-conversions';
-
+import { ClassNames } from '@emotion/react';
 
 const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => {
   const [lighthouseData, setLighthouseData] = useState({
@@ -72,8 +72,12 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
   useEffect(():void => {
     if (didMount.current) {
       setScores(
-        <div className={styles.containerGauge}>
-          <ControlPanelDemo lhdata={lighthouseData} selectedMetric={selectedMetric} setSelectedMetric={setSelectedMetric}/>
+        <div id='controlGauges' className={styles.containerGauge}>
+          <ControlPanelDemo
+            lhdata={lighthouseData}
+            selectedMetric={selectedMetric}
+            setSelectedMetric={setSelectedMetric}
+          />
         </div>
       );
     };
@@ -92,7 +96,6 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
   const [bestPracticeData, setBestPracticeData] = useState(null);
   const [accessibilityData, setAccessibilityData] = useState(null);
 
-
   return (
     <div className={styles.threeParts}>
       <div className={styles.containerLeft}>
@@ -105,7 +108,12 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
             placeholder='ex: https://YouTube.com/'
             className={styles.endpointInput}
           />
-          <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
+          <button
+            type='button'
+            id='runDemoBtn'
+            className={styles.endpointBtn}
+            onClick={helperFunc}
+          >
             Run Tests
           </button>
         </div>
@@ -114,8 +122,15 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
       <div className={styles.containerMid}>
         <div className={styles.controlPanel}>{scores}</div>
         <div className={styles.detailsList}>
-          <h2 className={styles.detailsHeader}>
-            {selectedMetric !== 'seoMetrics' && selectedMetric !== 'bestPracticesMetrics' ? selectedMetric[0].toUpperCase() + (selectedMetric.substring(1, selectedMetric.length -7) + ' Metrics'): selectedMetric === 'seoMetrics'? 'SEO Metrics' : 'Best Practices Metrics'}
+          <h2 id='metricTitle' className={styles.detailsHeader}>
+            {selectedMetric !== 'seoMetrics' &&
+            selectedMetric !== 'bestPracticesMetrics'
+              ? selectedMetric[0].toUpperCase() +
+                (selectedMetric.substring(1, selectedMetric.length - 7) +
+                  ' Metrics')
+              : selectedMetric === 'seoMetrics'
+              ? 'SEO Metrics'
+              : 'Best Practices Metrics'}
           </h2>
           <WrightDetailsDemo
             selectedMetric={selectedMetric}
