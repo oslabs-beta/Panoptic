@@ -9,9 +9,10 @@ import {
 import style from '../../styles/Dashboard.module.scss'
 
 const wrightDetails = (props: any) => {
-  const tempArr:JSX.Element[] = [];
+  const tempArr: JSX.Element[] = [];
   let metrics;
   // extract the most current date of the user's history
+  console.log('PROPS USER AND SELECTEDEP', props.user, props.selectedEndpoint)
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     // typing is a bit odd here, will come back to this
     const mainObj = props.user[props.selectedEndpoint];
@@ -24,14 +25,14 @@ const wrightDetails = (props: any) => {
     for (let i in metrics[props.selectedMetric]) {
       let elementStyle;
       metrics[props.selectedMetric][i].score < 1 ? elementStyle = style.detailElementFlaw : elementStyle = style.detailElement;
-      let myCard:JSX.Element = (
+      let myCard: JSX.Element = (
         <AccordionItem className={elementStyle}>
           <h2>
             <AccordionButton>
               <Box flex='1' textAlign='left'>
                 {metrics[props.selectedMetric][i].title}
               </Box>
-            <AccordionIcon />
+              <AccordionIcon />
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>{metrics[props.selectedMetric][i].description}</AccordionPanel>
@@ -40,7 +41,7 @@ const wrightDetails = (props: any) => {
       tempArr.push(myCard)
     };
   };
-  
+
   return (
     <Accordion allowMultiple width='100%'>
       {tempArr}

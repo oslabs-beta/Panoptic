@@ -79,7 +79,6 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   
   const repoNames = {};
   for (const item in currentUser) {
-    console.log(currentUser[item]);
     if (
       currentUser[item]['reponame'] &&
       Object.hasOwn(repoNames, currentUser[item]['reponame'])

@@ -8,6 +8,7 @@ const controlPanel:FC = (props: any): JSX.Element => {
   if (props.lhdata)
     for (const key in props.lhdata) {
       if (typeof props.lhdata[key] == 'number') {
+        console.log('KEY', key);
         tempArr.push(
           <button type='button' onClick={()=> {props.setSelectedMetric(`${key}Metrics`)}}>
               <LH_Gauge
