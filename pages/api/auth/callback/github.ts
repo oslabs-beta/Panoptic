@@ -7,24 +7,14 @@ const Cookies = require('cookies');
 const bcrypt = require('bcrypt');
 const User = require('../../../../models/loginModel');
 
-import nextSession from "next-session";
-import express, {
-  Request,
-  Response,
-  NextFunction,
-  ErrorRequestHandler,
-} from 'express';
-
-
 export default nextConnect().use(session({
   secret: 'test'
 })).get(
     passport.authenticate("github",{ failureRedirect: '/' }),
     async (req: NextApiRequest & { user: any }, res: NextApiResponse) => {
-      const cookies = new Cookies(req, res);
-      // you can save the user session here. to get access to authenticated user through req.user
-      console.log('Here i am')
-      // console.log(req.user)
+    const cookies = new Cookies(req, res);
+    await mongoose.connect(process.env.MONGO_URI);
+    // store username / pass from req.body
 
      
         console.log('LOGIN called with data ', req.user);
@@ -76,9 +66,12 @@ export default nextConnect().use(session({
               return res.status(201).redirect('/dashboard');
             }
           });
-        
-      }
-
-    //  return res.redirect("/api/login");
-    }
+          await newUser.save();
+          mongoose.connection.close();
+          cookies.set('userId', newUser._id);
+          return res.status(201).redirect('/sample-test');
+        }
+      });
+    };
+  }
 );

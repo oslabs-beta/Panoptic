@@ -6,23 +6,6 @@ import Image from 'next/image';
 import logoPic from '../../assets/PanLogo.png';
 // import { Show, Hide } from '@chakra-ui/react'
 
-// const Sidenav = (props: any) => {
-//   return (
-//     <nav className={styles.Sidenav}>
-//       <Show>
-//       <Link href="/"><h1 className={styles.logo}>Panoptic</h1></Link>
-//       <ul className={styles.linksContainer}>
-//         <li className={styles.listLink} ><Link className={styles.link} href="#">Home</Link></li>
-//         <li className={styles.listLink} ><Link className={styles.link} href="#">Details</Link></li>
-//         <li className={styles.listLink} ><Link className={styles.link} href="#">Information</Link></li>
-//         <li className={styles.listLink} ><Link className={styles.link} href="#">Settings</Link></li>
-//       </ul>
-//       </Show>
-//     </nav>
-//   )
-// }
-
-// export default Sidenav
 import {
   Drawer,
   DrawerBody,
@@ -43,10 +26,6 @@ import { useState } from 'react'
 function Sidenav(props: any): JSX.Element {
 
   const router = useRouter();
-  // const handleClick = (e: any) => {
-  //   e.preventDefault();
-  //   router.push(e.target.classList[1])
-  // }
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [currentLink, setCurrentLink] = useState('');
   return (

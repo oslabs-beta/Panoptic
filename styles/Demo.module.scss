@@ -28,7 +28,7 @@
   color: white;
 }
 
-#endpointBtn {
+.endpointBtn {
   font-family: $primary-font;
   padding: 0.7em 1em;
   border: 2px solid $secondary-blue;
@@ -41,10 +41,9 @@
   cursor: pointer;
 }
 
-#endpointBtn:hover {
-  color: $lavender;
-  background-color: $dark-blue;
-  border: 2px solid $dark-blue;
+.endpointBtn:hover {
+  color: $secondary-blue;
+  background-color: $lavender;
 }
 
 .containerLeft {
@@ -99,14 +98,6 @@
   font-size: large;
   font-family: $primary-font;
 }
-
-// #scoreContainer {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-// }
 
 .containerGauge {
   display: flex;
@@ -215,7 +206,7 @@
   background-color: $secondary-blue;
 }
 
-.homebtn {
+<<<<<<< HEAD .homebtn {
   margin-top: 1rem;
   opacity: 55%;
 }
@@ -223,3 +214,18 @@
 .logoPic:hover {
   cursor: pointer;
 }
+
+=======.desContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learnMoreBtn {
+  border-radius: 6px;
+  padding: 0rem 1rem;
+  background: $lavender;
+  color: $primary-blue;
+  font-weight: 500;
+}
+
+>>>>>>>dev

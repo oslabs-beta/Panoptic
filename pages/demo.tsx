@@ -22,9 +22,9 @@ import {
 } from '@chakra-ui/react';
 import { RingLoader } from 'react-spinners';
 import { any } from 'webidl-conversions';
+import { ClassNames } from '@emotion/react';
 
-
-const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
+const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => {
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
     accessibility: 0,
@@ -42,8 +42,8 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   const [selectedMetric, setSelectedMetric] = useState('performanceMetrics');
   const didMount = useRef(false);
 
-  const helperFunc = async () => {
-    const urlData: any = document.querySelector('#urlData');
+  const helperFunc = async ():Promise<void> => {
+    const urlData:any = document.querySelector('#urlData');
     setScores(
       <Box>
         <VStack spacing={0}>
@@ -71,16 +71,18 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     urlData.value = '';
   };
 
-  useEffect(() => {
+  useEffect(():void => {
     if (didMount.current) {
       setScores(
-        <div className={styles.containerGauge}>
-          <ControlPanelDemo lhdata={lighthouseData} selectedMetric={selectedMetric} setSelectedMetric={setSelectedMetric}/>
+        <div id='controlGauges' className={styles.containerGauge}>
+          <ControlPanelDemo
+            lhdata={lighthouseData}
+            selectedMetric={selectedMetric}
+            setSelectedMetric={setSelectedMetric}
+          />
         </div>
       );
-    } else {
-      // didMountv2.current = true;
-    }
+    };
   }, [
     lighthouseData.performance,
     lighthouseData.accessibility,
@@ -95,7 +97,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
   const [seoData, setSeoData] = useState(null);
   const [bestPracticeData, setBestPracticeData] = useState(null);
   const [accessibilityData, setAccessibilityData] = useState(null);
-
 
   return (
     <div className={styles.threeParts}>
@@ -114,7 +115,12 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
             placeholder='ex: https://YouTube.com/'
             className={styles.endpointInput}
           />
-          <button type='button' id={styles.endpointBtn} onClick={helperFunc}>
+          <button
+            type='button'
+            id='runDemoBtn'
+            className={styles.endpointBtn}
+            onClick={helperFunc}
+          >
             Run Tests
           </button>
         </div>
@@ -123,8 +129,15 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
       <div className={styles.containerMid}>
         <div className={styles.controlPanel}>{scores}</div>
         <div className={styles.detailsList}>
-          <h2 className={styles.detailsHeader}>
-            {selectedMetric !== 'seoMetrics' && selectedMetric !== 'bestPracticesMetrics' ? selectedMetric[0].toUpperCase() + (selectedMetric.substring(1, selectedMetric.length -7) + ' Metrics'): selectedMetric === 'seoMetrics'? 'SEO Metrics' : 'Best Practices Metrics'}
+          <h2 id='metricTitle' className={styles.detailsHeader}>
+            {selectedMetric !== 'seoMetrics' &&
+            selectedMetric !== 'bestPracticesMetrics'
+              ? selectedMetric[0].toUpperCase() +
+                (selectedMetric.substring(1, selectedMetric.length - 7) +
+                  ' Metrics')
+              : selectedMetric === 'seoMetrics'
+              ? 'SEO Metrics'
+              : 'Best Practices Metrics'}
           </h2>
           <WrightDetailsDemo
             selectedMetric={selectedMetric}
@@ -142,7 +155,7 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
     </div>
   );
 };
-DataTest.getInitialProps = async ({ req }) => {
+DataTest.getInitialProps = async ({ req }):Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie

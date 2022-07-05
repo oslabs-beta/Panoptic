@@ -1,6 +1,8 @@
 import Sidenav from "./components/Sidenav"
 import styles from '../styles/Manager.module.scss';
-const Manager = () => {
+import { NextPage } from 'next';
+
+const Manager:NextPage = ():JSX.Element => {
   return (
     <div className={styles.manager}>
       <Sidenav />
@@ -8,4 +10,4 @@ const Manager = () => {
   )
 }
 
-export default Manager
+export default Manager;

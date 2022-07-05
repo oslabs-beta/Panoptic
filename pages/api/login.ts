@@ -9,7 +9,7 @@ import express, {
   ErrorRequestHandler,
 } from 'express';
 const User = require('../../models/loginModel');
-
+import { MongoUser } from '../../types';
 // Api/login
 
 const handler = async (req: Request, res: Response) => {
@@ -17,13 +17,9 @@ const handler = async (req: Request, res: Response) => {
   const cookies = new Cookies(req, res);
   // Check method type ie post/get etc
   if (req.method === 'POST') {
-    console.log('LOGIN called with data ', req.body);
-  
-
-    // store username / pass from req.body
     const { username, password } = req.body;
     // Check if user exists and then compare pass if so
-    const foundUser = await User.findOne({ username: username });
+    const foundUser:MongoUser = await User.findOne({ username: username });
     if (foundUser) {
       console.log('Login username found');
       //  User exist
@@ -55,6 +51,8 @@ const handler = async (req: Request, res: Response) => {
       // create user as they don't exist
       console.log('Create user called in login.ts');
       // Assign username / pass to varibles so we can hash pass
+      type username = string;
+      type password = string;
       const { username, password } = req.body;
       // Hashing function with bcrypt
       bcrypt.hash(password, 10, async function (err: any, hash: any) {

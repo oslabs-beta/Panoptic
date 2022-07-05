@@ -3,13 +3,13 @@ const chromeLauncher = require('chrome-launcher');
 const User = require('../../models/loginModel.ts');
 const Cookies = require('cookies');
 import dbConnect from '../../lib/dbConnect';
-import { LHData, LHOptions } from '../../types';
+import { LHData, LHOptions, MongoUser } from '../../types';
 import { Request, Response } from 'express';
 
-export default async function lighthouseRequest(req: Request, res: Response) {
+export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
   await dbConnect();
   const cookies = new Cookies(req, res);
-  const chrome = await chromeLauncher.launch({
+  const chrome:any = await chromeLauncher.launch({
     chromeFlags: [
       '--no-first-run',
       '--headless',
@@ -269,12 +269,13 @@ export default async function lighthouseRequest(req: Request, res: Response) {
   };
 
   const id:string = cookies.get('userId');
+  type currentUser = MongoUser;
   let currentUser;
   if (id) {
 
     currentUser = await User.findOne({ _id: id });
-    const currentdate = new Date();
-    const datetime =
+    const currentdate:Date = new Date();
+    const datetime:string =
       currentdate.getDate() +
       '/' +
       (currentdate.getMonth() + 1) +

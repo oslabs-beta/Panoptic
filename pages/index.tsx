@@ -3,34 +3,23 @@ import Nav from './components/Nav';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
 import Hero from './components/Hero';
+import Intro from './components/Intro';
+import InfoSect from './components/InfoSection';
+import FeatureSect from './components/FeatureSection';
 import EmployeeID from './components/employeeID';
+import Footer from './components/Footer';
 import Ad from './components/Ad';
 import Head from 'next/head';
-import Newsletter from './components/Newsletter';
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await fetch(`http://localhost:3000/api/hello`);
-//   const data = await res.json();
 
-//   return { props: { name: data.name } };
-// }
-
-// // Props interface with name set to string
-// interface Props {
-//   name: string;
-// }
-
-// if youre reading this, look behind you.
-//Creates Home Landing Page Component
-//Using Link on the Button to Route to Sample
 const Home: NextPage = (): JSX.Element => {
   return (
     <div id='homePage'>
       <Nav />
       <div className={styles.home}>
-        <Hero />
-        <Ad />
-        <Newsletter />
+        {/* <Hero /> */}
+        <Intro />
+        <InfoSect />
+        <FeatureSect />
         <div className={styles.lowcontainer}>
           <h3 className={styles.mdeak}>Meet Our Team</h3>
           <div className={styles.staffcontainer}>
@@ -66,7 +55,9 @@ const Home: NextPage = (): JSX.Element => {
             />
           </div>
         </div>
+        <Ad />
       </div>
+      <Footer />
     </div>
   );
 };
