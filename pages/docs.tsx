@@ -3,6 +3,9 @@ import Nav from './components/Nav';
 import styles from '../styles/Docs.module.scss';
 import { useState } from 'react';
 import React from 'react';
+import UsingApp from './components/UsingApp';
+import AboutLH from './components/AboutLH';
+import UsingMetrics from './components/UsingMetrics';
 
 const Docs: NextPage = (): JSX.Element => {
   const [activeBtn, setActiveBtn] = useState(0);

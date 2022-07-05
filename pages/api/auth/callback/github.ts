@@ -66,12 +66,7 @@ export default nextConnect().use(session({
               return res.status(201).redirect('/dashboard');
             }
           });
-          await newUser.save();
-          mongoose.connection.close();
-          cookies.set('userId', newUser._id);
-          return res.status(201).redirect('/sample-test');
-        }
-      });
+
     };
   }
 );

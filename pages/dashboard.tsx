@@ -40,7 +40,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     const result:any = await axios.get(`/api/user/${initialRememberValue}`);
     setCurrentUser(result.data);
     console.log(result.data)
-    if (Object.keys(result.data).length > 0) { // length gives 2 even tho its empty?
+    if (Object.keys(result.data).length > 0) { 
       let keyEndpoint = Object.keys(result.data)[0];
       console.log('logging var', keyEndpoint)
       let keyDesktop = Object.keys(result.data[keyEndpoint]);
@@ -108,6 +108,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     })
       .then((data: any) => {
         didMount.current = true;
+        console.log(data)
         setLighthouseData(data);
       });
     // clear input value after clicking
