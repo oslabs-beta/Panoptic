@@ -3,18 +3,31 @@ import { Box, HStack, Button } from '@chakra-ui/react';
 import LH_Gauge from './lhGauge';
 import React, { FC } from 'react';
 
-const controlPanel:FC = (props: any): JSX.Element => {
-  const tempArr:JSX.Element[] = [];
+const controlPanel: FC = (props: any): JSX.Element => {
+  const tempArr: JSX.Element[] = [];
   if (props.lhdata)
     for (const key in props.lhdata) {
       if (typeof props.lhdata[key] == 'number') {
-        console.log('KEY', key);
+        // console.log('KEY', key);
         tempArr.push(
-          <button type='button' onClick={()=> {props.setSelectedMetric(`${key}Metrics`)}}>
-              <LH_Gauge
+          <button
+            key={`${key}Btn`}
+            type='button'
+            onClick={() => {
+              props.setSelectedMetric(`${key}Metrics`);
+            }}
+          >
+            <LH_Gauge
+              key={`${key}Gauge`}
               className={styles.gauge}
               score={props.lhdata[key]}
-              title={key !== 'seo' && key !== 'bestPractices' ? key[0].toUpperCase() + key.substring(1) + ' Score:' : key === 'seo' ? 'SEO Score:' : 'Best Practices Score:'}
+              title={
+                key !== 'seo' && key !== 'bestPractices'
+                  ? key[0].toUpperCase() + key.substring(1) + ' Score:'
+                  : key === 'seo'
+                  ? 'SEO Score:'
+                  : 'Best Practices Score:'
+              }
             />
           </button>
         );

@@ -17,8 +17,8 @@ import Sidenav from './components/Sidenav';
 // req.body.reponame, req.body.url, req.body.commit, req.body.platform
 
 const Dashboard: NextPage = ({ initialRememberValue }) => {
-
   const [currentUser, setCurrentUser] = useState({});
+  const [userData, setUserData] = useState({});
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
     accessibility: 0,
@@ -33,62 +33,80 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   );
   const [GaugeData, setGaugeData] = useState({});
   const didMount = useRef(false);
+  const repoNames = { Other: [] };
 
   // Get Current User
-  const getUser = async ():Promise<any> => {
-
-    const result:any = await axios.get(`/api/user/${initialRememberValue}`);
+  const getUser = async (): Promise<any> => {
+    const result: any = await axios.get(`/api/user/${initialRememberValue}`);
     setCurrentUser(result.data);
-    console.log(result.data)
-    if (Object.keys(result.data).length > 0) { 
+
+    const foundUserData: any = await axios.post(`/api/finduser/`, {
+      username: initialRememberValue,
+    });
+    console.log(foundUserData.data);
+    setUserData(foundUserData.data);
+    console.log(userData);
+
+    if (Object.keys(result.data).length > 0) {
       let keyEndpoint = Object.keys(result.data)[0];
-      console.log('logging var', keyEndpoint)
-      let keyDesktop = Object.keys(result.data[keyEndpoint]);
-      console.log('logging var', keyDesktop);
-      let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
-      console.log('logging var', keyDate);
-      console.log('FINAL BOSS FIGHT', result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]].metrics);
-      setLighthouseData(result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]].metrics);
-      loadEndPointDataToChart(result.data[keyEndpoint], keyEndpoint);
+      console.log('logging var', keyEndpoint);
+      //   let keyDesktop = Object.keys(result.data[keyEndpoint]);
+      //   // console.log('logging var', keyDesktop);
+      //   let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
+      //   // console.log('logging var', keyDate);
+      //   // console.log(
+      //   //   'FINAL BOSS FIGHT',
+      //   //   result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
+      //   //     .metrics
+      //   // );
+      //   setLighthouseData(
+      //     result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
+      //       .metrics
+      //   );
+      // loadEndPointDataToChart(result.data[keyEndpoint], keyEndpoint);
     }
     didMount.current = true;
   };
 
-  useEffect(():void => {
+  useEffect((): void => {
     getUser();
   }, []);
-  
-  useEffect(():void => {
+
+  useEffect((): void => {
     if (didMount.current) {
-      console.log('LHDATA IN USEEFFECT', lighthouseData);
+      // console.log('LHDATA IN USEEFFECT', lighthouseData);
       setScores(
         <div className={styles.containerGauge}>
-          <ControlPanel lhdata={lighthouseData} selectedMetric={selectedMetric} setSelectedMetric={setSelectedMetric}/>
+          <ControlPanel
+            lhdata={lighthouseData}
+            selectedMetric={selectedMetric}
+            setSelectedMetric={setSelectedMetric}
+          />
         </div>
       );
     }
-  },[
+  }, [
     lighthouseData,
     lighthouseData.performance,
     lighthouseData.accessibility,
     lighthouseData.bestPractices,
-    lighthouseData.seo
+    lighthouseData.seo,
   ]);
-  
-  const repoNames:{} = {};
-  for (const item in currentUser) {
-    if (
-      currentUser[item]['reponame'] &&
-      Object.hasOwn(repoNames, currentUser[item]['reponame'])
-    ) {
-      repoNames[currentUser[item]['reponame']].push(item);
-    } else if (
-      currentUser[item]['reponame'] &&
-      !Object.hasOwn(repoNames, currentUser[item]['reponame'])
-    ) {
-      repoNames[currentUser[item]['reponame']] = [item];
-    }
-  }
+
+  console.log({ currentUser });
+  // for (const item in currentUser) {
+  // if (
+  //   currentUser[item]['reponame'] &&
+  //   Object.hasOwn(repoNames, currentUser[item]['reponame'])
+  // ) {
+  //   repoNames[currentUser[item]['reponame']].push(item);
+  // } else if (
+  //   currentUser[item]['reponame'] &&
+  //   !Object.hasOwn(repoNames, currentUser[item]['reponame'])
+  // ) {
+  //   repoNames[currentUser[item]['reponame']] = [item];
+  // }
+  // }
 
   const helperFunc = async () => {
     const urlData: any = document.querySelector('#urlData');
@@ -103,13 +121,14 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
       </Box>
     );
     // get data from lighthouse api
-    await axios.post(`http://localhost:3000/api/lighthouse`, {
-      url: urlData.value,
-    })
-      .then((data: any) => {
+    await axios
+      .post(`http://localhost:3000/api/lighthouse`, {
+        url: urlData.value,
+      })
+      .then((result: any) => {
         didMount.current = true;
-        console.log(data)
-        setLighthouseData(data);
+        // console.log(result);
+        setLighthouseData(result.data);
       });
     // clear input value after clicking
     urlData.value = '';
@@ -133,18 +152,17 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     '9',
   ]);
 
-  const loadEndPointDataToChart = (e, defaultKey):void => {
-    
-    const performanceArray:number[] = [];
-    const seoArray:number[] = [];
-    const accessibilityArray:number[] = [];
-    const bestPracticeArray:number[] = [];
+  const loadEndPointDataToChart = (e, defaultKey): void => {
+    const performanceArray: number[] = [];
+    const seoArray: number[] = [];
+    const accessibilityArray: number[] = [];
+    const bestPracticeArray: number[] = [];
     let arrOfTime = [];
     let defaultList;
     let tempLatestVAl;
     let date;
     if (currentUser[defaultKey]) {
-      console.log('LINE 147', currentUser[defaultKey])
+      console.log('LINE 147', currentUser[defaultKey]);
       for (const date in currentUser[defaultKey].desktop) {
         if (date != 'reponame') {
           // console.log(currentUser[defaultKey][date].metrics.performance);
@@ -162,17 +180,27 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
         }
       }
       if (arrOfTime.length < 8)
-      // CONSOLE LOG BATTLES
-      arrOfTime.push(Object.keys(currentUser[defaultKey].desktop).map((el) => el));
-      console.log('ARR?', arrOfTime)
-      console.log('what we pushing?', currentUser[defaultKey].desktop); // ROUND 1 - correct
+        // CONSOLE LOG BATTLES
+        arrOfTime.push(
+          Object.keys(currentUser[defaultKey].desktop).map((el) => el)
+        );
+      // console.log('ARR?', arrOfTime);
+      // console.log('what we pushing?', currentUser[defaultKey].desktop); // ROUND 1 - correct
       defaultList = Object.keys(currentUser[defaultKey]); // ROUND 2 - desktop - got it
-      console.log('defList', defaultList) // ROUND 3 - Low Level Boss Fight - correct
+      // console.log('defList', defaultList); // ROUND 3 - Low Level Boss Fight - correct
       date = Object.keys(currentUser[defaultKey][defaultList]); // date
-      console.log('DATE ', date)
-        console.log('FINAL BOSS FIGHT: ', currentUser[defaultKey][defaultList][date])
-        console.log('FINAL BOSS FIGHT 2: ', currentUser[defaultKey][defaultList][date[date.length - 1]].metrics)
-        setLighthouseData(currentUser[defaultKey][defaultList][date[date.length - 1]].metrics);
+      // console.log('DATE ', date);
+      // console.log(
+      // 'FINAL BOSS FIGHT: ',
+      // currentUser[defaultKey][defaultList][date]
+      // );
+      // console.log(
+      // 'FINAL BOSS FIGHT 2: ',
+      // currentUser[defaultKey][defaultList][date[date.length - 1]].metrics
+      // );
+      setLighthouseData(
+        currentUser[defaultKey][defaultList][date[date.length - 1]].metrics
+      );
     }
 
     setAccessibilityData([...accessibilityArray]);
@@ -183,20 +211,36 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
       arrOfTime[0].length === 1
         ? setTimes([...arrOfTime[0], ...arrOfTime[0]])
         : setTimes([...arrOfTime[0]]);
-    };
+    }
   };
+
+  if (userData.github) {
+    //pass
+  } else {
+    for (let endpoint in userData.endpoints) {
+      console.log(endpoint);
+      console.log(repoNames['Other']);
+      repoNames['Other'].push(endpoint);
+      console.log(repoNames['Other']);
+    }
+  }
+  console.log(repoNames);
 
   return (
     // className={styles.Dashboard}
     <div className={styles.Dashboard}>
-      <Sidenav />
-      <Grid className={styles.Grid} templateColumns={'1fr 3fr 1fr'} gap={5} w='100vw' h='100vh'>
+      <Sidenav user={userData} />
+      <Grid
+        className={styles.Grid}
+        templateColumns={'1fr 3fr 1fr'}
+        gap={5}
+        w='100vw'
+        h='100vh'
+      >
         {/* <Sidenav /> */}
         <GridItem className={styles.containerLeft}>
           <Box className={styles.metricsContainer}>
-            <h2 className={styles.enterUrl}>
-              Enter New Endpoint Below
-            </h2>
+            <h2 className={styles.enterUrl}>Enter New Endpoint Below</h2>
             <input
               id='urlData'
               type='text'
@@ -238,24 +282,30 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
         <GridItem className={styles.containerRight}>
           <Center className={styles.detailsList}>
             <h2 className={styles.detailsHeader}>
-              {selected} | {selectedMetric==='seoMetrics'?'SEO Metrics': selectedMetric==='bestPracticesMetrics'?'Best Practices Metrics':selectedMetric==='accessibilityMetrics'?'Accessibility Metrics':'Performance Metrics'}
+              {selected} |{' '}
+              {selectedMetric === 'seoMetrics'
+                ? 'SEO Metrics'
+                : selectedMetric === 'bestPracticesMetrics'
+                ? 'Best Practices Metrics'
+                : selectedMetric === 'accessibilityMetrics'
+                ? 'Accessibility Metrics'
+                : 'Performance Metrics'}
             </h2>
             <WrightDetails
               selectedEndpoint={selected}
               user={currentUser}
               selectedMetric={selectedMetric}
-              />
-
+            />
           </Center>
-
         </GridItem>
-
       </Grid>
     </div>
   );
 };
 
-Dashboard.getInitialProps = async ({ req }):Promise<{ initialRememberValue: string }> => {
+Dashboard.getInitialProps = async ({
+  req,
+}): Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie

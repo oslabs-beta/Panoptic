@@ -12,18 +12,19 @@ const Footer = () => {
       textAlign='center'
       justifyContent='center'
     >
-      <Text mb='3'>
-        Provided by
-        <Link
-          href='https://www.linkedin.com/company/panopticapp/'
-          isExternal
-          color='blue.500'
-        >
-          {' '}
-          M.D.E.A.K
-        </Link>
-      </Text>
-      <Text opacity='0.5'>Open-Source Project - Buit with Next.js</Text>
+      <div>
+        Find us on LinkedIn:{' '}
+        <Text mb='3'>
+          <Link
+            href='https://www.linkedin.com/company/panopticapp/'
+            isExternal
+            color='blue.500'
+          >
+            Panoptic
+          </Link>
+        </Text>
+      </div>
+      <Text opacity='0.5'>Open-Source Project - Built with Next.js</Text>
     </Flex>
   );
 };

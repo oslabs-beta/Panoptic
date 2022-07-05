@@ -14,37 +14,34 @@ import {
   VStack,
   Text,
 } from '@chakra-ui/react';
-import {
-  SmallAddIcon,
-  SmallCloseIcon,
-  EditIcon,
-} from '@chakra-ui/icons';
+import { SmallAddIcon, SmallCloseIcon, EditIcon } from '@chakra-ui/icons';
 
-const EndpointsList:FC = (props: any) => {
-
+const EndpointsList: FC = (props: any) => {
   const [endpoints, setEndpoints] = useState([]);
 
   // filter user obj for only endpoints
-  const filteredObj = ():string[] => {
-    const test:string[] = Object.keys(props.endPts).map((key) => key);
+  const filteredObj = (): string[] => {
+    const test: string[] = Object.keys(props.endPts).map((key) => key);
     return test;
   };
 
   // click handler for selecting endpoint
-  const endpointSelector = (e: any):void => {
+  const endpointSelector = (e: any): void => {
     props.setSelected(e.target.textContent);
     props.func(e, e.target.textContent);
   };
-  const endpointsArr:String[] = filteredObj();
-  const arr:JSX.Element[] = [];
+  const endpointsArr: String[] = filteredObj();
+  const arr: JSX.Element[] = [];
   for (const key in props.reponames) {
-    console.log('props.reponames', props.reponames)
-    const tempArr:JSX.Element[] = props.reponames[key].map((el:String) => (
-      <Button key='Button' onClick={endpointSelector}>{el}</Button>
+    // console.log('props.reponames', props.reponames)
+    const tempArr: JSX.Element[] = props.reponames[key].map((el: String) => (
+      <Button key='Button' onClick={endpointSelector}>
+        {el}
+      </Button>
     ));
     arr.push(
       <AccordionItem key={uuidv4()} className={style.li}>
-        <AccordionButton>
+        <AccordionButton key={uuidv4()}>
           <Flex width='100%'>
             <Text fontSize='4xl' fontWeight='semibold'>
               {key}
