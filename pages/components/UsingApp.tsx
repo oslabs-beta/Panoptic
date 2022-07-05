@@ -1,6 +1,7 @@
 import styles from '../../styles/Docs.module.scss';
 import { FC } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
+import Head from 'next/head';
 
 const UsingApp: FC = (props): JSX.Element => {
   return (
@@ -35,7 +36,7 @@ const UsingApp: FC = (props): JSX.Element => {
             </div>
           <br />
           <p>
-            Clicking on one of the scores will then reveal more related metrics, for example expanding the Accessibility metrics will reveal 
+            Clicking on one of the scores will then reveal an in depth look at more advanced metrics, including a score and timer for some.
           </p>
           <br />
           </VStack>
@@ -54,6 +55,21 @@ const UsingApp: FC = (props): JSX.Element => {
             <br />
             <br />
             If you choose to log in with GitHub, then you will have access to organizing your testable endpoints within a list of your existing GitHub Repositories.
+          </p>
+          <br />
+          <Heading size='lg'>Dashboard</Heading>  
+          <br />
+          <p>
+            After logging in to the application you will be greeted by our dashboard. On the left side you will see our enpoint selector, which if logged in with GitHub will also include all of your repositories. Here you can add endpoints to, or delete them from your repositories. Be careful when deleting endpoints as this will also delete all associated saved data on them.
+            <br />
+            <br />
+            [ insert image of left side dash here ]
+            <br />
+            <br />
+            In the center of the page we have our graphing tools, upon first load it will always show the most recent test ran on the first endpoint of your first listed repository.
+            <br />
+            <br />
+            [ Insert image of center of dash here ]
             <br />
             <br />
           </p>
