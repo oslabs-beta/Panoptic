@@ -73,6 +73,6 @@ function lhGauge(props: any): JSX.Element {
       />
     </Box>
   );
-}
+};
 
 export default lhGauge;

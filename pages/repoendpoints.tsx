@@ -8,27 +8,53 @@ import { v4 as uuidv4 } from 'uuid';
 import { NextPage } from 'next';
 
 const Repoendpoints:NextPage = ({ initialRememberValue }):JSX.Element => {
-  // list of repos
-  const [ repos, setRepos ] = useState([false]);
-  // toggle input menu - initially false so it wont show up
-  // get input value
-  const [ repoClicked, setRepoClicked ] = useState(null);
-  const [ inputToggle, setInputToggle ] = useState(false);
-  const [ inputValue, setInputValue ] = useState('');
-  // close input menu
+
+  const [ repos, setRepos ] = useState([false]); // lists their repos
+  const [ repoClicked, setRepoClicked ] = useState(null); // self explanatory...displays repo clicked
+  const [ inputToggle, setInputToggle ] = useState(false); // will display if toggle true
+  const [ inputValue, setInputValue ] = useState('');  // get input value onChange
+  
+  /********************** 
+    function to toggle inputToggle state
+  ************************/
   const toggleInput = () => {
     inputToggle ? setInputToggle(false) : setInputToggle(true)
   }
-  // change input value
+
+
+  /***************************
+    function to get inputValue
+    passed into input's onChange
+    React way of doing a document.querySelector(input).value
+   ***************************/
   const inputChange = async (e:any) => {
     setInputValue(e.target.value)
   }
-  // function for clicking a repo to link, should open up an input menu, then save to DB
+
+  /***********************************************
+    function for clicking a repo to link, 
+    should open up an input menu, then save to DB
+  ***********************************************/
   const selectRepo = (e:any) => {
     setRepoClicked(e.target.textContent);
     toggleInput();
   }
-  // getting commit history for a specific repo
+
+  /***********************************
+   function for updating user repos
+   - should happen on click of LINK button
+   - send repoClicked and inputValue
+  ***********************************/
+  const updateUserRepos = async () => {
+    const result = await axios.post('/api/updateuser', {
+
+    })
+  }
+
+  /*************************************************** 
+    getting commit history for a specific repo using Octokit
+    (Github recommended)
+  ****************************************************/
   const printInfo = async () => {
     // get user access token
     const result = await axios.post(`/api/finduser/`, {
@@ -45,32 +71,46 @@ const Repoendpoints:NextPage = ({ initialRememberValue }):JSX.Element => {
     for (const key of test.data) {
         displayRepos.push(<li onClick={selectRepo} key={uuidv4()}>{key.name}</li>)
     }
+    // State will update and display list of repos
     setRepos(displayRepos);
   }
+
+  // start getting repos when component renders
   useEffect(() => {
     printInfo();
   }, [])
 
   return (
     <div className={styles.repoendpoints}>
+      {/* Sidenav should get passed the userData if you want the github info to display on it */}
       <Sidenav />
+      
+      {/* The Card that is initially hidden until you click on a repo */}
       <div className={inputToggle ? styles.inputMenu : styles.hideIt}>
           <div className={styles.inputContainer}>
             <h1 className={styles.command}>Enter an Endpoint for <span className={styles.repoClicked}>{repoClicked}</span></h1>
             <button className={styles.closeMenu} onClick={toggleInput}>X</button>
             <input type="text" value={inputValue} placeholder="Ex: https://Google.com" onChange={inputChange}/>
+            {/* button to update user repo on click */}
             <button className={styles.linkIt}>Link</button>
           </div>
       </div>
+
+      {/* Container For List Of Repos */}
       <div className={styles.repoList}>
         <h1>Select A Repo to Link with an Endpoint</h1>
         <ul>
+          {/* logic to check if repos is false-y, 
+          displays 'loading repos...' or something 
+          (which could be empty if they have no repos, so...) */}
           {repos[0] ? repos : 'Loading Repos...'}
         </ul>
       </div>
     </div>
   )
 }
+
+// Was gonna use this just to put the github info on the sidenav...
 
 // cookies
 Repoendpoints.getInitialProps = async ({ req }) => {

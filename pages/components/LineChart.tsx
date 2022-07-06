@@ -51,7 +51,7 @@ export const options:MainLCOptions = {
   },
 };
 
-const mainLineChart = (props) => {
+const MainLineChart = (props) => {
   const [times, setTimes] = useState(['0', '1', '2', '3', '4', '5', '6', '7']);
   const labels = times;
   const arrPerformance = [0];
@@ -230,4 +230,4 @@ const mainLineChart = (props) => {
   );
 };
 
-export default mainLineChart;
+export default MainLineChart;

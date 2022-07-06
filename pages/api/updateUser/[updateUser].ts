@@ -7,15 +7,23 @@ import { Request, Response } from 'express';
 const updateUserData = async (username:string, updated:[]):Promise<string | void> => {
   await dbConnect();
   
-  const filter = { _id: username}
-  const updateThis = {$set: {'github.repos': [updated]}}
+  // const filter = { _id: username}
+  // const updateThis = {$set: {'github.repos': [updated]}}
 
-  try {
-    return await User.findOneAndUpdate(filter, updateThis);
-  }
-  catch (err) {
-    return console.log(err);
-  }
+
+
+  // try {
+  //   return await User.findOneAndUpdate(filter, updateThis);
+  // }
+  // catch (err) {
+  //   return console.log(err);
+  // }
+  // const foundUser = await User.findOne({ _id: username });
+  let currentUser = await User.findOne({ _id: username });
+  currentUser.github.repos.push(updated) //push in object
+
+  await currentUser.markModified('github');
+  await currentUser.save();
 };
 const handler = async (req:Request | any, res:Response) => {
   console.log('in update handler')
