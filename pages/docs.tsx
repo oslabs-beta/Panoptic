@@ -11,7 +11,7 @@ const Docs: NextPage = (): JSX.Element => {
   const [activeBtn, setActiveBtn] = useState(0);
   let buttons:JSX.Element = (
     <div id={styles.docsNav}>
-      <div>
+      <div className={styles.btndiv}>
         <ul id={styles.docsList}>
           <li className={styles.docsListItem}>
             <button
@@ -20,7 +20,7 @@ const Docs: NextPage = (): JSX.Element => {
               className={styles.listButton}
               onClick={():void => setActiveBtn(0)}
             >
-              Using our Application
+              Using Panoptic
             </button>
           </li>
           <li className={styles.docsListItem}>
@@ -51,7 +51,7 @@ const Docs: NextPage = (): JSX.Element => {
   if (activeBtn === 0) {
     buttons = (
       <div id={styles.docsNav}>
-        <div>
+        <div className={styles.btndiv}>
           <ul id={styles.docsList}>
             <li className={styles.docsListItem}>
               <button
@@ -60,7 +60,7 @@ const Docs: NextPage = (): JSX.Element => {
                 className={styles.listButton}
                 onClick={():void => setActiveBtn(0)}
               >
-                Using our Application
+                Using Panoptic
               </button>
             </li>
             <li className={styles.docsListItem}>
@@ -92,7 +92,7 @@ const Docs: NextPage = (): JSX.Element => {
   if (activeBtn === 1) {
     buttons = (
       <div id={styles.docsNav}>
-        <div>
+        <div className={styles.btndiv}>
           <ul id={styles.docsList}>
             <li className={styles.docsListItem}>
               <button
@@ -100,7 +100,7 @@ const Docs: NextPage = (): JSX.Element => {
                 className={styles.listButton}
                 onClick={():void => setActiveBtn(0)}
               >
-                Using our Application
+                Using Panoptic
               </button>
             </li>
             <li className={styles.docsListItem}>
@@ -133,7 +133,7 @@ const Docs: NextPage = (): JSX.Element => {
   if (activeBtn === 2) {
     buttons = (
       <div id={styles.docsNav}>
-        <div>
+        <div className={styles.btndiv}>
           <ul id={styles.docsList}>
             <li className={styles.docsListItem}>
               <button
@@ -141,7 +141,7 @@ const Docs: NextPage = (): JSX.Element => {
                 className={styles.listButton}
                 onClick={():void => setActiveBtn(0)}
               >
-                Using our Application
+                Using Panoptic
               </button>
             </li>
             <li className={styles.docsListItem}>

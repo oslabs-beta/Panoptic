@@ -70,4 +70,5 @@ LoginPage.getInitialProps = async ({ req }) => {
     initialRememberValue: cookies.userId,
   };
 };
+
 export default LoginPage;

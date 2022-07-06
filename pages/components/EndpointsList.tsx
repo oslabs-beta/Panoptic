@@ -16,12 +16,13 @@ import {
 } from '@chakra-ui/react';
 import { SmallAddIcon, SmallCloseIcon, EditIcon } from '@chakra-ui/icons';
 
-const EndpointsList: FC = (props: any) => {
-  const [endpoints, setEndpoints] = useState([]);
+const EndpointsList: FC<any> = (props: any) => {
+  const [endpoints, setEndpoints] = useState<any>([]);
 
   // filter user obj for only endpoints
-  const filteredObj = (): string[] => {
-    const test: string[] = Object.keys(props.endPts).map((key) => key);
+  const filteredObj: any = (): any => {
+    const test: any = Object.keys(props.endPts).map((key) => key);
+    console.log({ test });
     return test;
   };
 
@@ -30,7 +31,7 @@ const EndpointsList: FC = (props: any) => {
     props.setSelected(e.target.textContent);
     props.func(e, e.target.textContent);
   };
-  const endpointsArr: String[] = filteredObj();
+  // const endpointsArr: any = filteredObj();
   const arr: JSX.Element[] = [];
   for (const key in props.reponames) {
     // console.log('props.reponames', props.reponames)
@@ -63,7 +64,7 @@ const EndpointsList: FC = (props: any) => {
   return (
     <div className={style.EndpointsList}>
       <Accordion className={style.endpointContainer}>
-        <h1 className={style.endpointsTitle}>My Repos:</h1>
+        <h1 className={style.endpointsTitle}>My Repositories:</h1>
         {arr}
       </Accordion>
     </div>

@@ -8,51 +8,48 @@
 
 #docsNav {
   display: flex;
-  margin-left: 3vw;
+  padding: 10rem;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 #docsList {
   display: flex;
+  margin-top: 12vh;
   font-size: 0.8em;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  list-style: none;
   height: 100%;
-  padding: 6% 30% 0% 30%;
 }
 
 #rightside {
-  width: 100vw;
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
-  // justify-items: center;
-  margin-left: 3vw;
-  // background-color: red;
+  justify-content: center;
 }
 
 #docsContainer {
   display: flex;
+  font-size: 1.2em;
   justify-content: center;
   max-width: 800px;
-  margin-left: 7vw;
-  margin-top: 9vh;
-  margin-right: 10vw;
   height: 100vh;
+}
+
+.docsLink {
+  color: $primary-blue;
 }
 
 .imageContainer {
   max-width: 800px;
 }
 
-.docsListItem {
-  display: flex;
-  margin-bottom: 0.5vh;
-}
-
 .listButton {
   font-family: $primary-font;
-  padding: 0.7em 1em;
+  padding: 0.7rem 1rem;
+  min-width: 180px;
+  font-size: 1.5rem;
   border: none;
   border-radius: $round-dem-edges;
   font-weight: 700;
@@ -62,7 +59,21 @@
   cursor: pointer;
 }
 
-.sectionText {
-  font-family: $primary-font;
-  font-size: large;
+@media only screen and (max-width: 700px) {
+  .listButton {
+    font-size: .7rem;
+    width: 100px;
+    min-width: 50px;
+  }
+
+  #docsNav {
+    padding: 20% 0;
+  }
+}
+
+.listButton:disabled {
+  color: $lavender;
+  background-color: $blue-stone;
+  box-shadow: 0px 0px 10px 1px $primary-blue;
+  transition: 0.3s ease;
 }

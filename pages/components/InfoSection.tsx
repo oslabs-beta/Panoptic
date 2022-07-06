@@ -9,16 +9,13 @@ const AboutUs = () => {
   const array = [
     {
       title: 'Technical Website Audits ',
-      info: 'Analyze historical records',
-      info0: 'Audit multiple URLs or just one',
-      info1: 'Record of all your audits',
-      info2: 'Monitors ranking factors for your domain',
+      info: "Discover powerful insights about the strengths and weaknesses of your website, including: Performance, Accessibility, Best Practices, and SEO"
+
     },
     {
       title: 'Github',
-      info: 'Run audits for all commits/PRs',
-      info3: "Fail Workflow when Minimum Scores Aren't Met",
-      info4: 'Utilize Github action to add audits automatically in a workflow',
+      info: 'Login with Github to link your repositories and websites',
+      info1: 'Keep track of audit metrics over a history of commits'
     },
     {
       title: 'Visual Reporting',
@@ -46,21 +43,13 @@ const AboutUs = () => {
             color='black'
             fontWeight='700'
             boxShadow='xl'
+            overflow='auto'
           >
-            {/* <Icon as={arr.icon} boxSize={14} color='blue.600' mb='5' /> */}
             <Heading size='sm' fontSize='2rem' margin='0 0 2rem 0'>{arr.title}</Heading>
-            <Text color='black' fontWeight='400' fontSize='1.35rem'>
+            <Text color='black' fontWeight='400' fontSize='1.35rem' height='fit-content'>
               {arr.info}
               <br></br>
-              {arr.info0}
-              <br></br>
               {arr.info1}
-              <br></br>
-              {arr.info2}
-              <br></br>
-              {arr.info3}
-              <br></br>
-              {arr.info4}
             </Text>
           </Box>
         </>

@@ -13,7 +13,6 @@ const Home: NextPage = (initialRememberValue): JSX.Element => {
     <div id='homePage'>
       <Nav userId={initialRememberValue} />
       <div className={styles.home}>
-        {/* <Hero /> */}
         <Intro />
         <InfoSect />
         <FeatureSect />
