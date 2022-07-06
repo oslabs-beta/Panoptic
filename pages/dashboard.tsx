@@ -218,6 +218,17 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
   };
 
   if (userData.github) {
+    repoNames.repos = [];
+    for (let i = 0; i < userData.github.repos.length; i ++ ) {
+      const name = Object.keys(userData.github.repos[i])[0]
+      repoNames['repos'].push(name);
+    }
+    for (let endpoint in userData.endpoints) {
+      // console.log(endpoint);
+      // console.log(repoNames['Other']);
+      repoNames['Other'].push(endpoint);
+      // console.log(repoNames['Other']);
+    }
     //pass
   } else {
     for (let endpoint in userData.endpoints) {

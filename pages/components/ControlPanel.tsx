@@ -14,7 +14,9 @@ const controlPanel: FC = (props: any): JSX.Element => {
             key={`${key}Btn`}
             type='button'
             onClick={() => {
-              props.setSelectedMetric(`${key}Metrics`);
+              if (props.setSelectedMetric) {
+                props.setSelectedMetric(`${key}Metrics`);
+              }
             }}
           >
             <LH_Gauge
