@@ -13,7 +13,6 @@ const Home: NextPage = (): JSX.Element => {
     <div id='homePage'>
       <Nav />
       <div className={styles.home}>
-        {/* <Hero /> */}
         <Intro />
         <InfoSect />
         <FeatureSect />

@@ -64,7 +64,7 @@ const EndpointsList: FC<any> = (props: any) => {
   return (
     <div className={style.EndpointsList}>
       <Accordion className={style.endpointContainer}>
-        <h1 className={style.endpointsTitle}>My Repos:</h1>
+        <h1 className={style.endpointsTitle}>My Repositories:</h1>
         {arr}
       </Accordion>
     </div>

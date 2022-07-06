@@ -1,12 +1,14 @@
 @import './Variables.scss';
 
 .repoendpoints {
-  background: linear-gradient(45deg,
-      $dark-blue 0%,
-      $primary-blue 20%,
-      $primary-blue 45%,
-      $secondary-blue 70%,
-      $dark-blue 100%);
+  background: linear-gradient(
+    45deg,
+    $dark-blue 0%,
+    $primary-blue 20%,
+    $primary-blue 45%,
+    $secondary-blue 70%,
+    $dark-blue 100%
+  );
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -31,6 +33,7 @@
   transform: translate(-50%, -50%);
   border-radius: $round-dem-edges;
   box-shadow: 0px 2px 5px 1px $secondary-blue;
+  color: black;
 }
 
 .inputMenu {

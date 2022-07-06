@@ -19,7 +19,7 @@ const UsingApp: FC = (props): JSX.Element => {
             During development, it can be difficult to keep track of the performance of your application. There could be some change that is made which happens to degrade the user experience in some way. This is even harder to track when the losses are minute, or are related to something that is hidden unless you are expressely looking for it (i.e. accessibility). Using <strong>Panoptic</strong> you are able to track the metrics of your application, including:<strong> Performance, Accessibility, Best Practices, and SEO</strong>, over a long period of time, to catch exactly <em>where</em> and <em>why</em> a regression occurred. 
             <br />
             <br />
-            With GitHub integration we are able to automatically run a test daily if there has been a commit to an endpoint's associated repository, making it simple and effective to visit our application at any point in your development process.
+            With GitHub integration we are able to automatically run a test daily if there has been a commit to an endpoints associated repository, making it simple and effective to visit our application at any point in your development process.
           </p>
           <br />
           <Heading size='lg'>Demo</Heading>

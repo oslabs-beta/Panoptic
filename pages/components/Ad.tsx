@@ -13,12 +13,11 @@ const Ad:FC = (props: any) => {
     <div style={{ display: showMe ? 'flex' : 'none' }} className={styles.Ad}>
       <p>Ad</p>
       <div className={styles.adImgContainer}>
-        <img
+        <Image
           className={styles.adImg}
           alt='ad sponsor'
           src='https://www.singlesprout.com/wp-content/themes/singlesprout/assets/img/landing/logos/singlesprout-logo-1.png'
           width='100%'
-          height='auto'
         />
       </div>
       <p className={styles.adText}>

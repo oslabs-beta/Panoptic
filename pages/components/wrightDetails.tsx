@@ -15,12 +15,14 @@ const wrightDetails = (props: any) => {
   let metrics;
   // extract the most current date of the user's history
   // console.log('PROPS USER AND SELECTEDEP', props.user, props.selectedEndpoint);
+  console.log(props.user.login)
+  console.log('seleec: ', props.selectedEndpoint)
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     // typing is a bit odd here, will come back to this
     const mainObj: any = props.user[props.selectedEndpoint]['desktop'];
-    console.log(mainObj);
+    // console.log(mainObj);
     const dateArr: string[] = Object.keys(mainObj);
-    console.log(dateArr);
+    // console.log(dateArr);
     const recentDate: string = dateArr[dateArr.length - 1];
     metrics = mainObj[recentDate].metrics;
   }
