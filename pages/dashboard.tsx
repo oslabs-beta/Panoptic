@@ -123,7 +123,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     );
     // get data from lighthouse api
     await axios
-      .post(`http://localhost:3000/api/lighthouse`, {
+      .post(`/api/lighthouse`, {
         url: urlData.value,
       })
       .then((result: any) => {
