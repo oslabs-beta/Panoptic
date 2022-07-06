@@ -6,18 +6,60 @@
   align-items: center;
 }
 
-.docsContainer {
+#docsNav {
   display: flex;
+  margin-left: 3vw;
+  height: 100vh;
+  width: 100vw;
+}
+
+#docsList {
+  display: flex;
+  font-size: 0.8em;
   flex-direction: column;
   justify-content: center;
   height: 100%;
   padding: 6% 30% 0% 30%;
 }
 
-.sectionTitle {
+#rightside {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  // justify-items: center;
+  margin-left: 3vw;
+  // background-color: red;
+}
+
+#docsContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  margin-left: 7vw;
+  margin-top: 9vh;
+  margin-right: 10vw;
+  height: 100vh;
+}
+
+.imageContainer {
+  max-width: 800px;
+}
+
+.docsListItem {
+  display: flex;
+  margin-bottom: 0.5vh;
+}
+
+.listButton {
   font-family: $primary-font;
-  font-size: large;
+  padding: 0.7em 1em;
+  border: none;
+  border-radius: $round-dem-edges;
   font-weight: 700;
+  background-color: rgba(0, 0, 0, 0);
+  color: $blue-stone;
+  max-width: 140px;
+  cursor: pointer;
 }
 
 .sectionText {
