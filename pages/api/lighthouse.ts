@@ -23,7 +23,11 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
     onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
     port: chrome.port,
   };
-  const url:string = req.body;
+
+  const url:string = req.body.url;
+  const reponame:string | null = req.body.reponame || null;
+  const lastCommit:string | null = req.body.commit || null;
+  const platform:string = req.body.platform ? req.body.platform : 'desktop';
 
   const runnerResult = await lighthouse(url, options);
 
@@ -268,6 +272,7 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
   type currentUser = MongoUser;
   let currentUser;
   if (id) {
+
     currentUser = await User.findOne({ _id: id });
     const currentdate:Date = new Date();
     const datetime:string =
@@ -282,11 +287,27 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
       currentdate.getMinutes() +
       ':' +
       currentdate.getSeconds();
-    if (!currentUser.endpoints[url]) {
+
+    if(!currentUser.endpoints[url]) {
       currentUser.endpoints[url] = {};
-    }
-    currentUser.endpoints[url][datetime] = {
+    };
+    if(!currentUser.endpoints[url][platform]) {
+      currentUser.endpoints[url][platform] = {};
+    };
+    currentUser.endpoints[url][platform][datetime] = {
       metrics: scores,
+    };
+    if(reponame) {
+      if(!currentUser.github.repos[reponame]) {
+        currentUser.github.repos[reponame] = {
+          repoEndpoints: [],
+          lastCommit: lastCommit,
+        };
+      };
+      if(!currentUser.github.repos[reponame].repoEndpoints.includes(url)) {
+        currentUser.github.repos[reponame].repoEndpoints.push(url);
+      };
+      currentUser.github.repos[reponame].lastCommit = lastCommit;
     };
   };
 

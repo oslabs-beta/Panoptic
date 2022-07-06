@@ -34,6 +34,7 @@ const Repoendpoints:NextPage = ({ initialRememberValue }):JSX.Element => {
     const result = await axios.post(`/api/finduser/user`, {
       username: initialRememberValue
     });
+    console.log(result);
     // store the github access token in a variable
     const token = result.data.github.token;
     // octokit (just cuz github used examples with this and it seemed simpler)

@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import { useState, useEffect, useRef } from 'react';
-import Nav from './components/Nav';
+import logoPic from '../assets/PanLogo.png';
+import Link  from 'next/link'
+import Image from 'next/image'
 import LH_Gauge from './components/lhGauge';
 import ControlPanelDemo from './components/ControlPanelDemo';
 import WrightDetailsDemo from './components/wrightDetailsDemo';
@@ -99,6 +101,11 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
   return (
     <div className={styles.threeParts}>
       <div className={styles.containerLeft}>
+        <div className={styles.homebtn}>
+          <Link href='/'>
+            <Image className={styles.logoPic} alt="Panoptic Logo" src={logoPic}/>
+          </Link>
+        </div>
         <div className={styles.metricsContainer}>
           <h1 className={styles.enterUrl}>Enter New Endpoint Below</h1>
           <input
@@ -136,6 +143,13 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
             selectedMetric={selectedMetric}
             data={lighthouseData}
           />
+        </div>
+      </div>
+      <div className={styles.containerRight}>
+        <div className={styles.demoIntro}>
+          <h3>Welcome to Panoptic!</h3>
+          <p>Enter a url into the search bar on the left, and then click Run Tests to begin!</p>
+          <p>You can change the details list to show specific metric types by clicking on the corresponding gauges at the top of the dashboard!</p>
         </div>
       </div>
     </div>

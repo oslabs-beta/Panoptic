@@ -77,6 +77,9 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
       headers: {
         'Content-Type': 'application/json',
       },
+      // need to pass url, last commit, reponame, and platform(mobile/desktop)
+      // req.body.reponame, req.body.url, req.body.commit, req.body.platform
+      // assumes reponame and commit are null if not logged in with github
       body: JSON.stringify(urlData.value),
     })
       .then((res) => res.json())
@@ -215,7 +218,6 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
         </div>
         <div className={styles.dropdownMenu}>
           <EndpointsList
-            // func={loadData}
             func={loadEndPointDataToChart}
             selected={selected}
             setSelected={setSelected}
@@ -248,7 +250,8 @@ const DataTest: NextPage = ({ initialRememberValue }, props: any) => {
       <div className={styles.containerRight}>
         <div className={styles.detailsList}>
           <h2 className={styles.detailsHeader}>
-            {selected} | {selectedMetric}
+            {selected} | {selectedMetric !== 'seoMetrics' && selectedMetric !== 'bestPracticesMetrics' ? selectedMetric[0].toUpperCase() + (selectedMetric.substring(1, selectedMetric.length -7) + ' Metrics'): selectedMetric === 'seoMetrics'? 'SEO Metrics' : 'Best Practices Metrics'}
+
           </h2>
           <WrightDetails
             selectedEndpoint={selected}

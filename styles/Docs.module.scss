@@ -3,10 +3,7 @@
 #docsPage {
   display: flex;
   height: 100vh;
-  justify-content: flex-start;
   align-items: center;
-  margin-top: 50px;
-  // background-color: red;
 }
 
 #docsNav {
@@ -20,9 +17,9 @@
   display: flex;
   font-size: 0.8em;
   flex-direction: column;
-  height: 50vh;
-  margin-top: 10vh;
-  justify-content: flex-start;
+  justify-content: center;
+  height: 100%;
+  padding: 6% 30% 0% 30%;
 }
 
 #rightside {
@@ -65,16 +62,7 @@
   cursor: pointer;
 }
 
-.listButton:hover {
-  color: $lavender;
-  background-color: $blue-stone;
-  box-shadow: 0px 0px 10px 1px $primary-blue;
-  transition: 0.3s ease-in-out;
-}
-
-.listButton:disabled {
-  color: $lavender;
-  background-color: $blue-stone;
-  box-shadow: 0px 0px 10px 1px $primary-blue;
-  transition: 0.3s ease-in-out;
+.sectionText {
+  font-family: $primary-font;
+  font-size: large;
 }

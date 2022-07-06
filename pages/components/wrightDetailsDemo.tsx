@@ -49,10 +49,14 @@ const wrightDetailsDemo: FC = (props: any) => {
                     width: '17%',
                   }}
                 >
-                  <p>{metrics[props.selectedMetric][i].displayValue}</p>
-                  <p>{`Score: ${
+                  <p>
+                    {metrics[props.selectedMetric][i].displayValue !== 'numeric'
+                      ? metrics[props.selectedMetric][i].displayValue
+                      : ''}
+                  </p>
+                  <p>{`Score: ${Math.round(
                     metrics[props.selectedMetric][i].score * 100
-                  }`}</p>
+                  )}`}</p>
                 </div>
               </Box>
               <AccordionIcon />

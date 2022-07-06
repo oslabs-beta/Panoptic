@@ -49,7 +49,7 @@ const handler = async (req: Request, res: Response) => {
       ); // End hash password compare
     } else {
       // create user as they don't exist
-      console.log('Create user called');
+      console.log('Create user called in login.ts');
       // Assign username / pass to varibles so we can hash pass
       type username = string;
       type password = string;

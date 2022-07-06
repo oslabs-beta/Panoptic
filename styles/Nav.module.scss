@@ -10,10 +10,10 @@
   // min-width: 10rem;
   display: flex;
   justify-content: space-between;
-  padding: 1% 5%;
+  padding: 2% 5%;
   align-items: center;
   font-size: 0.9rem;
-  max-height: 15vh;
+  max-height: 12vh;
   background-color: $lavender;
   border-bottom: solid rgb(198, 198, 198) 1px;
   box-shadow: 0px 1px 10px 2px rgb(182, 182, 182);
@@ -26,11 +26,11 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   color: $blue-stone;
-  max-width: 150px;
+  max-width: 140px;
 }
 
 .logoPic {
-  max-width: 200px;
+  max-width: 180px;
   height: auto;
   cursor: pointer;
 }
