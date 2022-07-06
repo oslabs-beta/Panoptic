@@ -8,7 +8,7 @@ import { ChartData, LHGaugeOptions } from '../../types';
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
 function lhGauge(props: any): JSX.Element {
-  const data: ChartData = {
+  const data: any = {
     labels: ['%', '-'],
     datasets: [
       {
@@ -21,7 +21,7 @@ function lhGauge(props: any): JSX.Element {
     ],
   };
 
-  const options: LHGaugeOptions = {
+  const options: any = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -41,7 +41,7 @@ function lhGauge(props: any): JSX.Element {
     },
   };
 
-  const plugins: {}[] = [
+  const plugins: any = [
     {
       beforeDraw: function (chart: any) {
         //   beforeRender: function (chart) {
