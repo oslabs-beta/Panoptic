@@ -43,13 +43,12 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     const foundUserData: any = await axios.post(`/api/finduser/`, {
       username: initialRememberValue,
     });
-    console.log(foundUserData.data);
+
     setUserData(foundUserData.data);
-    console.log(userData);
 
     if (Object.keys(result.data).length > 0) {
       let keyEndpoint = Object.keys(result.data)[0];
-      console.log('logging var', keyEndpoint);
+      // console.log('logging var', keyEndpoint);
       //   let keyDesktop = Object.keys(result.data[keyEndpoint]);
       //   // console.log('logging var', keyDesktop);
       //   let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
@@ -93,7 +92,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     lighthouseData.seo,
   ]);
 
-  console.log({ currentUser });
+  // console.log({ currentUser });
   // for (const item in currentUser) {
   // if (
   //   currentUser[item]['reponame'] &&
@@ -162,7 +161,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     let tempLatestVAl;
     let date;
     if (currentUser[defaultKey]) {
-      console.log('LINE 147', currentUser[defaultKey]);
+      // console.log('LINE 147', currentUser[defaultKey]);
       for (const date in currentUser[defaultKey].desktop) {
         if (date != 'reponame') {
           // console.log(currentUser[defaultKey][date].metrics.performance);
@@ -218,18 +217,18 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     //pass
   } else {
     for (let endpoint in userData.endpoints) {
-      console.log(endpoint);
-      console.log(repoNames['Other']);
+      // console.log(endpoint);
+      // console.log(repoNames['Other']);
       repoNames['Other'].push(endpoint);
-      console.log(repoNames['Other']);
+      // console.log(repoNames['Other']);
     }
   }
-  console.log(repoNames);
-
+  // console.log(repoNames);
+  userData.github ? console.log(userData.github["profilePic"]) : 'No';
   return (
     // className={styles.Dashboard}
     <div className={styles.Dashboard}>
-      <Sidenav user={userData} />
+      <Sidenav username={userData.username} profilePic={userData.profilePic} />
       <Grid
         className={styles.Grid}
         templateColumns={'1fr 3fr 1fr'}

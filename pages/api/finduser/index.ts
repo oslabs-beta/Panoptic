@@ -8,7 +8,7 @@ const getUserData = async (req:Request, res:Response):Promise<void> => {
     await dbConnect();
     await User.findOne({_id: username}, (err:ErrorRequestHandler, user:any) => {
       if (err) return console.log('err getting username', err);
-      if (user) return res.json(user);
+      if (user) return (JSON.stringify(user));
     });
   }
   catch (error) {

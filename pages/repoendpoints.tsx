@@ -31,10 +31,9 @@ const Repoendpoints:NextPage = ({ initialRememberValue }):JSX.Element => {
   // getting commit history for a specific repo
   const printInfo = async () => {
     // get user access token
-    const result = await axios.post(`/api/finduser/user`, {
+    const result = await axios.post(`/api/finduser/`, {
       username: initialRememberValue
     });
-    console.log(result);
     // store the github access token in a variable
     const token = result.data.github.token;
     // octokit (just cuz github used examples with this and it seemed simpler)
