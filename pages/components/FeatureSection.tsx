@@ -10,6 +10,7 @@ import {
   Text,
   Box,
   Heading,
+  StylesProvider,
 } from '@chakra-ui/react';
 
 const FeatSect = () => {
@@ -26,6 +27,7 @@ const FeatSect = () => {
         <TabPanels>
           <TabPanel>
             <p>View graphs and gauges that clearly display the key web metrics that you're looking for.</p>
+            <img className={style.homeGifs} src="https://i.gyazo.com/dc2288d131698a0a2680c1de6cfe88dd.gif" alt="Image from Gyazo" width="1000"/>
           </TabPanel>
           <TabPanel>
             <p>View your metrics history over time, allowing you to see the progress or setbacks of your website.</p>
