@@ -42,13 +42,13 @@ function LoginPage(): JSX.Element {
         <a
           onClick={() => signIn('github')}
           className={styles.oauthBtn}
-          href='http://localhost:3000/api/githublogin'
+          href='/api/githublogin'
         >
           {githubIcon}Sign in with Github
         </a>
       </form>
     </div>
   );
-};
+}
 
 export default LoginPage;
