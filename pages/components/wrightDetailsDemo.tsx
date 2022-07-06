@@ -9,7 +9,7 @@ import {
 import style from '../../styles/Demo.module.scss';
 import { FC } from 'react';
 
-const wrightDetailsDemo: FC = (props: any) => {
+const wrightDetailsDemo: FC<any> = (props: any) => {
   const tempArr: JSX.Element[] = [];
   let metrics;
   if (props.data) {

@@ -7,9 +7,7 @@ const UsingApp: FC = (props): JSX.Element => {
     <div id={styles.docsContainer}>
       <VStack>
         <VStack>
-          <Heading size='2xl'>Using Our Application</Heading>
-          <br />
-          <Heading size='lg'>What is Panoptic?</Heading>
+          <Heading size='2xl' color='#266ef6'>What is Panoptic?</Heading>
           <br />
           <p>
             <strong>Panoptic</strong> is an open-source website metrics tracking and visualization application, made with developers in mind to create a <em>seamless</em> development experience while <em>optimizing</em> your website.
