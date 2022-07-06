@@ -16,9 +16,8 @@ const AboutUs = () => {
     },
     {
       title: 'Github',
-      info: 'Run audits for all commits/PRs',
-      info3: "Fail Workflow when Minimum Scores Aren't Met",
-      info4: 'Utilize Github action to add audits automatically in a workflow',
+      info: 'Login with Github to link your repositories and websites',
+      info1: 'Keep track of audit metrics over a history of commits'
     },
     {
       title: 'Visual Reporting',
