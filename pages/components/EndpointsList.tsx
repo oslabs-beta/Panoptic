@@ -35,13 +35,13 @@ const EndpointsList: FC = (props: any) => {
   for (const key in props.reponames) {
     // console.log('props.reponames', props.reponames)
     const tempArr: JSX.Element[] = props.reponames[key].map((el: String) => (
-      <Button key='Button' onClick={endpointSelector}>
+      <Button key={uuidv4()} onClick={endpointSelector}>
         {el}
       </Button>
     ));
     arr.push(
       <AccordionItem key={uuidv4()} className={style.li}>
-        <AccordionButton key={uuidv4()}>
+        <AccordionButton>
           <Flex width='100%'>
             <Text fontSize='4xl' fontWeight='semibold'>
               {key}

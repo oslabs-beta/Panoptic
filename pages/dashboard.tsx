@@ -43,27 +43,28 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     const foundUserData: any = await axios.post(`/api/finduser/`, {
       username: initialRememberValue,
     });
-    console.log(foundUserData.data);
+    // console.log(foundUserData.data);
     setUserData(foundUserData.data);
-    console.log(userData);
+    // console.log(userData);
 
     if (Object.keys(result.data).length > 0) {
       let keyEndpoint = Object.keys(result.data)[0];
       console.log('logging var', keyEndpoint);
-      //   let keyDesktop = Object.keys(result.data[keyEndpoint]);
-      //   // console.log('logging var', keyDesktop);
-      //   let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
-      //   // console.log('logging var', keyDate);
+      let keyDesktop = Object.keys(result.data[keyEndpoint]);
+      console.log('logging var', keyDesktop);
+      let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
+      console.log('logging var', keyDate);
       //   // console.log(
       //   //   'FINAL BOSS FIGHT',
       //   //   result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
       //   //     .metrics
       //   // );
-      //   setLighthouseData(
-      //     result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
-      //       .metrics
-      //   );
-      // loadEndPointDataToChart(result.data[keyEndpoint], keyEndpoint);
+      setLighthouseData(
+        result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
+          .metrics
+      );
+      console.log(result.data[keyEndpoint]);
+      loadEndPointDataToChart(result.data[keyEndpoint], keyEndpoint);
     }
     didMount.current = true;
   };
@@ -93,7 +94,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     lighthouseData.seo,
   ]);
 
-  console.log({ currentUser });
+  // console.log({ currentUser });
   // for (const item in currentUser) {
   // if (
   //   currentUser[item]['reponame'] &&
@@ -152,7 +153,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     '9',
   ]);
 
-  const loadEndPointDataToChart = (e, defaultKey): void => {
+  const loadEndPointDataToChart = (e = currentUser, defaultKey): void => {
     const performanceArray: number[] = [];
     const seoArray: number[] = [];
     const accessibilityArray: number[] = [];
@@ -161,8 +162,10 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     let defaultList;
     let tempLatestVAl;
     let date;
+    console.log(e);
+    console.log(currentUser);
     if (currentUser[defaultKey]) {
-      console.log('LINE 147', currentUser[defaultKey]);
+      // console.log('LINE 147', currentUser[defaultKey]);
       for (const date in currentUser[defaultKey].desktop) {
         if (date != 'reponame') {
           // console.log(currentUser[defaultKey][date].metrics.performance);
@@ -218,13 +221,13 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     //pass
   } else {
     for (let endpoint in userData.endpoints) {
-      console.log(endpoint);
-      console.log(repoNames['Other']);
+      // console.log(endpoint);
+      // console.log(repoNames['Other']);
       repoNames['Other'].push(endpoint);
-      console.log(repoNames['Other']);
+      // console.log(repoNames['Other']);
     }
   }
-  console.log(repoNames);
+  // console.log(repoNames);
 
   return (
     // className={styles.Dashboard}

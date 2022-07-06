@@ -10,11 +10,11 @@ import style from '../../styles/Dashboard.module.scss';
 import { FC } from 'react';
 
 const wrightDetails = (props: any) => {
-  console.log(props);
+  // console.log(props);
   const tempArr: JSX.Element[] = [];
   let metrics;
   // extract the most current date of the user's history
-  console.log('PROPS USER AND SELECTEDEP', props.user, props.selectedEndpoint);
+  // console.log('PROPS USER AND SELECTEDEP', props.user, props.selectedEndpoint);
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     // typing is a bit odd here, will come back to this
     const mainObj: any = props.user[props.selectedEndpoint]['desktop'];
@@ -32,7 +32,7 @@ const wrightDetails = (props: any) => {
         ? (elementStyle = style.detailElementFlaw)
         : (elementStyle = style.detailElement);
       let myCard: JSX.Element = (
-        <AccordionItem className={elementStyle}>
+        <AccordionItem key={i} className={elementStyle}>
           <h2>
             <AccordionButton>
               <Box flex='1' textAlign='left'>
