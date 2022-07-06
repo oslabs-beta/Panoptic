@@ -1,7 +1,6 @@
 import styles from '../../styles/Docs.module.scss';
 import { FC } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
-import Head from 'next/head';
 
 const UsingApp: FC = (props): JSX.Element => {
   return (
@@ -45,7 +44,7 @@ const UsingApp: FC = (props): JSX.Element => {
               <img src="https://i.gyazo.com/5e31447789f0209e6a6b129de41077ea.gif" alt="Image from Gyazo" width="1000"/>
             </div>
           <br />
-            <Heading size='lg'>Making an Account</Heading>
+          <Heading size='lg'>Making an Account</Heading>
           <br />
           <p>
             If you would like to have your data stored to be referenced over time, then please head over to the signup/login pages.
@@ -70,6 +69,13 @@ const UsingApp: FC = (props): JSX.Element => {
             <br />
             <br />
             [ Insert image of center of dash here ]
+            <br />
+            <br />
+            On the right side of the page is our in depth metrics. These are the same that you would find on the demo page, the include an in depth look at your webpage and a breakdown of what is going well vs what can be improved upon. If you expand them you will find a brief discription about them and a link to the associated Lighthouse documentation for more information. 
+            <br />
+            <br />
+            [ Insert image of right side of dash here ]
+            <br />
             <br />
             <br />
           </p>

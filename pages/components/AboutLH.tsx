@@ -7,12 +7,21 @@ const AboutLH:FC = (props): JSX.Element => {
     <div id={styles.docsContainer}>
       <VStack>
         <VStack>
-          <Heading size='2xl'>Using Our Application</Heading>
+          <Heading size='2xl'>Google Lighthouse</Heading>
           <br />
-          <Heading size='lg'>What is Panoptic?</Heading>
+          <Heading size='lg'>What is Lighthouse</Heading>
           <br />
           <p>
-            <strong>Panoptic</strong> is an open-source website metrics tracking and visualization application, made with developers in mind to create a <em>seamless</em> development experience while <em>optimizing</em> your website.
+            <em>Google Lighthouse</em> is an open-source tool for running technical website audits. It creates a browser environment, and visits a selected endpoint just as any user would, and along the way collects data on key metrics including <strong>Performance, Accessibility, Best Practices, and SEO</strong>. When Lighthouse finishes running an audit, it can deliver all of the metrics associated on a results page.
+          </p>
+          <br />
+          <Heading size='lg'>How does Panoptic use Lighthouse?</Heading>
+          <br />
+          <p>
+            After a user runs a report with Lighthouse, and the page is exited, that data is lost permanently. If the user wants to store it, they have to do so manually. That is where Panoptic comes in. We take the stress away from having to manually store Lighthouse audits, with the benefit of interactive graphics to give a more in depth look at past reports.
+            <br />
+            <br />
+            This the stress away from the developer, allowing them to track when and why their performance may have degraded, or skyrocketed. Knowing when these events happen allows Engineers to continue moving their application in the right direction.
           </p>
         </VStack>
       </VStack>
