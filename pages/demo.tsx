@@ -24,7 +24,7 @@ import { RingLoader } from 'react-spinners';
 import { any } from 'webidl-conversions';
 import { ClassNames } from '@emotion/react';
 
-const DataTest: NextPage = (
+const DataTest: NextPage<any> = (
   { initialRememberValue },
   props: any
 ): JSX.Element => {
@@ -170,7 +170,7 @@ const DataTest: NextPage = (
 };
 DataTest.getInitialProps = async ({
   req,
-}): Promise<{ initialRememberValue: string }> => {
+}: any): Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie

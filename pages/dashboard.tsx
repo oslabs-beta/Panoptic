@@ -16,24 +16,30 @@ import Sidenav from './components/Sidenav';
 // need to pass url, last commit, reponame, and platform(mobile/desktop)
 // req.body.reponame, req.body.url, req.body.commit, req.body.platform
 
-const Dashboard: NextPage = ({ initialRememberValue }) => {
-  const [currentUser, setCurrentUser] = useState({});
-  const [userData, setUserData] = useState({});
-  const [lighthouseData, setLighthouseData] = useState({
+const Dashboard: NextPage = ({ initialRememberValue }: any) => {
+  // const = props;
+
+  // type currentUser = any;
+  // type lighthouseData = any;
+  const [currentUser, setCurrentUser] = useState<any>({});
+  const [userData, setUserData] = useState<any>({});
+  const [lighthouseData, setLighthouseData] = useState<any>({
     performance: 0,
     accessibility: 0,
     bestPractices: 0,
     seo: 0,
   });
+
   const [selected, setSelected] = useState('Select An Endpoint');
   const [scores, setScores] = useState(
     <Box>
       <ControlPanel lhdata={lighthouseData} />
     </Box>
   );
+
   const [GaugeData, setGaugeData] = useState({});
   const didMount = useRef(false);
-  const repoNames = { Other: [] };
+  const repoNames: { Other: string[] } = { Other: [] };
 
   // Get Current User
   const getUser = async (): Promise<any> => {
@@ -43,22 +49,16 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     const foundUserData: any = await axios.post(`/api/finduser/`, {
       username: initialRememberValue,
     });
-    // console.log(foundUserData.data);
+
     setUserData(foundUserData.data);
-    // console.log(userData);
 
     if (Object.keys(result.data).length > 0) {
       let keyEndpoint = Object.keys(result.data)[0];
       console.log('logging var', keyEndpoint);
-      let keyDesktop = Object.keys(result.data[keyEndpoint]);
+      let keyDesktop: any = Object.keys(result.data[keyEndpoint]);
       console.log('logging var', keyDesktop);
       let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
       console.log('logging var', keyDate);
-      //   // console.log(
-      //   //   'FINAL BOSS FIGHT',
-      //   //   result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
-      //   //     .metrics
-      //   // );
       setLighthouseData(
         result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
           .metrics
@@ -94,21 +94,6 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     lighthouseData.seo,
   ]);
 
-  // console.log({ currentUser });
-  // for (const item in currentUser) {
-  // if (
-  //   currentUser[item]['reponame'] &&
-  //   Object.hasOwn(repoNames, currentUser[item]['reponame'])
-  // ) {
-  //   repoNames[currentUser[item]['reponame']].push(item);
-  // } else if (
-  //   currentUser[item]['reponame'] &&
-  //   !Object.hasOwn(repoNames, currentUser[item]['reponame'])
-  // ) {
-  //   repoNames[currentUser[item]['reponame']] = [item];
-  // }
-  // }
-
   const helperFunc = async () => {
     const urlData: any = document.querySelector('#urlData');
     setScores(
@@ -128,19 +113,17 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
       })
       .then((result: any) => {
         didMount.current = true;
-        // console.log(result);
         setLighthouseData(result.data);
       });
-    // clear input value after clicking
     urlData.value = '';
   };
 
-  const [selectedMetric, setSelectedMetric] = useState('seoMetrics');
-  const [performanceData, setPerformanceData] = useState(null);
-  const [seoData, setSeoData] = useState(null);
-  const [bestPracticeData, setBestPracticeData] = useState(null);
-  const [accessibilityData, setAccessibilityData] = useState(null);
-  const [times, setTimes] = useState([
+  const [selectedMetric, setSelectedMetric] = useState<any>('seoMetrics');
+  const [performanceData, setPerformanceData] = useState<any>(null);
+  const [seoData, setSeoData] = useState<any>(null);
+  const [bestPracticeData, setBestPracticeData] = useState<any>(null);
+  const [accessibilityData, setAccessibilityData] = useState<any>(null);
+  const [times, setTimes] = useState<any>([
     '0',
     '1',
     '2',
@@ -153,13 +136,13 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
     '9',
   ]);
 
-  const loadEndPointDataToChart = (e = currentUser, defaultKey): void => {
+  const loadEndPointDataToChart = (e = currentUser, defaultKey: any): void => {
     const performanceArray: number[] = [];
     const seoArray: number[] = [];
     const accessibilityArray: number[] = [];
     const bestPracticeArray: number[] = [];
     let arrOfTime = [];
-    let defaultList;
+    let defaultList: any;
     let tempLatestVAl;
     let date;
     console.log(e);
@@ -308,7 +291,7 @@ const Dashboard: NextPage = ({ initialRememberValue }) => {
 
 Dashboard.getInitialProps = async ({
   req,
-}): Promise<{ initialRememberValue: string }> => {
+}: any): Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie
