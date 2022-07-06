@@ -2,35 +2,26 @@ import { Chart as ChartJs, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/react';
+import React, { FC } from 'react';
+import { ChartData, LHGaugeOptions } from '../../types';
 
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
 function lhGauge(props: any): JSX.Element {
-  console.log(props.title, props.score);
-  const [data2, setData] = useState(null);
-  const numberScore = props.score;
-  //   const [plugins2, setPlugins] = useState(null);
-  //   const [options2, setoptions] = useState(null);
-  //   const [state, setState] = useState(false);
-
-  //   if (props.score) {
-  //     setState(true);
-  //   }
-
-  const data: any = {
+  const data: ChartData = {
     labels: ['%', '-'],
     datasets: [
       {
         label: 'My First Dataset',
         data: [props.score, 100 - props.score],
-        backgroundColor: ['rgb(213, 77, 224)', 'white'],
+        backgroundColor: ['#266ef6', 'white'],
 
         borderAlign: 'center',
       },
     ],
   };
 
-  const options: any = {
+  const options: LHGaugeOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -50,7 +41,7 @@ function lhGauge(props: any): JSX.Element {
     },
   };
 
-  const plugins: any = [
+  const plugins: {}[] = [
     {
       beforeDraw: function (chart: any) {
         //   beforeRender: function (chart) {
@@ -63,19 +54,17 @@ function lhGauge(props: any): JSX.Element {
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        // let text = props.score + '%',
         let text = chart.data.datasets[0].data[0] + '%',
           textX = (chart.chartArea.left + chart.chartArea.right) / 2,
           textY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
         ctx.fillText(text, textX, textY);
-
         ctx.save();
       },
     },
   ];
 
   return (
-    <Box>
+    <Box id={`${props.title}Box`}>
       <Doughnut
         className={props.className}
         data={data}

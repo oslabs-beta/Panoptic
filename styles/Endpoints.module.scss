@@ -20,18 +20,27 @@
 }
 
 .li:hover {
-  background: $neon-pink;
-  // color: $neon-blue;
-  border-radius: $round-dem-edges;
+  background: $secondary-blue;
 }
 
 .EndpointsList {
   margin-top: 2em;
+  padding: 1rem;
+  width: 100%;
 }
 
 .endpointsTitle {
   font-family: $primary-font;
   font-size: 2rem;
   font-weight: 900;
-  color: $neon-blue;
+  border-bottom: 1px solid $lavender;
+  color: $secondary-blue;
+  text-align: center;
+}
+
+.endpointContainer {
+  border: 1px solid $lavender;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
 }

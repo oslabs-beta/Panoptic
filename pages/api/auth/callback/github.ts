@@ -7,24 +7,14 @@ const Cookies = require('cookies');
 const bcrypt = require('bcrypt');
 const User = require('../../../../models/loginModel');
 
-import nextSession from "next-session";
-import express, {
-  Request,
-  Response,
-  NextFunction,
-  ErrorRequestHandler,
-} from 'express';
-
-
 export default nextConnect().use(session({
   secret: 'test'
 })).get(
     passport.authenticate("github",{ failureRedirect: '/' }),
     async (req: NextApiRequest & { user: any }, res: NextApiResponse) => {
-      const cookies = new Cookies(req, res);
-      // you can save the user session here. to get access to authenticated user through req.user
-      console.log('Here i am')
-      // console.log(req.user)
+    const cookies = new Cookies(req, res);
+    await mongoose.connect(process.env.MONGO_URI);
+    // store username / pass from req.body
 
      
         console.log('LOGIN called with data ', req.user);
@@ -33,20 +23,20 @@ export default nextConnect().use(session({
         );
         console.log('~~~Connected to mongoDB~~~');
         // store username / pass from req.body
-        const { username, nodeId, token } = req.user;
-        const { url } = req.user._json
+        const { username, nodeId, token, photos, refresh } = req.user;
+        console.log(req.user);
         // Check if user exists and then compare pass if so
         const foundUser = await User.findOne({ username: username });
         if (foundUser) {
           console.log('Login username found');
           cookies.set('userId', foundUser._id);
-          return res.status(201).redirect('/sample-test');
+          return res.status(201).redirect('/dashboard');
           //  User exist
           // Checking password with hash password on server
         } else {
           // create user as they don't exist
-          console.log('Create user called');
-          console.log('req.user', username, nodeId, token, url);
+          console.log('Create user called in github.ts');
+          console.log('req.user', username, nodeId, token);
           // Assign username / pass to varibles so we can hash pass
           // const { username, password } = req.body;
           // Hashing function with bcrypt
@@ -64,21 +54,19 @@ export default nextConnect().use(session({
                 username: username,
                 password: hash,
                 github: {
+                  profilePic: photos[0].value,
                   token: token,
-                  url: url
+                  refresh: refresh,
+                  repos: {}
                 }
               });
               await newUser.save();
-              mongoose.connection.close();
-              console.log('Closed Mongo connection');
               // Set Login Cookie
               cookies.set('userId', newUser._id);
-              return res.status(201).redirect('/sample-test');
+              return res.status(201).redirect('/dashboard');
             }
           });
-        
-      }
 
-    //  return res.redirect("/api/login");
-    }
+    };
+  }
 );

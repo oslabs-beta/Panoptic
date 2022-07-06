@@ -1,0 +1,229 @@
+@import './Variables.scss';
+
+.threeParts {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,
+      $dark-blue 0%,
+      $primary-blue 20%,
+      $primary-blue 45%,
+      $secondary-blue 70%,
+      $dark-blue 100%);
+  overflow: hidden;
+}
+
+.dataLoading {
+  margin-bottom: 20px;
+}
+
+.metricsContainer {
+  margin-top: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.endpointBtn {
+  font-family: $primary-font;
+  padding: 0.7em 1em;
+  border: 2px solid $secondary-blue;
+  border-radius: $round-dem-edges;
+  font-weight: 700;
+  background-color: $secondary-blue;
+  color: $lavender;
+  white-space: nowrap;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.endpointBtn:hover {
+  color: $secondary-blue;
+  background-color: $lavender;
+}
+
+.containerLeft {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: black;
+  opacity: 55%;
+  color: white;
+  margin-right: 3rem;
+  font-size: 1.2rem;
+
+  input {
+    text-align: center;
+    color: white;
+  }
+}
+
+.containerMid {
+  color: white;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.containerRight {
+  color: white;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 3rem;
+}
+
+.demoIntro {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  overflow: hidden;
+  min-height: 15rem;
+  height: 25%;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: black;
+  opacity: 55%;
+  font-size: large;
+  font-family: $primary-font;
+}
+
+.containerGauge {
+  display: flex;
+  height: 90%;
+  width: 95%;
+  justify-content: center;
+  align-items: center;
+  // background: #111c44;
+}
+
+.dropdownMenu {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+
+// parts
+
+.enterUrl {
+  margin: 10% 0 10% 0;
+  font-family: $primary-font;
+  color: $lavender;
+}
+
+.endpointInput {
+  color: $primary-black;
+  font-family: $primary-font;
+  height: 2.5rem;
+  min-width: 15vw;
+  width: 65%;
+  border-bottom: 2px solid $secondary-blue;
+  font-weight: 500;
+  outline: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.endpointInput:focus {
+  border-bottom: 2px solid $secondary-blue;
+  font-weight: 700;
+  animation-name: lineAnimation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lineAnimation {
+  0% {
+    border-bottom: 2px solid $secondary-blue;
+  }
+
+  50% {
+    border-bottom: 2px solid $dark-blue;
+  }
+
+  100% {
+    border-bottom: 2px solid $secondary-blue;
+  }
+}
+
+.dropdownMenu {
+  display: flex;
+  justify-content: center;
+}
+
+.controlPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  background: black;
+  opacity: 55%;
+  margin-bottom: 3rem;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.detailsHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: 700;
+  color: $primary-blue;
+  width: 100%;
+  height: 2rem;
+  background-color: $lavender;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.detailElement {
+  width: 100%;
+  background-color: $primary-blue;
+}
+
+.detailElementFlaw {
+  width: 100%;
+  background-color: $secondary-blue;
+}
+
+.homebtn {
+  margin-top: 1rem;
+  opacity: 55%;
+}
+
+.logoPic:hover {
+  cursor: pointer;
+}
+
+.desContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learnMoreBtn {
+  border-radius: 6px;
+  padding: 0rem 1rem;
+  background: $lavender;
+  color: $primary-blue;
+  font-weight: 500;
+}

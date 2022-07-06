@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   padding: 10% 9%;
+  overflow-x: hidden;
 }
 
 .metricsContainer {
@@ -41,6 +42,16 @@
   height: 50vh;
 }
 
+.introContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: $blue-stone;
+  width: 100%;
+  height: auto;
+  color: $lavender;
+  font-family: $primary-font;
+}
+
 .left {
   display: flex;
   flex-direction: column;
@@ -75,7 +86,7 @@
 }
 
 .heroBtnContainer {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
 }
 
@@ -130,8 +141,7 @@
 
 .mdeak {
   font-size: 4rem;
-  display: flex;
-  justify-content: center;
+  text-align: center;
   color: $blue-stone;
   font-weight: 700;
 }
@@ -161,7 +171,7 @@
 
 #davispic {
   margin: auto;
-  background: url('../assets/square_picture_of_me.jpg');
+  background: url('../assets/davis.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -227,8 +237,7 @@
   color: black;
 }
 
-.hideAd {
-}
+
 
 @media screen and (max-width: 800px) {
   // Turn Hero Into Flexbox for mobile

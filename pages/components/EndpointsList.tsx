@@ -1,46 +1,71 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import style from '../../styles/Endpoints.module.scss';
-import { parseCookies } from '../../lib/parseCookies';
-import axios from 'axios';
+import React, { FC } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Box } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Button,
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionButton,
+  Spacer,
+  VStack,
+  Text,
+} from '@chakra-ui/react';
+import { SmallAddIcon, SmallCloseIcon, EditIcon } from '@chakra-ui/icons';
 
-const EndpointsList = (props: any) => {
+const EndpointsList: FC = (props: any) => {
   const [endpoints, setEndpoints] = useState([]);
+
   // filter user obj for only endpoints
-  const filteredObj = () => {
-    const test = Object.keys(props.endPts).map((key) => key);
+  const filteredObj = (): string[] => {
+    const test: string[] = Object.keys(props.endPts).map((key) => key);
     return test;
   };
 
   // click handler for selecting endpoint
-  const endpointSelector = (e: any) => {
+  const endpointSelector = (e: any): void => {
     props.setSelected(e.target.textContent);
-    props.setLoaded(true);
-    // console.log(e.target.textContent);
-    props.func(e);
+    props.func(e, e.target.textContent);
   };
-  const endpointsArr = filteredObj();
-  const arr = [];
-  for (let i = 0; i < endpointsArr.length; i++) {
-    !arr.length
-      ? arr.push(
-          <li key={uuidv4()} className={style.li}>
-            <button onClick={endpointSelector}>{endpointsArr[i]}</button>
-          </li>
-        )
-      : arr.push(
-          <li key={uuidv4()} className={style.li}>
-            <button onClick={endpointSelector}>{endpointsArr[i]}</button>
-          </li>
-        );
+  const endpointsArr: String[] = filteredObj();
+  const arr: JSX.Element[] = [];
+  for (const key in props.reponames) {
+    // console.log('props.reponames', props.reponames)
+    const tempArr: JSX.Element[] = props.reponames[key].map((el: String) => (
+      <Button key={uuidv4()} onClick={endpointSelector}>
+        {el}
+      </Button>
+    ));
+    arr.push(
+      <AccordionItem key={uuidv4()} className={style.li}>
+        <AccordionButton>
+          <Flex width='100%'>
+            <Text fontSize='4xl' fontWeight='semibold'>
+              {key}
+            </Text>
+            <Spacer />
+            <VStack>
+              <SmallAddIcon onClick={() => console.log('Add clicked')} />
+              <Spacer />
+              <EditIcon onClick={() => console.log('Add clicked')} />
+              <Spacer />
+              <SmallCloseIcon onClick={() => console.log('Del clicked')} />
+            </VStack>
+          </Flex>
+        </AccordionButton>
+        <AccordionPanel pb={4}>{tempArr}</AccordionPanel>
+      </AccordionItem>
+    );
   }
   return (
     <div className={style.EndpointsList}>
-      <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-        <h1 className={style.endpointsTitle}>My Endpoints:</h1>
-        <ul className={style.ul}>{arr}</ul>
-      </Box>
+      <Accordion className={style.endpointContainer}>
+        <h1 className={style.endpointsTitle}>My Repos:</h1>
+        {arr}
+      </Accordion>
     </div>
   );
 };

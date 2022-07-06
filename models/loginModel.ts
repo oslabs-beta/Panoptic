@@ -1,16 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
+import { MongoUser } from '../types';
 
-// interface Endpoints {
-// }
-
-interface User {
-  username: string;
-  password: string;
-  endpoints: any;
-  github: any;
-}
-
-const userSchema = new Schema<User>(
+const userSchema = new Schema<MongoUser>(
   {
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },

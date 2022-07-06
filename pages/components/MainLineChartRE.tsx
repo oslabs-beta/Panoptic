@@ -3,6 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import style from '../../styles/Dashboard.module.scss';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
+import { MainLCOptions, ChartData } from '../../types';
+import { useState, useEffect, useRef } from 'react';
+import { Progress } from '@chakra-ui/react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,10 +15,7 @@ import {
   Title,
   Tooltip,
   Legend,
-  cx,
 } from 'chart.js';
-import { useState, useEffect, useRef } from 'react';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,11 +25,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import { Progress } from '@chakra-ui/react';
 
-export const options = {
-  // animation,
-  borderWidth: 2, // Width of lines
+export const options:MainLCOptions = {
+  borderWidth: 2,
   responsive: true,
   maintainAspectRatio: true,
   chart: {
@@ -38,10 +36,9 @@ export const options = {
   },
   plugins: {
     legend: {
-      position: 'bottom', // Postion of datasets aka Performance, SEO etc
+      position: 'bottom',
     },
     title: {
-      // display: true,//
       text: 'Panoptic Line Chart',
     },
   },
@@ -54,20 +51,22 @@ export const options = {
   },
 };
 
-const MainLineChartRE = (props) => {
-  const labels = props.labelTimes;
-  const arrPerformance = [0];
-  const arrAccessibility = [0];
-  const arrBestPractice = [0];
-  const arrSEO = [0];
+const MainLineChartRE = (props:any):JSX.Element => {
+  const labels:String[] = props.labelTimes;
+  const arrPerformance:Number[] = [0];
+  const arrAccessibility:Number[] = [0];
+  const arrBestPractice:Number[] = [0];
+  const arrSEO:Number[] = [0];
 
   // CHART DATA
-  const data = {
+  const data:ChartData = {
     labels, // Array of label names
     datasets: [
       {
         label: 'Performance',
-        data: props.performanceData ? props.performanceData : arrPerformance,
+        data: props.performanceData 
+          ? props.performanceData 
+          : arrPerformance,
         borderColor: 'rgb(213, 77, 224)',
         backgroundColor: 'rgb(223, 77, 224)',
         // showLine: false, // Removes line but leaves dots
@@ -92,7 +91,9 @@ const MainLineChartRE = (props) => {
       },
       {
         label: 'Best Practices',
-        data: props.bestPracticeData ? props.bestPracticeData : arrBestPractice,
+        data: props.bestPracticeData 
+          ? props.bestPracticeData 
+          : arrBestPractice,
         borderColor: 'rgb(12, 255, 12)',
         backgroundColor: 'rgb(12, 255, 12)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color
