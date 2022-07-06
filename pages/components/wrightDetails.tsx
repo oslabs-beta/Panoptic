@@ -32,7 +32,7 @@ const wrightDetails = (props: any) => {
         ? (elementStyle = style.detailElementFlaw)
         : (elementStyle = style.detailElement);
       let myCard: JSX.Element = (
-        <AccordionItem className={elementStyle}>
+        <AccordionItem key={i} className={elementStyle}>
           <h2>
             <AccordionButton>
               <Box flex='1' textAlign='left'>
