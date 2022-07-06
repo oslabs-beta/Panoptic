@@ -6,14 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Auth from './components/auth';
 import { parseCookies } from '../lib/parseCookies';
+import { useRouter } from 'next/router';
 
 // Login page serving file
 function LoginPage({ initialRememberValue }): JSX.Element {
-  console.log('COOKIES = ', initialRememberValue);
-
+  const router = useRouter();
   const githubIcon: JSX.Element = <FaGithub className={styles.githubLogin} />;
   const { data: session, status } = useSession();
-  if (!initialRememberValue || !Auth(initialRememberValue)) {
+  const userValid = Auth(initialRememberValue);
+  if (!initialRememberValue || !userValid) {
     // no cookie found for login
     return (
       <div className={styles.body}>
@@ -55,6 +56,10 @@ function LoginPage({ initialRememberValue }): JSX.Element {
         </form>
       </div>
     );
+  } else {
+    try {
+      router.push('/dashboard');
+    } catch (err) {}
   }
 }
 LoginPage.getInitialProps = async ({ req }) => {
