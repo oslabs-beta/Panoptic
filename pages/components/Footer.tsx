@@ -13,14 +13,14 @@ const Footer = () => {
       justifyContent='center'
     >
       <div>
-        Find us on LinkedIn:{' '}
+        Panoptic Social Media:{' '}
         <Text mb='3'>
-          <Link
-            href='https://www.linkedin.com/company/panopticapp/'
-            isExternal
-            color='blue.500'
-          >
-            Panoptic
+          <Link href='https://github.com/oslabs-beta/Panoptic' isExternal color='blue.500'>
+            Github
+          </Link>
+          &nbsp;&nbsp;&nbsp;
+          <Link href='https://www.linkedin.com/company/panopticapp/' isExternal color='blue.500'>
+          LinkedIn
           </Link>
         </Text>
       </div>
