@@ -2,14 +2,11 @@ import type { NextPage } from 'next';
 import Nav from './components/Nav';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
-import Hero from './components/Hero';
 import Intro from './components/Intro';
 import InfoSect from './components/InfoSection';
 import FeatureSect from './components/FeatureSection';
 import EmployeeID from './components/employeeID';
 import Footer from './components/Footer';
-import Ad from './components/Ad';
-import Head from 'next/head';
 
 const Home: NextPage = (): JSX.Element => {
   return (
@@ -55,7 +52,6 @@ const Home: NextPage = (): JSX.Element => {
             />
           </div>
         </div>
-        <Ad />
       </div>
       <Footer />
     </div>

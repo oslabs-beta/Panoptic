@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex, Spacer, Text, Box, Heading } from '@chakra-ui/react';
+import style from '../../styles/Home.module.scss'
 // import { FaTools, FaHandshake, FaStar } from 'react-icons/fa';
 
 const AboutUs = () => {
@@ -7,58 +8,61 @@ const AboutUs = () => {
 
   const array = [
     {
-      title: 'LightHouse Info',
-      info: 'Some lighthouse info',
+      title: 'Technical Website Audits ',
+      info: 'Analyze historical records',
+      info0: 'Audit multiple URLs or just one',
+      info1: 'Record of all your audits',
+      info2: 'Monitors ranking factors for your domain',
     },
     {
-      title: 'Github Info',
-      info: 'how we used Github so far',
+      title: 'Github',
+      info: 'Run audits for all commits/PRs',
+      info3: "Fail Workflow when Minimum Scores Aren't Met",
+      info4: 'Utilize Github action to add audits automatically in a workflow',
     },
     {
       title: 'Visual Reporting',
-      info: 'What reports they can expect',
+      info: 'View your report with gauges, charts, and interactive lists, making it easy to understand the wealth of information from your report',
     },
   ];
 
   return (
     <Flex
-    //   minH='70vh'
-    //   alignItems='center'
-    //   justifyContent='space-between'
-    //   w='full'
-    //   py='16'
-    //   bg={'black'}
-    //   px={isLargerThan48 ? '16' : '6'}
-    //   flexWrap='wrap'
-    //   flexDirection={isLargerThan48 ? 'row' : 'column'}
+    justifyContent='center'
     >
       {array.map((arr) => (
         <>
           <Box
             height='300px'
             width='400px'
-            bg='blackAlpha.200'
-            // width={isLargerThan48 ? '32%' : 'full'}
+            bg='#b2caee'
             shadow='md'
             p='6'
             m='6'
-            // alignItems='center'
-            // justifyContent='center'
-            borderRadius='md'
-            // flexDirection='column'
+            borderRadius='8px'
             textAlign='center'
-            // mb={isLargerThan48 ? '0' : '4'}
+            margin='0rem 5%'
             border='1px solid #C4DDFF'
-            color='#276CF4'
+            color='black'
+            fontWeight='700'
             boxShadow='xl'
           >
             {/* <Icon as={arr.icon} boxSize={14} color='blue.600' mb='5' /> */}
-            <Heading size='lg' textShadow='1px 1px black'>
-              {arr.title}
-            </Heading>
-            <Text>{arr.info}</Text>
+            <Heading size='sm' fontSize='2rem' margin='0 0 2rem 0'>{arr.title}</Heading>
+            <Text color='black' fontWeight='400' fontSize='1.35rem'>
+              {arr.info}
+              <br></br>
+              {arr.info0}
+              <br></br>
+              {arr.info1}
+              <br></br>
+              {arr.info2}
+              <br></br>
+              {arr.info3}
+              <br></br>
+              {arr.info4}
+            </Text>
           </Box>
-          <Spacer />
         </>
       ))}
     </Flex>

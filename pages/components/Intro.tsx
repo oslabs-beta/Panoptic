@@ -20,27 +20,22 @@ const Intro: FC = (): JSX.Element => {
       <Flex
         direction='column'
         align='center'
-        bg='#266DF5'
         borderRadius='25px'
-        // m={5}
-        w={'100%'}
-        h={'300'}
         p={2}
-        boxShadow='2xl'
-        textShadow='2px 2px black'
+        className={styles.introContainer}
       >
-        <Heading size='2xl' color={'white'} mt={5} fontFamily={'Chalkboard SE'}>
+        <Heading size='2xl' mt={5} fontWeight='700' fontSize='4.4rem'>
           Panoptic
         </Heading>
-        <Heading size='3xl' color={'white'} fontFamily={'Chalkboard SE'} mt='1'>
+        <Heading size='3xl' mt='1'>
           An innovative performance tracker
         </Heading>
-        <Heading size='3xl' color={'white'} fontFamily={'Chalkboard SE'} mt='2'>
+        <Heading size='3xl' mt='2'>
           for Web Applications
         </Heading>
         <Text mt='4' fontSize='xl' fontWeight='bold'>
-          A cloud based solution for montiering web application over any given
-          period of time.
+          An intuitive solution for monitoring key web application metrics over any given
+          period of time
         </Text>
 
         {/* <Heading fontSize='xl' m={2}>
@@ -66,8 +61,6 @@ const Intro: FC = (): JSX.Element => {
           </Link>
         </Box>
       </Flex>
-      {/* </Box> */}
-      {/* <div className={styles.right}></div> */}
     </Flex>
   );
 };

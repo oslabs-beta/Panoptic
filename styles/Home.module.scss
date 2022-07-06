@@ -41,6 +41,16 @@
   height: 50vh;
 }
 
+.introContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: $blue-stone;
+  width: 100%;
+  height: auto;
+  color: $lavender;
+  font-family: $primary-font;
+}
+
 .left {
   display: flex;
   flex-direction: column;
@@ -227,8 +237,7 @@
   color: black;
 }
 
-.hideAd {
-}
+
 
 @media screen and (max-width: 800px) {
   // Turn Hero Into Flexbox for mobile
