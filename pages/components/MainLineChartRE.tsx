@@ -26,7 +26,7 @@ ChartJS.register(
   Legend
 );
 
-export const options:MainLCOptions = {
+export const options: any = {
   borderWidth: 2,
   responsive: true,
   maintainAspectRatio: true,
@@ -51,22 +51,20 @@ export const options:MainLCOptions = {
   },
 };
 
-const MainLineChartRE = (props:any):JSX.Element => {
-  const labels:String[] = props.labelTimes;
-  const arrPerformance:Number[] = [0];
-  const arrAccessibility:Number[] = [0];
-  const arrBestPractice:Number[] = [0];
-  const arrSEO:Number[] = [0];
+const MainLineChartRE = (props: any): JSX.Element => {
+  const labels: String[] = props.labelTimes;
+  const arrPerformance: Number[] = [0];
+  const arrAccessibility: Number[] = [0];
+  const arrBestPractice: Number[] = [0];
+  const arrSEO: Number[] = [0];
 
   // CHART DATA
-  const data:ChartData = {
+  const data: ChartData = {
     labels, // Array of label names
     datasets: [
       {
         label: 'Performance',
-        data: props.performanceData 
-          ? props.performanceData 
-          : arrPerformance,
+        data: props.performanceData ? props.performanceData : arrPerformance,
         borderColor: 'rgb(213, 77, 224)',
         backgroundColor: 'rgb(223, 77, 224)',
         // showLine: false, // Removes line but leaves dots
@@ -91,9 +89,7 @@ const MainLineChartRE = (props:any):JSX.Element => {
       },
       {
         label: 'Best Practices',
-        data: props.bestPracticeData 
-          ? props.bestPracticeData 
-          : arrBestPractice,
+        data: props.bestPracticeData ? props.bestPracticeData : arrBestPractice,
         borderColor: 'rgb(12, 255, 12)',
         backgroundColor: 'rgb(12, 255, 12)',
         pointHoverBackgroundColor: 'black', // Hover DOT background color

@@ -47,7 +47,7 @@ function Sidenav(props: any): JSX.Element {
             </div>
           </DrawerHeader>
           <DrawerBody className={styles.drawerBody}>
-            <h2>{props.user.username}</h2>
+            {/* <h2>{props.user.username}</h2> */}
             {/* <Image
               src={`${props.user.github['profilePic']}`}
               alt={'user profile pic'}

@@ -21,7 +21,8 @@
     "**/*.tsx",
     "pages/login.tsx",
     "pages/login.tsx",
-    "__test__/pages/home.test.js"
+    "__test__/pages/home.test.js",
+    "lib/dbConnect.js"
   ],
   "exclude": ["node_modules"]
 }

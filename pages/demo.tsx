@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import { useState, useEffect, useRef } from 'react';
 import logoPic from '../assets/PanLogo.png';
-import Link  from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
 import LH_Gauge from './components/lhGauge';
 import ControlPanelDemo from './components/ControlPanelDemo';
 import WrightDetailsDemo from './components/wrightDetailsDemo';
@@ -24,7 +24,10 @@ import { RingLoader } from 'react-spinners';
 import { any } from 'webidl-conversions';
 import { ClassNames } from '@emotion/react';
 
-const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => {
+const DataTest: NextPage<any> = (
+  { initialRememberValue },
+  props: any
+): JSX.Element => {
   const [lighthouseData, setLighthouseData] = useState({
     performance: 0,
     accessibility: 0,
@@ -42,8 +45,8 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
   const [selectedMetric, setSelectedMetric] = useState('performanceMetrics');
   const didMount = useRef(false);
 
-  const helperFunc = async ():Promise<void> => {
-    const urlData:any = document.querySelector('#urlData');
+  const helperFunc = async (): Promise<void> => {
+    const urlData: any = document.querySelector('#urlData');
     setScores(
       <Box>
         <VStack spacing={0}>
@@ -55,7 +58,7 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
       </Box>
     );
     // get data from lighthouse api
-    await fetch(`http://localhost:3000/api/lighthousedemo`, {
+    await fetch(`/api/lighthousedemo`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +74,7 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
     urlData.value = '';
   };
 
-  useEffect(():void => {
+  useEffect((): void => {
     if (didMount.current) {
       setScores(
         <div id='controlGauges' className={styles.containerGauge}>
@@ -82,7 +85,7 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
           />
         </div>
       );
-    };
+    }
   }, [
     lighthouseData.performance,
     lighthouseData.accessibility,
@@ -103,7 +106,11 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
       <div className={styles.containerLeft}>
         <div className={styles.homebtn}>
           <Link href='/'>
-            <Image className={styles.logoPic} alt="Panoptic Logo" src={logoPic}/>
+            <Image
+              className={styles.logoPic}
+              alt='Panoptic Logo'
+              src={logoPic}
+            />
           </Link>
         </div>
         <div className={styles.metricsContainer}>
@@ -148,14 +155,22 @@ const DataTest:NextPage = ({ initialRememberValue }, props: any):JSX.Element => 
       <div className={styles.containerRight}>
         <div className={styles.demoIntro}>
           <h3>Welcome to Panoptic!</h3>
-          <p>Enter a url into the search bar on the left, and then click Run Tests to begin!</p>
-          <p>You can change the details list to show specific metric types by clicking on the corresponding gauges at the top of the dashboard!</p>
+          <p>
+            Enter a url into the search bar on the left, and then click Run
+            Tests to begin!
+          </p>
+          <p>
+            You can change the details list to show specific metric types by
+            clicking on the corresponding gauges at the top of the dashboard!
+          </p>
         </div>
       </div>
     </div>
   );
 };
-DataTest.getInitialProps = async ({ req }):Promise<{ initialRememberValue: string }> => {
+DataTest.getInitialProps = async ({
+  req,
+}: any): Promise<{ initialRememberValue: string }> => {
   // Parseing cookie with our own function so we can read it
   const cookies = parseCookies(req);
   // Return our cookie and grab name from cookie
