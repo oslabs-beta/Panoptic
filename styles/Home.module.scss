@@ -4,7 +4,7 @@
   background-color: $lavender;
   width: 100%;
   height: 100%;
-  padding: 10% 9%;
+  padding: 10% 9% 1% 9%;
   overflow-x: hidden;
 }
 
@@ -130,6 +130,12 @@
   transition: 0.3s ease-in-out;
 }
 
+.homeGifs {
+  height: 45rem;
+  width: auto;
+  border-radius: 8px;
+}
+
 .lowcontainer {
   display: flex;
   flex-direction: column;
@@ -160,7 +166,7 @@
 
 #marcpic {
   margin: auto;
-  background: url('../assets/marc.jpg');
+  background: url('https://media-exp1.licdn.com/dms/image/C5603AQGomH8kwmHfxQ/profile-displayphoto-shrink_400_400/0/1630615973512?e=1662595200&v=beta&t=IlIzzFPLa7EmXXKFBaPhi5TNPv0GrjvhLd_GGAo8XV4');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -171,7 +177,7 @@
 
 #davispic {
   margin: auto;
-  background: url('../assets/davis.jpg');
+  background: url('https://avatars.githubusercontent.com/u/95515224?v=4');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -182,7 +188,7 @@
 
 #elliotpic {
   margin: auto;
-  background: url('../assets/elliot.jpg');
+  background: url('https://avatars.githubusercontent.com/u/100388743?v=4');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -193,7 +199,7 @@
 
 #austinpic {
   margin: auto;
-  background: url('https://pbs.twimg.com/profile_images/1426662283456000008/CjBDzaeX_400x400.jpg');
+  background: url('https://avatars.githubusercontent.com/u/103286713?v=4');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -204,7 +210,7 @@
 
 #karlpic {
   margin: auto;
-  background: url('https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1440,w_2560,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1531451526/180712-Weill--The-Creator-of-Pepe-hero_uionjj');
+  background: url('https://avatars.githubusercontent.com/u/12672823?v=4');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
