@@ -39,7 +39,8 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
 
   const [GaugeData, setGaugeData] = useState({});
   const didMount = useRef(false);
-  const repoNames: { Other: string[] } = { Other: [] };
+  // const repoNames: { Other: string[] }|{} = { Other: [] };
+  const repoNames: {} = { Other: [] };
 
   // Get Current User
   const getUser = async (): Promise<any> => {
@@ -201,10 +202,17 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
   };
 
   if (userData.github) {
-    repoNames.repos = [];
-    for (let i = 0; i < userData.github.repos.length; i ++ ) {
-      const name = Object.keys(userData.github.repos[i])[0]
-      repoNames['repos'].push(name);
+    // repoNames.repos = [];
+    console.log(userData);
+    // for (let i = 0; i < userData.github.repos.length; i++) {
+    for (let key in userData.github.repos) {
+      // const name = Object.keys(userData.github.repos[i])[0];
+      repoNames[key] = [];
+      console.log(userData.github.repos[key]);
+      for (let item of userData.github.repos[key].repoPoints) {
+        repoNames[key].push(item);
+      }
+      console.log(key);
     }
     for (let endpoint in userData.endpoints) {
       // console.log(endpoint);
@@ -222,7 +230,7 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     }
   }
   // console.log(repoNames);
-  userData.github ? console.log(userData.github["profilePic"]) : 'No';
+  userData.github ? console.log(userData.github['profilePic']) : 'No';
 
   return (
     // className={styles.Dashboard}
