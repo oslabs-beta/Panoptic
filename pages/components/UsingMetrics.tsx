@@ -28,7 +28,7 @@ const UsingMetrics: FC = (props): JSX.Element => {
             SEO - ensures your application is showing up in search results for related entities. Checks data on the page on first page load, if the page is legible, makes sure links are valid and have descriptive text surrounding them, among other things.
           </p>
           <br />
-          <Heading size='lg'>Additional Performance Metrics</Heading>
+          {/* <Heading size='lg'>Additional Performance Metrics</Heading>
           <br />
           <p>
             The performance category is further broken down into an additional six cetegories:
@@ -36,7 +36,7 @@ const UsingMetrics: FC = (props): JSX.Element => {
             First Contentful Paint - measures how long it takes the browser to render the first piece of DOm content after a user navigates to your page. Images, non-white canvas elements, and SVGs on are considered DOM content, anything inside an iframe is not included.
             <br />
             Largest Contentful Paint - reports the render time of the 
-          </p>
+          </p> */}
         </VStack>
       </VStack>
     </div>
