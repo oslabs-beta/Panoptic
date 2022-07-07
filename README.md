@@ -1,4 +1,4 @@
-### Panoptic
+# Panoptic
 
 An open-source tool for tacking website performance. 
 
