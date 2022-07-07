@@ -203,7 +203,8 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
 
   if (userData.github) {
     // repoNames.repos = [];
-    console.log(userData);
+    console.log("userdata: ", userData);
+    console.log('tagfsdf', userData.github.repos)
     // for (let i = 0; i < userData.github.repos.length; i++) {
     for (let key in userData.github.repos) {
       // const name = Object.keys(userData.github.repos[i])[0];
@@ -230,7 +231,7 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     }
   }
   // console.log(repoNames);
-  userData.github ? console.log(userData.github['profilePic']) : 'No';
+  // userData.github ? console.log(userData.github['profilePic']) : 'No';
 
   return (
     // className={styles.Dashboard}
