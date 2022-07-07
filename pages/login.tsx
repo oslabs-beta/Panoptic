@@ -37,7 +37,7 @@ function LoginPage(): JSX.Element {
           value='send'
           className={styles.loginButton}
         >
-          Login
+          Login/Sign Up
         </button>
         <p className={styles.construction}>
           GitHub Sign in Coming Soon !!
