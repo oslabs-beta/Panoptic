@@ -10,25 +10,28 @@ import style from '../../styles/Dashboard.module.scss';
 import { FC } from 'react';
 
 const wrightDetails = (props: any) => {
-  // console.log(props);
   const tempArr: JSX.Element[] = [];
   let metrics;
   // extract the most current date of the user's history
-  // console.log('PROPS USER AND SELECTEDEP', props.user, props.selectedEndpoint);
-  console.log(props.user.login)
-  console.log('seleec: ', props.selectedEndpoint)
   if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     // typing is a bit odd here, will come back to this
     const mainObj: any = props.user[props.selectedEndpoint]['desktop'];
-    // console.log(mainObj);
     const dateArr: string[] = Object.keys(mainObj);
-    // console.log(dateArr);
     const recentDate: string = dateArr[dateArr.length - 1];
     metrics = mainObj[recentDate].metrics;
   }
 
   if (metrics) {
     for (const i in metrics[props.selectedMetric]) {
+      const fullDescription = metrics[props.selectedMetric][i].description;
+      const descritpionText = fullDescription.substring(
+        0,
+        fullDescription.indexOf('Learn more') - 1
+      );
+      const descriptionLink = fullDescription.substring(
+        fullDescription.indexOf('https'),
+        fullDescription.length - 2
+      );
       let elementStyle: string;
       metrics[props.selectedMetric][i].score < 1
         ? (elementStyle = style.detailElementFlaw)
@@ -39,12 +42,18 @@ const wrightDetails = (props: any) => {
             <AccordionButton>
               <Box flex='1' textAlign='left'>
                 {metrics[props.selectedMetric][i].title}
+                <p>{`Score: ${Math.round(
+                    metrics[props.selectedMetric][i].score * 100
+                  )}`}</p>
               </Box>
               <AccordionIcon />
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            {metrics[props.selectedMetric][i].description}
+            {descritpionText}
+            <a href={descriptionLink} rel='noreferrer' target='_blank'>
+              <div className={style.learnMoreBtn}>Learn More</div>
+            </a>
           </AccordionPanel>
         </AccordionItem>
       );

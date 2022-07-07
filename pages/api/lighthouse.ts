@@ -2,7 +2,6 @@ const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 const User = require('../../models/loginModel.ts');
 const Cookies = require('cookies');
-import chromium from 'chrome-aws-lambda';
 import dbConnect from '../../lib/dbConnect';
 import { LHData, LHOptions, MongoUser } from '../../types';
 import { Request, Response } from 'express';
@@ -10,29 +9,20 @@ import { Request, Response } from 'express';
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
   await dbConnect();
   const cookies = new Cookies(req, res);
-  // const chrome:any = await chromeLauncher.launch({
-  //   chromeFlags: [
-  //     '--no-first-run',
-  //     '--headless',
-  //     '--disable-gpu',
-  //     '--no-sandbox',
-  //   ],
-  // });
-
-  const browser = await chromium.puppeteer.launch({
-    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: true,
-    ignoreHTTPSErrors: true,
+  const chrome:any = await chromeLauncher.launch({
+    chromeFlags: [
+      '--no-first-run',
+      '--headless',
+      '--disable-gpu',
+      '--no-sandbox',
+    ],
   });
-
-  // const options:LHOptions = {
-  //   logLevel: 'info',
-  //   output: 'json',
-  //   onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
-  //   port: browser,
-  // };
+  const options:LHOptions = {
+    logLevel: 'info',
+    output: 'json',
+    onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
+    port: chrome.port,
+  };
 
   const url:string = req.body.url;
   const reponame:string | null = req.body.reponame || null;
@@ -41,7 +31,7 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
 
   const runnerResult = await lighthouse(url, options);
 
-  // await chrome.kill();
+  await chrome.kill();
 
   const scores: LHData = {
     performance: Math.ceil(runnerResult.lhr.categories.performance.score * 100),
@@ -308,6 +298,7 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
       metrics: scores,
     };
     if(reponame) {
+      console.log('davis test: ', reponame)
       if(!currentUser.github.repos[reponame]) {
         currentUser.github.repos[reponame] = {
           repoEndpoints: [],
