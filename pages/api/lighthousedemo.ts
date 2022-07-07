@@ -4,25 +4,18 @@ import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
 
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
-  const chrome:any = await chromeLauncher.launch({
-    chromeFlags: [
-      '--no-first-run',
-      '--headless',
-      '--disable-gpu',
-      '--no-sandbox',
-    ],
-  });
-  const options:LHOptions = {
-    logLevel: 'info',
-    output: 'json',
-    onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
-    port: chrome.port,
-  };
+  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=https://www.vapelifestyle.net/&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
+  const getGoogleReport = async () => {
+    const response = await fetch(googleUrl, {
+      headers: {
+        Referer: 'https://web.dev/measure/?url=https%3A%2F%2Fwww.vapelifestyle.net%2F'
+      },
+    })
+      .then(response => response.json())
+      return response;
+  }
 
-  const url = req.body;
-  const runnerResult = await lighthouse(url, options);
-
-  await chrome.kill();
+  let runnerResult = await getGoogleReport();
   // grab all the info to return to the front-end
   const scores:LHData = {
     performance: Math.ceil(runnerResult.lhr.categories.performance.score * 100),

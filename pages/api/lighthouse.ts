@@ -9,30 +9,23 @@ import { Request, Response } from 'express';
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
   await dbConnect();
   const cookies = new Cookies(req, res);
-  const chrome:any = await chromeLauncher.launch({
-    chromeFlags: [
-      '--no-first-run',
-      '--headless',
-      '--disable-gpu',
-      '--no-sandbox',
-    ],
-  });
-  const options:LHOptions = {
-    logLevel: 'info',
-    output: 'json',
-    onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
-    port: chrome.port,
-  };
+  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=https://www.vapelifestyle.net/&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
+  const getGoogleReport = async () => {
+    const response = await fetch(googleUrl, {
+      headers: {
+        Referer: 'https://web.dev/measure/?url=https%3A%2F%2Fwww.vapelifestyle.net%2F'
+      },
+    })
+      .then(response => response.json())
+      return response;
+  }
 
+  let runnerResult = await getGoogleReport();
+  
   const url:string = req.body.url;
   const reponame:string | null = req.body.reponame || null;
   const lastCommit:string | null = req.body.commit || null;
   const platform:string = req.body.platform ? req.body.platform : 'desktop';
-
-  const runnerResult = await lighthouse(url, options);
-
-  await chrome.kill();
-
   const scores: LHData = {
     performance: Math.ceil(runnerResult.lhr.categories.performance.score * 100),
     accessibility: Math.ceil(
