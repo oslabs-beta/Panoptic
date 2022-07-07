@@ -58,7 +58,7 @@ const DataTest: NextPage<any> = (
       </Box>
     );
     // get data from lighthouse api
-    await fetch(`/api/lighthousedemo`, {
+    await fetch(`/api/lighthousedemoRE`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
