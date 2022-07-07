@@ -249,7 +249,7 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
               id='urlData'
               type='text'
               required
-              placeholder='ex: https://YouTube.com/'
+              placeholder='ex: https://www.YouTube.com/'
               className={styles.endpointInput}
             />
             <button type='button' id={styles.endpointBtn} onClick={helperFunc}>

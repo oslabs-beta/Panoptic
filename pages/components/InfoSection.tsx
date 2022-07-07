@@ -25,9 +25,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <Flex
-    justifyContent='center'
-    >
+    <Flex justifyContent='space-evenly'>
       {array.map((arr) => (
         <div key={uuidv4()}>
           <Box

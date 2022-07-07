@@ -3,7 +3,7 @@ const mailchimp = require("@mailchimp/mailchimp_marketing");
 const sendToMailChimp = (req, res) => {
   const { EMAIL } = req.body;
   mailchimp.setConfig({
-    apiKey: "b1d923e73fdbb043cae54c13581370a5-us5",
+    apiKey: process.env.MAILCHIMP_KEY,
     server: "us5",
   });
   

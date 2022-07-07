@@ -26,7 +26,7 @@ function LoginPage(): JSX.Element {
           id='password'
           name='password'
           placeholder='password'
-          type='text'
+          type='password'
           className={styles.password}
         ></input>
         <button

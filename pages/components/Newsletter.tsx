@@ -27,7 +27,7 @@ const Newsletter = () => {
   return (
     <div className={styles.Newsletter}>
       <h1 className={styles.title}>{submitted ? 'Preciate it, g.' : 'Sign Up For Our Newsletter!'}</h1>
-      <p className={styles.subtext} style={{display: submitted ? 'none' : 'block'}} >Get the latest updates on Panoptic. Don't worry, we b spammin like a mf.</p>
+      <p className={styles.subtext} style={{display: submitted ? 'none' : 'block'}} >Be the first to know the latest updates on Panoptic in Beta! Great idea if you want to become a contributor.</p>
       <div className={styles.inputContainer} style={{display: submitted ? 'none' : 'block'}}>
         <input type="text" placeholder="Enter Your Email" value={emailValue} onChange={inputHandler}/>
         <button onClick={subscribeUser} className={styles.submitBtn}>Submit</button>
