@@ -55,7 +55,8 @@
     "react-spinners": "^0.12.0",
     "sass": "^1.52.3",
     "ts-jest": "^28.0.5",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "lighthouse": "^9.6.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -73,7 +74,6 @@
     "eslint-config-next": "12.1.6",
     "express": "^4.18.1",
     "jest": "^28.1.2",
-    "lighthouse": "^9.6.2",
     "nodemon": "^2.0.16",
     "puppeteer": "^14.4.1",
     "typescript": "4.7.3"
