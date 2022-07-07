@@ -9,11 +9,15 @@ import { Request, Response } from 'express';
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
   await dbConnect();
   const cookies = new Cookies(req, res);
-  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=https://www.vapelifestyle.net/&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
+  const url:string = req.body.url;
+  const reponame:string | null = req.body.reponame || null;
+  const lastCommit:string | null = req.body.commit || null;
+  const platform:string = req.body.platform ? req.body.platform.toUpperCase() : 'DESKTOP';
+  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=' + url + '&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
   const getGoogleReport = async () => {
     const response = await fetch(googleUrl, {
       headers: {
-        Referer: 'https://web.dev/measure/?url=https%3A%2F%2Fwww.vapelifestyle.net%2F'
+        Referer: 'https://web.dev/measure/?url=' + url 
       },
     })
       .then(response => response.json())
@@ -22,10 +26,6 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
 
   let runnerResult = await getGoogleReport();
   
-  const url:string = req.body.url;
-  const reponame:string | null = req.body.reponame || null;
-  const lastCommit:string | null = req.body.commit || null;
-  const platform:string = req.body.platform ? req.body.platform : 'desktop';
   const scores: LHData = {
     performance: Math.ceil(runnerResult.lighthouseResult.categories.performance.score * 100),
     accessibility: Math.ceil(
