@@ -230,12 +230,11 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     }
   }
   // console.log(repoNames);
-  userData.github ? console.log(userData.github['profilePic']) : 'No';
 
   return (
     // className={styles.Dashboard}
     <div className={styles.Dashboard}>
-      <Sidenav username={userData.username} profilePic={userData.profilePic} />
+      { userData.github ? <Sidenav username={userData.username} profilePic={userData.profilePic} /> : <></> }
       <Grid
         className={styles.Grid}
         templateColumns={'1fr 3fr 1fr'}
