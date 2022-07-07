@@ -18,7 +18,9 @@ Create an account manually, or sign in with your existing github account
 
 If you sign in with your github account then you will see a list of your existing repositories, otherwise all endpoints to be tested will be added to "other"
 
-Open the side pop-out menu to add an endpoint to be tested
+To run a test on an endpoint **it must be formatted as follows: https://www.[InsertWebsite].com/**
+If it is not formatted in this way, the server will return an error code
+We plan to make this a bit more lenient with formatting in the future
 
 Select that endpoint and click "run test" 
 
