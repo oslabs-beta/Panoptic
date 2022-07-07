@@ -1,32 +1,25 @@
 // import React from 'react'
 import Link from 'next/link';
 import styles from '../../styles/Sidenav.module.scss';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import logoPic from '../../assets/PanLogo.png';
 // import { Show, Hide } from '@chakra-ui/react'
-
+import axios from 'axios';
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
-  RadioGroup,
-  Stack,
-  Radio,
   Button,
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Sidenav(props: any): JSX.Element {
-  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [currentLink, setCurrentLink] = useState('');
+
   return (
     <nav className={styles.Sidenav}>
       <Button className={styles.burgerIcon} colorScheme='blue' onClick={onOpen}>
@@ -38,11 +31,13 @@ function Sidenav(props: any): JSX.Element {
           <DrawerHeader className={styles.logo} borderBottomWidth='2px'>
             <div className={styles.imageContainer}>
               <Link className={styles.logoLink} href='/'>
-                <Image
-                  className={styles.logoPic}
-                  alt='Panoptic Logo'
-                  src={logoPic}
-                />
+                <a>
+                  <Image
+                    className={styles.logoPic}
+                    alt='Panoptic Logo'
+                    src={logoPic}
+                  />
+                </a>
               </Link>
             </div>
           </DrawerHeader>
@@ -55,7 +50,7 @@ function Sidenav(props: any): JSX.Element {
               height={80}
             /> */}
             <a className={`${styles.link} /dashboard`} href='/dashboard'>
-              Metrics
+              Dashboard
             </a>
             <a
               className={`${styles.link} /repoendpoints`}
@@ -72,4 +67,5 @@ function Sidenav(props: any): JSX.Element {
     </nav>
   );
 }
+
 export default Sidenav;

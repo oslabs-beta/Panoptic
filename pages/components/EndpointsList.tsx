@@ -36,7 +36,7 @@ const EndpointsList: FC<any> = (props: any) => {
   for (const key in props.reponames) {
     // console.log('props.reponames', props.reponames)
     const tempArr: JSX.Element[] = props.reponames[key].map((el: String) => (
-      <Button key={uuidv4()} onClick={endpointSelector}>
+      <Button key={uuidv4()} onClick={endpointSelector} bg='#266ef6' _hover={{'background' : '#f0f4fb', 'color' : '#266ef6'}}>
         {el}
       </Button>
     ));
@@ -64,7 +64,7 @@ const EndpointsList: FC<any> = (props: any) => {
   return (
     <div className={style.EndpointsList}>
       <Accordion className={style.endpointContainer}>
-        <h1 className={style.endpointsTitle}>My Repos:</h1>
+        <h1 className={style.endpointsTitle}>My Repositories:</h1>
         {arr}
       </Accordion>
     </div>

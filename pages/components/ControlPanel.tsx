@@ -16,7 +16,9 @@ const controlPanel: FC<any> = (props: any): JSX.Element => {
             key={`${key}Btn`}
             type='button'
             onClick={() => {
-              props.setSelectedMetric(`${key}Metrics`);
+              if (props.setSelectedMetric) {
+                props.setSelectedMetric(`${key}Metrics`);
+              }
             }}
           >
             <LH_Gauge
@@ -33,8 +35,8 @@ const controlPanel: FC<any> = (props: any): JSX.Element => {
             />
           </button>
         );
-      }
-    }
+      };
+    };
   return (
     <Box>
       <HStack spacing='0px' borderRadius='full' bg='#111c44' m={4} h={180}>

@@ -136,13 +136,20 @@
   border-radius: 8px;
 }
 
+.featText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 25rem;
+}
+
 .lowcontainer {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 8%;
 }
 
 .mdeak {

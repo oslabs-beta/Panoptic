@@ -39,7 +39,8 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
 
   const [GaugeData, setGaugeData] = useState({});
   const didMount = useRef(false);
-  const repoNames: { Other: string[] } = { Other: [] };
+  // const repoNames: { Other: string[] }|{} = { Other: [] };
+  const repoNames: {} = { Other: [] };
 
   // Get Current User
   const getUser = async (): Promise<any> => {
@@ -201,6 +202,24 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
   };
 
   if (userData.github) {
+    // repoNames.repos = [];
+    console.log(userData);
+    // for (let i = 0; i < userData.github.repos.length; i++) {
+    for (let key in userData.github.repos) {
+      // const name = Object.keys(userData.github.repos[i])[0];
+      repoNames[key] = [];
+      console.log(userData.github.repos[key]);
+      for (let item of userData.github.repos[key].repoPoints) {
+        repoNames[key].push(item);
+      }
+      console.log(key);
+    }
+    for (let endpoint in userData.endpoints) {
+      // console.log(endpoint);
+      // console.log(repoNames['Other']);
+      repoNames['Other'].push(endpoint);
+      // console.log(repoNames['Other']);
+    }
     //pass
   } else {
     for (let endpoint in userData.endpoints) {
@@ -211,11 +230,12 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     }
   }
   // console.log(repoNames);
+  userData.github ? console.log(userData.github['profilePic']) : 'No';
 
   return (
     // className={styles.Dashboard}
     <div className={styles.Dashboard}>
-      <Sidenav user={userData} />
+      <Sidenav username={userData.username} profilePic={userData.profilePic} />
       <Grid
         className={styles.Grid}
         templateColumns={'1fr 3fr 1fr'}
@@ -223,7 +243,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
         w='100vw'
         h='100vh'
       >
-        {/* <Sidenav /> */}
         <GridItem className={styles.containerLeft}>
           <Box className={styles.metricsContainer}>
             <h2 className={styles.enterUrl}>Enter New Endpoint Below</h2>
@@ -261,7 +280,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
                 accessibilityData={accessibilityData}
               />
             </Box>
-            <Box>Second</Box>
           </VStack>
         </GridItem>
 

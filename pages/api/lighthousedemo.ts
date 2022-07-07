@@ -4,257 +4,254 @@ import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
 
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
-  const chrome:any = await chromeLauncher.launch({
-    chromeFlags: [
-      '--no-first-run',
-      '--headless',
-      '--disable-gpu',
-      '--no-sandbox',
-    ],
-  });
-  const options:LHOptions = {
-    logLevel: 'info',
-    output: 'json',
-    onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
-    port: chrome.port,
-  };
-
+  //https://www.hulu.com/
   const url = req.body;
-  const runnerResult = await lighthouse(url, options);
-
-  await chrome.kill();
+  console.log('req.body: ', req.body)
+  console.log("url here: ", url)
+  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=' + url + '&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
+  const getGoogleReport = async () => {
+    const response = await fetch(googleUrl, {
+      headers: {
+        Referer: 'https://web.dev/measure/?url=' + url 
+      },
+    })
+      .then(response => response.json())
+      return response;
+  };
+  
+  let runnerResult = await getGoogleReport();
   // grab all the info to return to the front-end
   const scores:LHData = {
-    performance: Math.ceil(runnerResult.lhr.categories.performance.score * 100),
+    performance: Math.ceil(runnerResult.lighthouseResult.categories.performance.score * 100),
     accessibility: Math.ceil(
-      runnerResult.lhr.categories.accessibility.score * 100
+      runnerResult.lighthouseResult.categories.accessibility.score * 100
     ),
     bestPractices: Math.ceil(
-      runnerResult.lhr.categories['best-practices'].score * 100
+      runnerResult.lighthouseResult.categories['best-practices'].score * 100
     ),
-    seo: Math.ceil(runnerResult.lhr.categories.seo.score * 100),
+    seo: Math.ceil(runnerResult.lighthouseResult.categories.seo.score * 100),
     performanceMetrics: {
       'first-contentful-paint': {
-        title: runnerResult.lhr.audits['first-contentful-paint'].title,
+        title: runnerResult.lighthouseResult.audits['first-contentful-paint'].title,
         description:
-          runnerResult.lhr.audits['first-contentful-paint'].description,
-        score: runnerResult.lhr.audits['first-contentful-paint'].score,
+          runnerResult.lighthouseResult.audits['first-contentful-paint'].description,
+        score: runnerResult.lighthouseResult.audits['first-contentful-paint'].score,
         displayValue:
-          runnerResult.lhr.audits['first-contentful-paint'].displayValue,
+          runnerResult.lighthouseResult.audits['first-contentful-paint'].displayValue,
       },
       'speed-index': {
-        title: runnerResult.lhr.audits['speed-index'].title,
-        description: runnerResult.lhr.audits['speed-index'].description,
-        score: runnerResult.lhr.audits['speed-index'].score,
-        displayValue: runnerResult.lhr.audits['speed-index'].displayValue,
+        title: runnerResult.lighthouseResult.audits['speed-index'].title,
+        description: runnerResult.lighthouseResult.audits['speed-index'].description,
+        score: runnerResult.lighthouseResult.audits['speed-index'].score,
+        displayValue: runnerResult.lighthouseResult.audits['speed-index'].displayValue,
       },
       'largest-contentful-paint': {
         title:
-          runnerResult.lhr.audits['largest-contentful-paint-element'].title,
+          runnerResult.lighthouseResult.audits['largest-contentful-paint-element'].title,
         description:
-          runnerResult.lhr.audits['largest-contentful-paint'].description,
-        score: runnerResult.lhr.audits['largest-contentful-paint'].score,
+          runnerResult.lighthouseResult.audits['largest-contentful-paint'].description,
+        score: runnerResult.lighthouseResult.audits['largest-contentful-paint'].score,
         displayValue:
-          runnerResult.lhr.audits['largest-contentful-paint'].displayValue,
+          runnerResult.lighthouseResult.audits['largest-contentful-paint'].displayValue,
       },
       'time-to-interactive': {
-        title: runnerResult.lhr.audits['interactive'].title,
-        description: runnerResult.lhr.audits['interactive'].description,
-        score: runnerResult.lhr.audits['interactive'].score,
-        displayValue: runnerResult.lhr.audits['interactive'].displayValue,
+        title: runnerResult.lighthouseResult.audits['interactive'].title,
+        description: runnerResult.lighthouseResult.audits['interactive'].description,
+        score: runnerResult.lighthouseResult.audits['interactive'].score,
+        displayValue: runnerResult.lighthouseResult.audits['interactive'].displayValue,
       },
       'total-blocking-time': {
-        title: runnerResult.lhr.audits['total-blocking-time'].title,
-        description: runnerResult.lhr.audits['total-blocking-time'].description,
-        score: runnerResult.lhr.audits['total-blocking-time'].score,
+        title: runnerResult.lighthouseResult.audits['total-blocking-time'].title,
+        description: runnerResult.lighthouseResult.audits['total-blocking-time'].description,
+        score: runnerResult.lighthouseResult.audits['total-blocking-time'].score,
         displayValue:
-          runnerResult.lhr.audits['total-blocking-time'].displayValue,
+          runnerResult.lighthouseResult.audits['total-blocking-time'].displayValue,
       },
       'cumulative-layout-shift': {
-        title: runnerResult.lhr.audits['cumulative-layout-shift'].title,
+        title: runnerResult.lighthouseResult.audits['cumulative-layout-shift'].title,
         description:
-          runnerResult.lhr.audits['cumulative-layout-shift'].description,
-        score: runnerResult.lhr.audits['cumulative-layout-shift'].score,
+          runnerResult.lighthouseResult.audits['cumulative-layout-shift'].description,
+        score: runnerResult.lighthouseResult.audits['cumulative-layout-shift'].score,
         displayValue:
-          runnerResult.lhr.audits['cumulative-layout-shift'].displayValue,
+          runnerResult.lighthouseResult.audits['cumulative-layout-shift'].displayValue,
       },
       'modern-image-formats': {
-        title: runnerResult.lhr.audits['modern-image-formats'].title,
+        title: runnerResult.lighthouseResult.audits['modern-image-formats'].title,
         description:
-          runnerResult.lhr.audits['modern-image-formats'].description,
-        score: runnerResult.lhr.audits['modern-image-formats'].score,
+          runnerResult.lighthouseResult.audits['modern-image-formats'].description,
+        score: runnerResult.lighthouseResult.audits['modern-image-formats'].score,
         displayValue:
           Math.max(
-            runnerResult.lhr.audits['modern-image-formats'].numericValue / 1000
+            runnerResult.lighthouseResult.audits['modern-image-formats'].numericValue / 1000
           ) + ' S',
       },
       'unused-javascript': {
-        title: runnerResult.lhr.audits['unused-javascript'].title,
-        description: runnerResult.lhr.audits['unused-javascript'].description,
-        score: runnerResult.lhr.audits['unused-javascript'].score,
+        title: runnerResult.lighthouseResult.audits['unused-javascript'].title,
+        description: runnerResult.lighthouseResult.audits['unused-javascript'].description,
+        score: runnerResult.lighthouseResult.audits['unused-javascript'].score,
         displayValue:
           Math.max(
-            runnerResult.lhr.audits['unused-javascript'].numericValue / 1000
+            runnerResult.lighthouseResult.audits['unused-javascript'].numericValue / 1000
           ) + ' S',
       },
       'minified-javascript': {
-        title: runnerResult.lhr.audits['unminified-javascript'].title,
+        title: runnerResult.lighthouseResult.audits['unminified-javascript'].title,
         description:
-          runnerResult.lhr.audits['unminified-javascript'].description,
-        score: runnerResult.lhr.audits['unminified-javascript'].score,
+          runnerResult.lighthouseResult.audits['unminified-javascript'].description,
+        score: runnerResult.lighthouseResult.audits['unminified-javascript'].score,
         displayValue:
-          runnerResult.lhr.audits['unminified-javascript'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['unminified-javascript'].scoreDisplayMode,
       },
       'minified-css': {
-        title: runnerResult.lhr.audits['unminified-css'].title,
-        description: runnerResult.lhr.audits['unminified-css'].description,
-        score: runnerResult.lhr.audits['unminified-css'].score,
+        title: runnerResult.lighthouseResult.audits['unminified-css'].title,
+        description: runnerResult.lighthouseResult.audits['unminified-css'].description,
+        score: runnerResult.lighthouseResult.audits['unminified-css'].score,
         displayValue:
-          runnerResult.lhr.audits['unminified-css'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['unminified-css'].scoreDisplayMode,
       },
       'preload-lcp-image': {
-        title: runnerResult.lhr.audits['preload-lcp-image'].title,
-        description: runnerResult.lhr.audits['preload-lcp-image'].description,
-        score: runnerResult.lhr.audits['preload-lcp-image'].score,
+        title: runnerResult.lighthouseResult.audits['preload-lcp-image'].title,
+        description: runnerResult.lighthouseResult.audits['preload-lcp-image'].description,
+        score: runnerResult.lighthouseResult.audits['preload-lcp-image'].score,
         displayValue:
-          runnerResult.lhr.audits['preload-lcp-image'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['preload-lcp-image'].scoreDisplayMode,
       },
       'uses-long-cache-ttl': {
-        title: runnerResult.lhr.audits['uses-long-cache-ttl'].title,
-        description: runnerResult.lhr.audits['uses-long-cache-ttl'].description,
-        score: runnerResult.lhr.audits['uses-long-cache-ttl'].score,
+        title: runnerResult.lighthouseResult.audits['uses-long-cache-ttl'].title,
+        description: runnerResult.lighthouseResult.audits['uses-long-cache-ttl'].description,
+        score: runnerResult.lighthouseResult.audits['uses-long-cache-ttl'].score,
         displayValue:
-          runnerResult.lhr.audits['uses-long-cache-ttl'].displayValue,
+          runnerResult.lighthouseResult.audits['uses-long-cache-ttl'].displayValue,
       },
     },
     accessibilityMetrics: {
       'button-name': {
-        title: runnerResult.lhr.audits['button-name'].title,
-        description: runnerResult.lhr.audits['button-name'].description,
-        score: runnerResult.lhr.audits['button-name'].score,
-        displayMode: runnerResult.lhr.audits['button-name'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['button-name'].title,
+        description: runnerResult.lighthouseResult.audits['button-name'].description,
+        score: runnerResult.lighthouseResult.audits['button-name'].score,
+        displayMode: runnerResult.lighthouseResult.audits['button-name'].scoreDisplayMode,
       },
       bypass: {
-        title: runnerResult.lhr.audits['bypass'].title,
-        description: runnerResult.lhr.audits['bypass'].description,
-        score: runnerResult.lhr.audits['bypass'].score,
-        displayMode: runnerResult.lhr.audits['bypass'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['bypass'].title,
+        description: runnerResult.lighthouseResult.audits['bypass'].description,
+        score: runnerResult.lighthouseResult.audits['bypass'].score,
+        displayMode: runnerResult.lighthouseResult.audits['bypass'].scoreDisplayMode,
       },
       'link-name': {
-        title: runnerResult.lhr.audits['link-name'].title,
-        description: runnerResult.lhr.audits['link-name'].description,
-        score: runnerResult.lhr.audits['link-name'].score,
-        displayMode: runnerResult.lhr.audits['link-name'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['link-name'].title,
+        description: runnerResult.lighthouseResult.audits['link-name'].description,
+        score: runnerResult.lighthouseResult.audits['link-name'].score,
+        displayMode: runnerResult.lighthouseResult.audits['link-name'].scoreDisplayMode,
       },
     },
     bestPracticesMetrics: {
       doctype: {
-        title: runnerResult.lhr.audits['doctype'].title,
-        description: runnerResult.lhr.audits['doctype'].description,
-        score: runnerResult.lhr.audits['doctype'].score,
-        displayMode: runnerResult.lhr.audits['doctype'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['doctype'].title,
+        description: runnerResult.lighthouseResult.audits['doctype'].description,
+        score: runnerResult.lighthouseResult.audits['doctype'].score,
+        displayMode: runnerResult.lighthouseResult.audits['doctype'].scoreDisplayMode,
       },
       'is-on-https': {
-        title: runnerResult.lhr.audits['is-on-https'].title,
-        description: runnerResult.lhr.audits['is-on-https'].description,
-        score: runnerResult.lhr.audits['is-on-https'].score,
-        displayMode: runnerResult.lhr.audits['is-on-https'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['is-on-https'].title,
+        description: runnerResult.lighthouseResult.audits['is-on-https'].description,
+        score: runnerResult.lighthouseResult.audits['is-on-https'].score,
+        displayMode: runnerResult.lighthouseResult.audits['is-on-https'].scoreDisplayMode,
       },
       deprecations: {
-        title: runnerResult.lhr.audits['deprecations'].title,
-        description: runnerResult.lhr.audits['deprecations'].description,
-        score: runnerResult.lhr.audits['deprecations'].score,
-        displayMode: runnerResult.lhr.audits['deprecations'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['deprecations'].title,
+        description: runnerResult.lighthouseResult.audits['deprecations'].description,
+        score: runnerResult.lighthouseResult.audits['deprecations'].score,
+        displayMode: runnerResult.lighthouseResult.audits['deprecations'].scoreDisplayMode,
       },
       'geolocation-on-start': {
-        title: runnerResult.lhr.audits['geolocation-on-start'].title,
+        title: runnerResult.lighthouseResult.audits['geolocation-on-start'].title,
         description:
-          runnerResult.lhr.audits['geolocation-on-start'].description,
-        score: runnerResult.lhr.audits['geolocation-on-start'].score,
+          runnerResult.lighthouseResult.audits['geolocation-on-start'].description,
+        score: runnerResult.lighthouseResult.audits['geolocation-on-start'].score,
         displayMode:
-          runnerResult.lhr.audits['geolocation-on-start'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['geolocation-on-start'].scoreDisplayMode,
       },
       'notification-on-start': {
-        title: runnerResult.lhr.audits['notification-on-start'].title,
+        title: runnerResult.lighthouseResult.audits['notification-on-start'].title,
         description:
-          runnerResult.lhr.audits['notification-on-start'].description,
-        score: runnerResult.lhr.audits['notification-on-start'].score,
+          runnerResult.lighthouseResult.audits['notification-on-start'].description,
+        score: runnerResult.lighthouseResult.audits['notification-on-start'].score,
         displayMode:
-          runnerResult.lhr.audits['notification-on-start'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['notification-on-start'].scoreDisplayMode,
       },
       'image-size-responsive': {
-        title: runnerResult.lhr.audits['image-size-responsive'].title,
+        title: runnerResult.lighthouseResult.audits['image-size-responsive'].title,
         description:
-          runnerResult.lhr.audits['image-size-responsive'].description,
-        score: runnerResult.lhr.audits['image-size-responsive'].score,
+          runnerResult.lighthouseResult.audits['image-size-responsive'].description,
+        score: runnerResult.lighthouseResult.audits['image-size-responsive'].score,
         displayMode:
-          runnerResult.lhr.audits['image-size-responsive'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['image-size-responsive'].scoreDisplayMode,
       },
       'image-aspect-ratio': {
-        title: runnerResult.lhr.audits['image-aspect-ratio'].title,
-        description: runnerResult.lhr.audits['image-aspect-ratio'].description,
-        score: runnerResult.lhr.audits['image-aspect-ratio'].score,
+        title: runnerResult.lighthouseResult.audits['image-aspect-ratio'].title,
+        description: runnerResult.lighthouseResult.audits['image-aspect-ratio'].description,
+        score: runnerResult.lighthouseResult.audits['image-aspect-ratio'].score,
         displayMode:
-          runnerResult.lhr.audits['image-aspect-ratio'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['image-aspect-ratio'].scoreDisplayMode,
       },
       'password-inputs-can-be-pasted-into': {
         title:
-          runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].title,
+          runnerResult.lighthouseResult.audits['password-inputs-can-be-pasted-into'].title,
         description:
-          runnerResult.lhr.audits['password-inputs-can-be-pasted-into']
+          runnerResult.lighthouseResult.audits['password-inputs-can-be-pasted-into']
             .description,
         score:
-          runnerResult.lhr.audits['password-inputs-can-be-pasted-into'].score,
+          runnerResult.lighthouseResult.audits['password-inputs-can-be-pasted-into'].score,
         displayMode:
-          runnerResult.lhr.audits['password-inputs-can-be-pasted-into']
+          runnerResult.lighthouseResult.audits['password-inputs-can-be-pasted-into']
             .scoreDisplayMode,
       },
       'errors-in-console': {
-        title: runnerResult.lhr.audits['errors-in-console'].title,
-        description: runnerResult.lhr.audits['errors-in-console'].description,
-        score: runnerResult.lhr.audits['errors-in-console'].score,
+        title: runnerResult.lighthouseResult.audits['errors-in-console'].title,
+        description: runnerResult.lighthouseResult.audits['errors-in-console'].description,
+        score: runnerResult.lighthouseResult.audits['errors-in-console'].score,
         displayMode:
-          runnerResult.lhr.audits['errors-in-console'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['errors-in-console'].scoreDisplayMode,
       },
     },
     seoMetrics: {
       viewport: {
-        title: runnerResult.lhr.audits['viewport'].title,
-        description: runnerResult.lhr.audits['viewport'].description,
-        score: runnerResult.lhr.audits['viewport'].score,
-        displayMode: runnerResult.lhr.audits['viewport'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['viewport'].title,
+        description: runnerResult.lighthouseResult.audits['viewport'].description,
+        score: runnerResult.lighthouseResult.audits['viewport'].score,
+        displayMode: runnerResult.lighthouseResult.audits['viewport'].scoreDisplayMode,
       },
       'document-title': {
-        title: runnerResult.lhr.audits['document-title'].title,
-        description: runnerResult.lhr.audits['document-title'].description,
-        score: runnerResult.lhr.audits['document-title'].score,
-        displayMode: runnerResult.lhr.audits['document-title'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['document-title'].title,
+        description: runnerResult.lighthouseResult.audits['document-title'].description,
+        score: runnerResult.lighthouseResult.audits['document-title'].score,
+        displayMode: runnerResult.lighthouseResult.audits['document-title'].scoreDisplayMode,
       },
       'link-name': {
-        title: runnerResult.lhr.audits['link-name'].title,
-        description: runnerResult.lhr.audits['link-name'].description,
-        score: runnerResult.lhr.audits['link-name'].score,
-        displayMode: runnerResult.lhr.audits['link-name'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['link-name'].title,
+        description: runnerResult.lighthouseResult.audits['link-name'].description,
+        score: runnerResult.lighthouseResult.audits['link-name'].score,
+        displayMode: runnerResult.lighthouseResult.audits['link-name'].scoreDisplayMode,
       },
       'http-status-code': {
-        title: runnerResult.lhr.audits['http-status-code'].title,
-        description: runnerResult.lhr.audits['http-status-code'].description,
-        score: runnerResult.lhr.audits['http-status-code'].score,
+        title: runnerResult.lighthouseResult.audits['http-status-code'].title,
+        description: runnerResult.lighthouseResult.audits['http-status-code'].description,
+        score: runnerResult.lighthouseResult.audits['http-status-code'].score,
         displayMode:
-          runnerResult.lhr.audits['http-status-code'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['http-status-code'].scoreDisplayMode,
       },
       'meta-description': {
-        title: runnerResult.lhr.audits['meta-description'].title,
-        description: runnerResult.lhr.audits['meta-description'].description,
-        score: runnerResult.lhr.audits['meta-description'].score,
+        title: runnerResult.lighthouseResult.audits['meta-description'].title,
+        description: runnerResult.lighthouseResult.audits['meta-description'].description,
+        score: runnerResult.lighthouseResult.audits['meta-description'].score,
         displayMode:
-          runnerResult.lhr.audits['meta-description'].scoreDisplayMode,
+          runnerResult.lighthouseResult.audits['meta-description'].scoreDisplayMode,
       },
       'image-alt': {
-        title: runnerResult.lhr.audits['image-alt'].title,
-        description: runnerResult.lhr.audits['image-alt'].description,
-        score: runnerResult.lhr.audits['image-alt'].score,
-        displayMode: runnerResult.lhr.audits['image-alt'].scoreDisplayMode,
+        title: runnerResult.lighthouseResult.audits['image-alt'].title,
+        description: runnerResult.lighthouseResult.audits['image-alt'].description,
+        score: runnerResult.lighthouseResult.audits['image-alt'].score,
+        displayMode: runnerResult.lighthouseResult.audits['image-alt'].scoreDisplayMode,
       },
     },
   };
