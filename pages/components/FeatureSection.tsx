@@ -12,6 +12,8 @@ import {
   Heading,
   StylesProvider,
 } from '@chakra-ui/react';
+import centerDash from '../../public/centerDash.png';
+import Image from 'next/image';
 
 const FeatSect = () => {
   return (
@@ -31,7 +33,9 @@ const FeatSect = () => {
           </TabPanel>
           <TabPanel display='flex' justifyContent='space-evenly'>
             <p className={style.featText}>View your metrics history over time, allowing you to see the progress or setbacks of your website.</p>
-            <img className={style.homeGifs} src="https://i.gyazo.com/dc2288d131698a0a2680c1de6cfe88dd.gif" alt="Image from Gyazo" width="1000"/>
+            <div>
+              <Image className={style.homeGifs} src={centerDash} alt='line chart'/>
+            </div>
           </TabPanel>
           <TabPanel display='flex' justifyContent='space-evenly'>
             <p className={style.featText}>Supercharge Panoptic by connecting your Github, and link your repositories to endpoints.</p>

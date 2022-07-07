@@ -32,7 +32,7 @@ const UsingApp: FC = (props): JSX.Element => {
           </p>
           <br />
             <div className={styles.imageContainer}>
-              <img src="https://i.gyazo.com/dc2288d131698a0a2680c1de6cfe88dd.gif" alt="Image from Gyazo" width="1000"/>
+              <img className={styles.docsGifs} src="https://i.gyazo.com/dc2288d131698a0a2680c1de6cfe88dd.gif" alt="Image from Gyazo" width="1000"/>
             </div>
           <br />
           <p>
@@ -42,7 +42,7 @@ const UsingApp: FC = (props): JSX.Element => {
           </VStack>
           <VStack>
             <div className={styles.imageContainer}>
-              <img src="https://i.gyazo.com/5e31447789f0209e6a6b129de41077ea.gif" alt="Image from Gyazo" width="1000"/>
+              <img className={styles.docsGifs} src="https://i.gyazo.com/5e31447789f0209e6a6b129de41077ea.gif" alt="Image from Gyazo" width="1000"/>
             </div>
           <br />
           <Heading size='lg'>Making an Account</Heading>
@@ -64,7 +64,7 @@ const UsingApp: FC = (props): JSX.Element => {
             <br />
             <br />
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-              <Image src={repoPic} alt="hi"  height={450} width={260} style={{ zIndex: -1 }} />
+              <Image src={repoPic} alt="hi"  height={450} width={260} style={{ zIndex: -1 }}/>
             </div>
             <br />
             <br />

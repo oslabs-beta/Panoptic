@@ -334,4 +334,4 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
   await currentUser.save();
 
   res.status(200).json(scores);
-}
+};
