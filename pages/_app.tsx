@@ -9,7 +9,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 function MyApp({ Component, pageProps }: AppProps):JSX.Element {
   return (
-    <SessionProvider session={pageProps.session}>
+    // <SessionProvider session={pageProps.session}>
       <ChakraProvider>
         <Head>
           <title>Panoptic</title>
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps):JSX.Element {
         </Head>
         <Component {...pageProps} />
       </ChakraProvider>
-    </SessionProvider>
+    // </SessionProvider>
   );
 };
 
