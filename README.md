@@ -8,7 +8,7 @@ By tracking these key metrics over a long period of time, Engineers are able to 
 
 Panoptic is powered by Google's Lighthouse SDK, and keeps track of data from all past reports to create a long term image of the health of your application
 
-### Try Panoptic
+## Try Panoptic
 
 To get started, open [www.panoptic.com](http://www.panoptic.com)
 
@@ -30,11 +30,11 @@ Run this test any time there is a change to your main branch to keep a long term
 
 In the future we plan to add GitHub action integration to allow these tests to run automatically through your repository's CI/CD pipeline
 
-### Contribute
+## Contribute
 
 Panoptic is an open-source application, if you would like to contribute to Panoptic, fork this repository, add any features you would like to contribute, then submit a pull request to the official Panoptic dev branch and a team member will review your request prior to approval
 
-### Current Contributors
+## Current Contributors
 
 -   [Elliot Adinolfi](https://github.com/ElliotAdinolfi)
 -   [Marc Doran](https://github.com/CodedMarc)
