@@ -3,53 +3,72 @@ import { useState, FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import logoPic from '../../assets/PanLogo.png';
-import Auth from '../components/auth';
-import { parseCookies } from '../../lib/parseCookies';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 const Nav: FC = (props): JSX.Element => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log('user id prop = ', props.userId);
-  console.log('user id f/t = ', Auth(props.userId));
-  const showLoginOrDash = async () => {
-    const result = await Auth(props.userId.initialRememberValue);
-    if (result === true) {
-      setIsLoggedIn(true);
+  const { data: session } = useSession();
+
+  const SignedInAs = () => {
+    if (session) {
+      return (
+        <div className='signedInAs'> Signed in as {session.user.email}</div>
+      );
+    } else {
+      return <></>;
     }
   };
-  showLoginOrDash();
   const LoggedInOrNot = () => {
-    if (isLoggedIn) {
+    if (session) {
       return (
-        <Link href='/dashboard'>
-          <button id='dashboardBtn' className={styles.loginBtn}>
-            Dashboard
+        <>
+          <Link href='/dashboard'>
+            <button id='dashboardBtn' className={styles.readDocsNav}>
+              Dashboard
+            </button>
+          </Link>
+          <button
+            id='signOutBtn'
+            className={styles.loginBtn}
+            onClick={() => signOut()}
+          >
+            Sign out
           </button>
-        </Link>
+        </>
       );
     } else {
       return (
-        <Link href='/login'>
-          <button id='navLoginBtn' className={styles.loginBtn}>
-            Login
-          </button>
-        </Link>
+        <button
+          id='navLoginBtn'
+          className={styles.loginBtn}
+          onClick={() => signIn()}
+        >
+          Sign in
+        </button>
       );
     }
   };
   return (
-    <nav className={styles.yeahBoi}>
-      <span className={styles.logo}>
-        <Link href='/'>
-          <Image className={styles.logoPic} alt='Panoptic Logo' src={logoPic} />
-        </Link>
-      </span>
-      <div id={styles.navBtns}>
-        <Link href='/docs'>
-          <button className={styles.readDocsNav}>Documentation</button>
-        </Link>
-        <LoggedInOrNot />
-      </div>
-    </nav>
+    <>
+      {' '}
+      <nav className={styles.yeahBoi}>
+        <span className={styles.logo}>
+          <Link href='/'>
+            <Image
+              className={styles.logoPic}
+              alt='Panoptic Logo'
+              src={logoPic}
+            />
+          </Link>
+        </span>
+        <SignedInAs />
+        <div id={styles.navBtns}>
+          <Link href='/docs'>
+            <button className={styles.readDocsNav}>Documentation</button>
+          </Link>
+          <LoggedInOrNot />
+        </div>
+      </nav>
+    </>
   );
 };
 

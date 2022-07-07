@@ -8,10 +8,10 @@ import FeatureSect from './components/FeatureSection';
 import EmployeeID from './components/employeeID';
 import Footer from './components/Footer';
 import { parseCookies } from '../lib/parseCookies';
-const Home: NextPage = (initialRememberValue): JSX.Element => {
+const Home: NextPage = (): JSX.Element => {
   return (
     <div id='homePage'>
-      <Nav userId={initialRememberValue} />
+      <Nav />
       <div className={styles.home}>
         <Intro />
         <InfoSect />
@@ -56,12 +56,5 @@ const Home: NextPage = (initialRememberValue): JSX.Element => {
     </div>
   );
 };
-Home.getInitialProps = async ({ req }) => {
-  // Parseing cookie with our own function so we can read it
-  const cookies = parseCookies(req);
-  // Return our cookie and grab name from cookie
-  return {
-    initialRememberValue: cookies.userId,
-  };
-};
+
 export default Home;

@@ -8,15 +8,16 @@ import MainLineChartRE from './components/MainLineChartRE';
 import { RingLoader } from 'react-spinners';
 import axios from 'axios';
 import type { NextPage } from 'next';
-import { parseCookies } from '../lib/parseCookies';
 import { Octokit } from 'octokit';
 import Sidenav from './components/Sidenav';
-
+import { useSession, signIn, signOutmage } from 'next-auth/react';
 // when we make the api call to back end
 // need to pass url, last commit, reponame, and platform(mobile/desktop)
 // req.body.reponame, req.body.url, req.body.commit, req.body.platform
 
-const Dashboard: NextPage = ({ initialRememberValue }: any) => {
+const Dashboard: NextPage = () => {
+  const { data: session } = useSession();
+
   // const = props;
 
   // type currentUser = any;
@@ -29,26 +30,26 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     bestPractices: 0,
     seo: 0,
   });
-
   const [selected, setSelected] = useState('Select An Endpoint');
   const [scores, setScores] = useState(
     <Box>
       <ControlPanel lhdata={lighthouseData} />
     </Box>
   );
-
   const [GaugeData, setGaugeData] = useState({});
   const didMount = useRef(false);
   // const repoNames: { Other: string[] }|{} = { Other: [] };
   const repoNames: {} = { Other: [] };
-
   // Get Current User
   const getUser = async (): Promise<any> => {
-    const result: any = await axios.get(`/api/user/${initialRememberValue}`);
+    const result: any = await axios.get(
+      `/api/user/austinlovesworking@gmail.com`
+    );
+    // const result: any = await axios.get(`/api/user/${session.user.email}`);
     setCurrentUser(result.data);
 
     const foundUserData: any = await axios.post(`/api/finduser/`, {
-      username: initialRememberValue,
+      username: 'austinlovesworking@gmail.com',
     });
 
     setUserData(foundUserData.data);
@@ -111,6 +112,8 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     await axios
       .post(`/api/lighthouse`, {
         url: urlData.value,
+        email: session.user.email,
+        platform: 'desktop',
       })
       .then((result: any) => {
         didMount.current = true;
@@ -243,7 +246,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
         w='100vw'
         h='100vh'
       >
-        {/* <Sidenav /> */}
         <GridItem className={styles.containerLeft}>
           <Box className={styles.metricsContainer}>
             <h2 className={styles.enterUrl}>Enter New Endpoint Below</h2>
@@ -281,7 +283,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
                 accessibilityData={accessibilityData}
               />
             </Box>
-            <Box>Second</Box>
           </VStack>
         </GridItem>
 
@@ -307,17 +308,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
       </Grid>
     </div>
   );
-};
-
-Dashboard.getInitialProps = async ({
-  req,
-}: any): Promise<{ initialRememberValue: string }> => {
-  // Parseing cookie with our own function so we can read it
-  const cookies = parseCookies(req);
-  // Return our cookie and grab name from cookie
-  return {
-    initialRememberValue: cookies.userId,
-  };
 };
 
 export default Dashboard;

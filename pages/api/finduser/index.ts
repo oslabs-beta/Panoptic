@@ -2,19 +2,23 @@ const User = require('../../../models/loginModel');
 import dbConnect from '../../../lib/dbConnect';
 import { Request, Response, ErrorRequestHandler } from 'express';
 
-const getUserData = async (req:Request, res:Response):Promise<void> => {
-  const { username } = req.body;
+const getUserData = async (req: Request, res: Response): Promise<void> => {
+  console.log('Got user request');
+  const { email } = req.body;
   try {
     await dbConnect();
-    await User.findOne({_id: username}, (err:ErrorRequestHandler, user:any) => {
-      if (err) return console.log('err getting username', err);
-      if (user) return res.send(user);
-    });
+    await User.findOne(
+      { email: email },
+      (err: ErrorRequestHandler, user: any) => {
+        if (err) return res.send(err);
+        if (user) return res.send(user);
+      }
+    );
+  } catch (error) {
+    if (error) console.log(error);
   }
-  catch (error) {
-    if (error) console.log('damn...');
-  };
 };
+
 // const getUserData = async (username) => {
 //   await dbConnect();
 

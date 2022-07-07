@@ -35,8 +35,8 @@ const controlPanel: FC<any> = (props: any): JSX.Element => {
             />
           </button>
         );
-      }
-    }
+      };
+    };
   return (
     <Box>
       <HStack spacing='0px' borderRadius='full' bg='#111c44' m={4} h={180}>
