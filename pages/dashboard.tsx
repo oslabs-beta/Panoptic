@@ -10,7 +10,7 @@ import axios from 'axios';
 import type { NextPage } from 'next';
 import { Octokit } from 'octokit';
 import Sidenav from './components/Sidenav';
-import { useSession, signIn, signOutmage } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 // when we make the api call to back end
 // need to pass url, last commit, reponame, and platform(mobile/desktop)
 // req.body.reponame, req.body.url, req.body.commit, req.body.platform
