@@ -3,22 +3,46 @@ const chromeLauncher = require('chrome-launcher');
 import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
 
+function isValidUrl(string) {
+  const matchpattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
+  if (matchpattern.test(string) && string.includes('www')) return true;
+  return false;
+}
+
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
-  //https://www.hulu.com/
-  const url = req.body;
-  console.log('req.body: ', req.body)
-  console.log("url here: ", url)
+  
+  let url = req.body;
+
+  if(url[url.length - 1] !== '/') url = url.concat('/');
+
+  if(url.slice(0, 8) !== 'https://' && url.slice(0,7) !== 'http://') {
+    for(let i = 0; i < url.length; i++) {
+      if(url[i] === 'w' && url[i+3] === '.') {
+        url = 'https://'.concat(url.slice(i, url.length - 1));
+        break;
+      };
+    };
+  };
+
+  try {
+    if (!isValidUrl(url)){
+      throw new Error('Please enter a valid url, format should be https://www.[website].com')
+    }
+  }
+  catch (err){
+    console.log("Error: Invalid url", err);
+  };
   const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=' + url + '&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
   const getGoogleReport = async () => {
     const response = await fetch(googleUrl, {
       headers: {
-        Referer: 'https://web.dev/measure/?url=' + url 
+        Referer: 'https://web.dev/measure/?url=' + url
       },
     })
       .then(response => response.json())
       return response;
   };
-  
+
   let runnerResult = await getGoogleReport();
   // grab all the info to return to the front-end
   const scores:LHData = {
