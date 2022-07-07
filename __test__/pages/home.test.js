@@ -1,7 +1,4 @@
-// import 'expect-puppeteer';
-// import puppeteer from 'puppeteer';
 
-// const puppeteer = require('puppeteer');
 const puppeteer = require('puppeteer');
 
 // const timeout = process.env.SLOWMO ? 30000 : 10000;

@@ -50,7 +50,7 @@ function Sidenav(props: any): JSX.Element {
               height={80}
             /> */}
             <a className={`${styles.link} /dashboard`} href='/dashboard'>
-              Metrics
+              Dashboard
             </a>
             <a
               className={`${styles.link} /repoendpoints`}
