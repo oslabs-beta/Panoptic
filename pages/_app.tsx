@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps):JSX.Element {
       <ChakraProvider>
         <Head>
           <title>Panoptic</title>
-          <link rel='icon' href='../assets/PanLogo.png'/>
+          <link rel='icon' href='/icons8-watchtower-96.png'/>
         </Head>
         <Component {...pageProps} />
       </ChakraProvider>
