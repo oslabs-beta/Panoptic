@@ -1,8 +1,10 @@
 import styles from '../../styles/Docs.module.scss';
 import { FC } from 'react';
-import { Heading, VStack } from '@chakra-ui/react';
+import { flexbox, Heading, VStack } from '@chakra-ui/react';
 import Image from 'next/image';
 import repoPic from '../../public/repoPic.png';
+import centerDash from '../../public/centerDash.png';
+import rightSideDash from '../../public/rightSideDash.png';
 const UsingApp: FC = (props): JSX.Element => {
   return (
     <div id={styles.docsContainer}>
@@ -62,20 +64,24 @@ const UsingApp: FC = (props): JSX.Element => {
             <br />
             <br />
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-              <Image src={repoPic} alt="hi"  height={450} width={260} />
+              <Image src={repoPic} alt="hi"  height={450} width={260} style={{ zIndex: -1 }} />
             </div>
             <br />
             <br />
             In the center of the page we have our graphing tools, upon first load it will always show the most recent test ran on the first endpoint of your first listed repository.
             <br />
             <br />
-            [ Insert image of center of dash here ]
+            <div>
+              <Image src={centerDash} alt='center of dashboard' style={{ zIndex: -1 }}/>
+            </div>
             <br />
             <br />
             On the right side of the page is our in depth metrics. These are the same that you would find on the demo page, the include an in depth look at your webpage and a breakdown of what is going well vs what can be improved upon. If you expand them you will find a brief discription about them and a link to the associated Lighthouse documentation for more information. 
             <br />
             <br />
-            [ Insert image of right side of dash here ]
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Image src={rightSideDash} alt='right side of dashboard' style={{ zIndex: -1 }} width={500} height={500}/>
+            </div>
             <br />
             <br />
             <br />
