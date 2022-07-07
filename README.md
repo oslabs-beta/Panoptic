@@ -10,7 +10,7 @@ Panoptic is powered by Google's Lighthouse SDK, and keeps track of data from all
 
 ## Try Panoptic
 
-To get started, open [www.panoptic.com](http://www.panoptic.com)
+To get started, open [www.panoptic.app](http://www.panoptic.app)
 
 Navigate to our sign-up/login page
 
