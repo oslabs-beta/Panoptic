@@ -1,7 +1,8 @@
 import styles from '../../styles/Docs.module.scss';
 import { FC } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
-
+import Image from 'next/image';
+import repoPic from '../../public/repoPic.png';
 const UsingApp: FC = (props): JSX.Element => {
   return (
     <div id={styles.docsContainer}>
@@ -60,7 +61,9 @@ const UsingApp: FC = (props): JSX.Element => {
             After logging in to the application you will be greeted by our dashboard. On the left side you will see our enpoint selector, which if logged in with GitHub will also include all of your repositories. Here you can add endpoints to, or delete them from your repositories. Be careful when deleting endpoints as this will also delete all associated saved data on them.
             <br />
             <br />
-            [ insert image of left side dash here ]
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
+              <Image src={repoPic} alt="hi"  height={450} width={260} />
+            </div>
             <br />
             <br />
             In the center of the page we have our graphing tools, upon first load it will always show the most recent test ran on the first endpoint of your first listed repository.

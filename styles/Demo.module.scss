@@ -31,10 +31,10 @@
 .endpointBtn {
   font-family: $primary-font;
   padding: 0.7em 1em;
-  border: 2px solid $secondary-blue;
+  border: 2px solid $blue-stone;
   border-radius: $round-dem-edges;
   font-weight: 700;
-  background-color: $secondary-blue;
+  background-color: $blue-stone;
   color: $lavender;
   white-space: nowrap;
   margin-top: 1rem;
@@ -42,7 +42,7 @@
 }
 
 .endpointBtn:hover {
-  color: $secondary-blue;
+  color: $blue-stone;
   background-color: $lavender;
 }
 
