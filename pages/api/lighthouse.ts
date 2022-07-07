@@ -5,6 +5,7 @@ import express, { Request, Response } from 'express';
 const User = require('../../models/loginModel.ts');
 import dbConnect from '../../lib/dbConnect';
 
+<<<<<<< HEAD
 export default async function lighthouseRequest(
   req: Request,
   res: Response
@@ -27,6 +28,53 @@ export default async function lighthouseRequest(
     'response ===' + response.lighthouseResult.categories.performance.score
   );
   // grab all the info to return to the front-end
+=======
+
+function isValidUrl(string) {
+  const matchpattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
+  if (matchpattern.test(string) && string.includes('www')) return true;
+  return false;
+}
+
+export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
+  await dbConnect();
+  const cookies = new Cookies(req, res);
+  let url:string = req.body.url;
+  const reponame:string | null = req.body.reponame || null;
+  const lastCommit:string | null = req.body.commit || null;
+  const platform:string = req.body.platform ? req.body.platform : 'desktop';
+  if(url[url.length - 1] !== '/') url = url.concat('/');
+
+  if(url.slice(0, 8) !== 'https://' && url.slice(0,7) !== 'http://') {
+    for(let i = 0; i < url.length; i++) {
+      if(url[i] === 'w' && url[i+3] === '.') {
+        url = 'https://'.concat(url.slice(i, url.length - 1));
+        break;
+      };
+    };
+  };
+  try {
+    if (!isValidUrl(url)){
+      throw new Error('Please enter a valid url, format should be https://www.[website].com')
+    }
+  }
+  catch (err){
+    console.log("Error: Invalid url", err);
+  };
+  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=' + url + '&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
+  const getGoogleReport = async () => {
+    const response = await fetch(googleUrl, {
+      headers: {
+        Referer: 'https://web.dev/measure/?url=' + url
+      },
+    })
+      .then(response => response.json())
+      return response;
+  }
+
+  let runnerResult = await getGoogleReport();
+  
+>>>>>>> dev
   const scores: LHData = {
     performance: Math.ceil(
       response.lighthouseResult.categories.performance.score * 100
