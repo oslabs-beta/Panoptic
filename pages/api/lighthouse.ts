@@ -298,6 +298,7 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
       metrics: scores,
     };
     if(reponame) {
+      console.log('davis test: ', reponame)
       if(!currentUser.github.repos[reponame]) {
         currentUser.github.repos[reponame] = {
           repoEndpoints: [],

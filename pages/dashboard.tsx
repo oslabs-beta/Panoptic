@@ -243,7 +243,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
         w='100vw'
         h='100vh'
       >
-        {/* <Sidenav /> */}
         <GridItem className={styles.containerLeft}>
           <Box className={styles.metricsContainer}>
             <h2 className={styles.enterUrl}>Enter New Endpoint Below</h2>
@@ -281,7 +280,6 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
                 accessibilityData={accessibilityData}
               />
             </Box>
-            <Box>Second</Box>
           </VStack>
         </GridItem>
 
