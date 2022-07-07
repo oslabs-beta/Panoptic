@@ -4,17 +4,21 @@ import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
 
 export default async function lighthouseRequest(req: Request, res: Response):Promise<void> {
-  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=https://www.vapelifestyle.net/&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
+  //https://www.hulu.com/
+  const url = req.body;
+  console.log('req.body: ', req.body)
+  console.log("url here: ", url)
+  const googleUrl = 'https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?strategy=MOBILE&url=' + url + '&key=AIzaSyCWNar-IbOaQT1WX_zfAjUxG01x7xErbSc&category=ACCESSIBILITY&category=BEST_PRACTICES&category=PERFORMANCE&category=SEO';
   const getGoogleReport = async () => {
     const response = await fetch(googleUrl, {
       headers: {
-        Referer: 'https://web.dev/measure/?url=https%3A%2F%2Fwww.vapelifestyle.net%2F'
+        Referer: 'https://web.dev/measure/?url=' + url 
       },
     })
       .then(response => response.json())
       return response;
-  }
-
+  };
+  
   let runnerResult = await getGoogleReport();
   // grab all the info to return to the front-end
   const scores:LHData = {
