@@ -18,10 +18,6 @@ Create an account manually, or sign in with your existing github account
 
 If you sign in with your github account then you will see a list of your existing repositories, otherwise all endpoints to be tested will be added to "other"
 
-To run a test on an endpoint **it must be formatted as follows: https://www.[InsertWebsite].com/**
-If it is not formatted in this way, the server will return an error code
-We plan to make this a bit more lenient with formatting in the future
-
 Select that endpoint and click "run test" 
 
 After waiting for the test to complete, you may need to reload the page (Adding this to the graph on LH audit completion is a feature we are looking to add in the near future) 
@@ -31,6 +27,12 @@ Select the associated endpoint again and you will see your test has been added t
 Run this test any time there is a change to your main branch to keep a long term picture of the health of your application
 
 In the future we plan to add GitHub action integration to allow these tests to run automatically through your repository's CI/CD pipeline
+
+## Something to Note
+
+To run a test on an endpoint **it must be formatted as follows: https://www.[InsertWebsite].com/**
+If it is not formatted in this way, the server will return an error code
+We plan to make this a bit more lenient with formatting in the future
 
 ## Contribute
 
