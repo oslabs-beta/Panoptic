@@ -53,7 +53,7 @@ const Dashboard: NextPage = () => {
     });
 
     setUserData(foundUserData.data);
-
+    //nothing
     if (Object.keys(result.data).length > 0) {
       let keyEndpoint = Object.keys(result.data)[0];
       console.log('logging var', keyEndpoint);
