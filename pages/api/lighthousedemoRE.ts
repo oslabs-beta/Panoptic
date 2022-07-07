@@ -1,8 +1,8 @@
 const lighthouse = require('lighthouse');
-const chromeLauncher = require('chrome-launcher');
+// const chromeLauncher = require('chrome-launcher');
 import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
-import puppeteer from 'puppeteer-core';
+// import puppeteer from 'puppeteer-core';
 import chromium from 'chrome-aws-lambda';
 import { URL } from 'url';
 
