@@ -11,7 +11,7 @@ const User = require('../../../../models/loginModel');
 export default nextConnect()
   .use(
     session({
-      secret: 'test',
+      secret: process.env.GITHUB_SECRET,
     })
   )
   .get(
