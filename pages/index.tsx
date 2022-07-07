@@ -7,7 +7,7 @@ import InfoSect from './components/InfoSection';
 import FeatureSect from './components/FeatureSection';
 import EmployeeID from './components/employeeID';
 import Footer from './components/Footer';
-
+import { parseCookies } from '../lib/parseCookies';
 const Home: NextPage = (): JSX.Element => {
   return (
     <div id='homePage'>

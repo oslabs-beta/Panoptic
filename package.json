@@ -18,6 +18,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@mailchimp/mailchimp_marketing": "^3.0.75",
+    "@next-auth/mongodb-adapter": "^1.0.3",
     "@types/chart.js": "^2.9.37",
     "@types/mongoose": "^5.11.97",
     "@types/next-auth": "^3.15.0",
