@@ -28,12 +28,6 @@ Run this test any time there is a change to your main branch to keep a long term
 
 In the future we plan to add GitHub action integration to allow these tests to run automatically through your repository's CI/CD pipeline
 
-## Something to Note
-
-To run a test on an endpoint **it must be formatted as follows: https://www.[InsertWebsite].com/**
-If it is not formatted in this way, the server will return an error code
-We plan to make this a bit more lenient with formatting in the future
-
 ## Contribute
 
 Panoptic is an open-source application, if you would like to contribute to Panoptic, fork this repository, add any features you would like to contribute, then submit a pull request to the official Panoptic dev branch and a team member will review your request prior to approval
