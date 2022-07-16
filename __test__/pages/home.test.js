@@ -18,46 +18,46 @@ describe('index.tsx', () => {
     await browser.close();
   });
 
-  // it('should be titled "Panoptic"', async () => {
-  //   await expect(page.title()).resolves.toMatch('Panoptic');
-  // });
+  it('should be titled "Panoptic"', async () => {
+    await expect(page.title()).resolves.toMatch('Panoptic');
+  });
 
-  // it('Functional Login Nav Btn', async () => {
-  //   await page.waitForSelector('#navLoginBtn');
-  //   await page.click('#navLoginBtn');
-  //   await page.waitForSelector('#loginBtn');
-  //   const html = await page.$eval('#loginBtn', (e) => e.innerHTML);
-  //   expect(html).toBe('Login');
-  // });
+  it('Functional Login Nav Btn', async () => {
+    await page.waitForSelector('#navLoginBtn');
+    await page.click('#navLoginBtn');
+    await page.waitForSelector('#loginBtn');
+    const html = await page.$eval('#loginBtn', (e) => e.innerHTML);
+    expect(html).toBe('Login');
+  });
 
-  // it('Does Login Work?', async () => {
-  //   await page.waitForSelector('#navLoginBtn');
-  //   await page.click('#navLoginBtn');
-  //   await page.waitForSelector('form');
+  it('Does Login Work?', async () => {
+    await page.waitForSelector('#navLoginBtn');
+    await page.click('#navLoginBtn');
+    await page.waitForSelector('form');
 
-  //   await page.type('#username', 'admin2');
-  //   await page.type('#password', 'admin2');
-  //   await page.click('#loginBtn');
-  //   await page.waitForNavigation();
+    await page.type('#username', 'admin2');
+    await page.type('#password', 'admin2');
+    await page.click('#loginBtn');
+    await page.waitForNavigation();
 
-  //   await expect(page.url()).toMatch('http://localhost:3000/dashboard');
-  // }, 3000);
+    await expect(page.url()).toMatch('http://localhost:3000/dashboard');
+  }, 3000);
 
-  // it('Does Docs Btn work?', async () => {
-  //   await page.waitForSelector('#docsBtn');
+  it('Does Docs Btn work?', async () => {
+    await page.waitForSelector('#docsBtn');
 
-  //   await page.click('#docsBtn');
-  //   await page.waitForNavigation();
-  //   await expect(page.url()).toMatch('http://localhost:3000/docs');
-  // }, 1000);
+    await page.click('#docsBtn');
+    await page.waitForNavigation();
+    await expect(page.url()).toMatch('http://localhost:3000/docs');
+  }, 1000);
 
-  // it('Does Demo Btn work?', async () => {
-  //   await page.waitForSelector('#demoBtn');
+  it('Does Demo Btn work?', async () => {
+    await page.waitForSelector('#demoBtn');
 
-  //   await page.click('#demoBtn');
-  //   await page.waitForNavigation();
-  //   await expect(page.url()).toMatch('http://localhost:3000/demo');
-  // }, 1000);
+    await page.click('#demoBtn');
+    await page.waitForNavigation();
+    await expect(page.url()).toMatch('http://localhost:3000/demo');
+  }, 1000);
 
   it('Does Demo Btn work?', async () => {
     await page.waitForSelector('#demoBtn');

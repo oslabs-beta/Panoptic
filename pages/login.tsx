@@ -37,11 +37,13 @@ function LoginPage(): JSX.Element {
         >
           Login/Sign Up
         </button>
-        {/* <p className={styles.construction}>
+        <p className={styles.construction}>
           GitHub Sign in Coming Soon !!
-        </p> */}
-        <Link
-          href='/api/auth/callback/github'
+        </p>
+        <a
+          // onClick={() => signIn('github')}
+          className={styles.oauthBtn}
+          // href='/api/githublogin'
         >
           <button className={styles.oauthBtn}>
             {githubIcon}Sign in with Github
