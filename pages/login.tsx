@@ -1,14 +1,12 @@
-import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 // import styles from '../styles/Home.module.css';
 import styles from '../styles/Login.module.scss';
 import Nav from './components/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-
+import Link from 'next/link';
 // Login page serving file
 function LoginPage(): JSX.Element {
   const githubIcon: JSX.Element = <FaGithub className={styles.githubLogin} />;
-  const { data: session, status } = useSession();
   return (
     <div className={styles.body}>
       <Nav />
@@ -28,7 +26,7 @@ function LoginPage(): JSX.Element {
           id='password'
           name='password'
           placeholder='password'
-          type='text'
+          type='password'
           className={styles.password}
         ></input>
         <button
@@ -39,16 +37,16 @@ function LoginPage(): JSX.Element {
         >
           Login/Sign Up
         </button>
-        <p className={styles.construction}>
+        {/* <p className={styles.construction}>
           GitHub Sign in Coming Soon !!
-        </p>
-        <a
-          // onClick={() => signIn('github')}
-          className={styles.oauthBtn}
-          // href='/api/githublogin'
+        </p> */}
+        <Link
+          href='/api/auth/callback/github'
         >
-          {githubIcon}Sign in with Github
-        </a>
+          <button className={styles.oauthBtn}>
+            {githubIcon}Sign in with Github
+          </button>
+        </Link>
       </form>
     </div>
   );

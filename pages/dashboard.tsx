@@ -55,16 +55,16 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
 
     if (Object.keys(result.data).length > 0) {
       let keyEndpoint = Object.keys(result.data)[0];
-      console.log('logging var', keyEndpoint);
+      // console.log('logging var', keyEndpoint);
       let keyDesktop: any = Object.keys(result.data[keyEndpoint]);
-      console.log('logging var', keyDesktop);
+      // console.log('logging var', keyDesktop);
       let keyDate = Object.keys(result.data[keyEndpoint][keyDesktop]);
-      console.log('logging var', keyDate);
+      // console.log('logging var', keyDate);
       setLighthouseData(
         result.data[keyEndpoint][keyDesktop][keyDate[keyDate.length - 1]]
           .metrics
       );
-      console.log(result.data[keyEndpoint]);
+      // console.log(result.data[keyEndpoint]);
       loadEndPointDataToChart(result.data[keyEndpoint], keyEndpoint);
     }
     didMount.current = true;
@@ -146,8 +146,8 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
     let defaultList: any;
     let tempLatestVAl;
     let date;
-    console.log(e);
-    console.log(currentUser);
+    // console.log(e);
+    // console.log(currentUser);
     if (currentUser[defaultKey]) {
       // console.log('LINE 147', currentUser[defaultKey]);
       for (const date in currentUser[defaultKey].desktop) {
@@ -203,16 +203,16 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
 
   if (userData.github) {
     // repoNames.repos = [];
-    console.log(userData);
+    // // console.log(userData);
     // for (let i = 0; i < userData.github.repos.length; i++) {
     for (let key in userData.github.repos) {
       // const name = Object.keys(userData.github.repos[i])[0];
       repoNames[key] = [];
-      console.log(userData.github.repos[key]);
+      // console.log(userData.github.repos[key]);
       for (let item of userData.github.repos[key].repoPoints) {
         repoNames[key].push(item);
       }
-      console.log(key);
+      // console.log(key);
     }
     for (let endpoint in userData.endpoints) {
       // console.log(endpoint);
@@ -249,7 +249,7 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
               id='urlData'
               type='text'
               required
-              placeholder='ex: https://YouTube.com/'
+              placeholder='ex: https://www.YouTube.com/'
               className={styles.endpointInput}
             />
             <button type='button' id={styles.endpointBtn} onClick={helperFunc}>

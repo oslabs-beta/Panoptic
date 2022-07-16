@@ -54,7 +54,7 @@ const Repoendpoints: NextPage = ({
       url: inputValue,
       reponame: repoClicked,
     });
-    console.log({ result });
+    // console.log({ result });
     // const users = require('../models/loginModel.ts');
     // let currentUser = await users.findOne({ _id: initialRememberValue });
   };
@@ -71,11 +71,11 @@ const Repoendpoints: NextPage = ({
 
     // store the github access token in a variable
     const token = result.data.github.token;
-    console.log(token);
+    // console.log(token);
     // octokit (just cuz github used examples with this and it seemed simpler)
     const octokit = new Octokit({ auth: `${token}` }); // give auth the token as a string
     // store repos result in variable
-    console.log(octokit);
+    // console.log(octokit);
     const test = await octokit.request(`GET /user/repos`);
     // Loop through array of objects (result (test))
     const displayRepos: any = [];

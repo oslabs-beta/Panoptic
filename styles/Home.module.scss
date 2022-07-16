@@ -134,13 +134,22 @@
   height: 45rem;
   width: auto;
   border-radius: 8px;
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+
 }
 
 .featText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 25rem;
+  justify-self: flex-start;
+  align-self: center;
+  text-align: center;
+  margin-right: 45px;
+  font-weight: 900;
 }
 
 .lowcontainer {
@@ -253,6 +262,7 @@
 
 
 @media screen and (max-width: 800px) {
+
   // Turn Hero Into Flexbox for mobile
   .hero {
     padding-top: 20%;
@@ -286,6 +296,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
     gap: 50px;
+  }
+
+  .mdeak {
+    margin-top: 60px;
   }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex, Spacer, Text, Box, Heading } from '@chakra-ui/react';
 import style from '../../styles/Home.module.scss'
+import { v4 as uuidv4 } from 'uuid';
 // import { FaTools, FaHandshake, FaStar } from 'react-icons/fa';
 
 const AboutUs = () => {
@@ -24,11 +25,9 @@ const AboutUs = () => {
   ];
 
   return (
-    <Flex
-    justifyContent='center'
-    >
+    <Flex justifyContent='space-evenly'>
       {array.map((arr) => (
-        <>
+        <div key={uuidv4()}>
           <Box
             height='300px'
             width='400px'
@@ -44,6 +43,7 @@ const AboutUs = () => {
             fontWeight='700'
             boxShadow='xl'
             overflow='auto'
+  
           >
             <Heading size='sm' fontSize='2rem' margin='0 0 2rem 0'>{arr.title}</Heading>
             <Text color='black' fontWeight='400' fontSize='1.35rem' height='fit-content'>
@@ -52,7 +52,7 @@ const AboutUs = () => {
               {arr.info1}
             </Text>
           </Box>
-        </>
+        </div>
       ))}
     </Flex>
   );

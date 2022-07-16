@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Nav from './components/Nav';
 import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
+import Newsletter from './components/Newsletter';
 import Intro from './components/Intro';
 import InfoSect from './components/InfoSection';
 import FeatureSect from './components/FeatureSection';
@@ -16,6 +17,7 @@ const Home: NextPage = (): JSX.Element => {
         <Intro />
         <InfoSect />
         <FeatureSect />
+        <Newsletter />
         <div className={styles.lowcontainer}>
           <h3 className={styles.mdeak}>Meet Our Team</h3>
           <div className={styles.staffcontainer}>
