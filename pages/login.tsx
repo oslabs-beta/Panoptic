@@ -50,3 +50,4 @@ function LoginPage(): JSX.Element {
       </form>
     </div>
   );
+}
