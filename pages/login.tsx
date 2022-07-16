@@ -40,14 +40,6 @@ function LoginPage(): JSX.Element {
         <p className={styles.construction}>
           GitHub Sign in Coming Soon !!
         </p>
-        <a
-          // onClick={() => signIn('github')}
-          className={styles.oauthBtn}
-          // href='/api/githublogin'
-        >
-          <button className={styles.oauthBtn}>
-            {githubIcon}Sign in with Github
-          </button>
         </Link>
       </form>
     </div>
