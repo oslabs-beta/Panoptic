@@ -31,7 +31,7 @@ const FeatSect = () => {
           </TabPanel>
           <TabPanel display='flex' justifyContent='space-evenly'>
             <p className={style.featText}>View your metrics history over time, allowing you to see the progress or setbacks of your website.</p>
-            <img className={style.homeGifs} src="https://i.gyazo.com/dc2288d131698a0a2680c1de6cfe88dd.gif" alt="Image from Gyazo" width="1000"/>
+            <img className={style.homeGifs} src={"https://i.gyazo.com/dc2288d131698a0a2680c1de6cfe88dd.gif"} alt="Image from Gyazo" width="1000"/>
           </TabPanel>
           <TabPanel display='flex' justifyContent='space-evenly'>
             <p className={style.featText}>Supercharge Panoptic by connecting your Github, and link your repositories to endpoints.</p>

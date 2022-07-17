@@ -5,6 +5,7 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
+  propNames,
 } from '@chakra-ui/react';
 import style from '../../styles/Dashboard.module.scss';
 import { FC } from 'react';
@@ -12,8 +13,17 @@ import { FC } from 'react';
 const wrightDetails = (props: any) => {
   const tempArr: JSX.Element[] = [];
   let metrics;
+
+  if (props.user && props.selectedEndpoint !== 'Select An Endpoint' && !props.user[props.selectedEndpoint]) {
+    tempArr.push(
+      <AccordionItem>
+        <h2>The endpoint that you selected has no data, try running a test on the endpoint</h2>
+      </AccordionItem>
+    )
+  }
+  
   // extract the most current date of the user's history
-  if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
+  else if (props.user && props.selectedEndpoint !== 'Select An Endpoint') {
     // typing is a bit odd here, will come back to this
     const mainObj: any = props.user[props.selectedEndpoint]['desktop'];
     const dateArr: string[] = Object.keys(mainObj);

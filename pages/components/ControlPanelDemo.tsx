@@ -32,10 +32,10 @@ const controlPanelDemo: FC<any> = (props: any): JSX.Element => {
       }
     }
   return (
-    <Box>
-      <HStack spacing='0px' borderRadius='full' bg='#111c44' m={4} h={180}>
+    <Box className={styles.mobileBoxHeight}>
+      <div className={styles.innerGaugeContainer}>
         {tempArr}
-      </HStack>
+      </div>
     </Box>
   );
 };

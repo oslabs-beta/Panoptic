@@ -43,6 +43,7 @@ const wrightDetailsDemo: FC<any> = (props: any) => {
               >
                 <div>{metrics[props.selectedMetric][i].title}</div>
                 <div
+                  className={style.mobileSpacing}
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',

@@ -7,7 +7,6 @@
   position: fixed;
   top: 0;
   min-width: 100%;
-  // min-width: 10rem;
   display: flex;
   justify-content: space-between;
   padding: 2% 5%;
@@ -34,13 +33,6 @@
   height: auto;
   cursor: pointer;
 }
-
-// .buttonsContainer {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 200px;
-// }
 
 .loginBtn {
   font-family: $primary-font;
