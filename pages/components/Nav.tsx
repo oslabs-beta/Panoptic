@@ -9,11 +9,11 @@ const Nav: FC = (): JSX.Element => {
 
   return (
     <nav className={styles.yeahBoi}>
-      <span className={styles.logo}>
         <Link href='/'>
-          <Image className={styles.logoPic} alt='Panoptic Logo' src={logoPic} />
+          <span className={styles.logo}>
+              <Image className={styles.logoPic} alt='Panoptic Logo' src={logoPic} />
+          </span>
         </Link>
-      </span>
       <div id={styles.navBtns}>
         <Link href='/docs'>
           <button className={styles.readDocsNav}>Documentation</button>

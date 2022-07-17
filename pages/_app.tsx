@@ -9,15 +9,15 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 function MyApp({ Component, pageProps }: AppProps):JSX.Element {
   return (
-    <SessionProvider session={pageProps.session}>
+    // <SessionProvider session={pageProps.session}>
       <ChakraProvider>
         <Head>
           <title>Panoptic</title>
-          <link rel='icon' href='../assets/PanLogo.png'/>
+          <link rel='icon' href='/icons8-watchtower-96.png'/>
         </Head>
         <Component {...pageProps} />
       </ChakraProvider>
-    </SessionProvider>
+    // </SessionProvider>
   );
 };
 

@@ -9,7 +9,7 @@ import { Box } from '@chakra-ui/react';
 // Sign Up page serving file
 function signupPage():JSX.Element {
   const githubIcon = <FaGithub className={styles.githubLogin} />;
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
 
   return (
     <div className={styles.body}>

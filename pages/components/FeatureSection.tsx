@@ -19,9 +19,9 @@ const FeatSect = () => {
       <Heading>Features</Heading>
       <Tabs fontSize={'30px'} variant='soft-rounded' padding='15px 0px'>
         <TabList> 
-          <Tab fontSize={'35px'}>Visual Reporting</Tab>
-          <Tab fontSize={'35px'}>Compare Metrics Overtime</Tab>
-          <Tab fontSize={'35px'}>Github Intergation</Tab>
+          <Tab fontSize={'24px'}>Visual Reporting</Tab>
+          <Tab fontSize={'24px'}>Compare Metrics Overtime</Tab>
+          <Tab fontSize={'24px'}>Github Integration</Tab>
         </TabList>
 
         <TabPanels>

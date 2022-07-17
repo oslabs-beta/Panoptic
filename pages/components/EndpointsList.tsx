@@ -22,7 +22,7 @@ const EndpointsList: FC<any> = (props: any) => {
   // filter user obj for only endpoints
   const filteredObj: any = (): any => {
     const test: any = Object.keys(props.endPts).map((key) => key);
-    console.log({ test });
+    // console.log({ test });
     return test;
   };
 

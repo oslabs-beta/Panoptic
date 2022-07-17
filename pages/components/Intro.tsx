@@ -100,16 +100,16 @@ const Intro: FC = (): JSX.Element => {
         p={2}
         className={styles.introContainer}
       >
-        <Heading size='2xl' mt={5} fontWeight='700' fontSize='4.4rem'>
+        <Heading size='2xl' mt={5} fontWeight='700' fontSize='4.4rem' textAlign={'center'}>
           Panoptic
         </Heading>
-        <Heading size='3xl' mt='1'>
+        <Heading size='3xl' mt='1'textAlign={'center'}>
           An innovative performance tracker
         </Heading>
-        <Heading size='3xl' mt='2'>
+        <Heading size='3xl' mt='2' textAlign={'center'}>
           for Web Applications
         </Heading>
-        <Text mt='4' fontSize='xl' fontWeight='bold'>
+        <Text mt='4' color='#b2caee' fontSize='xl' fontWeight='bold' textAlign={'center'}>
           An intuitive solution for monitoring key web application metrics over
           any given period of time
         </Text>
@@ -120,9 +120,9 @@ const Intro: FC = (): JSX.Element => {
       </Flex>
       {/* <Box className={styles.left}> */}
       <Flex direction='column' color={'black'} align='center' m={5}>
-        <Heading size='3xl' m={5}>
+        <Heading size='3xl' m={5} textAlign={'center'}>
           Empowering those that create to <br />
-          <Center>Create more efficiently</Center>
+          Create more efficiently
         </Heading>
         <Box>
           <Link href='/docs'>
