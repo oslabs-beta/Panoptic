@@ -93,14 +93,6 @@ const DataTest: NextPage<any> = (
     lighthouseData.seo,
   ]);
 
-  const [loadData, setLoadData] = useState(null);
-  const [isLoaded, setLoaded] = useState(false);
-
-  const [performanceData, setPerformanceData] = useState(null);
-  const [seoData, setSeoData] = useState(null);
-  const [bestPracticeData, setBestPracticeData] = useState(null);
-  const [accessibilityData, setAccessibilityData] = useState(null);
-
   return (
     <div className={styles.threeParts}>
       <div className={styles.containerLeft}>
@@ -156,7 +148,7 @@ const DataTest: NextPage<any> = (
         <div className={styles.demoIntro}>
           <h3>Welcome to Panoptic!</h3>
           <p>
-            Enter a url into the search bar on the left, and then click Run
+            Enter a url into the search bar, and then click Run
             Tests to begin!
           </p>
           <p>
