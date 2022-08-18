@@ -36,6 +36,5 @@ Panoptic is an open-source application, if you would like to contribute to Panop
 
 -   [Elliot Adinolfi](https://github.com/ElliotAdinolfi)
 -   [Marc Doran](https://github.com/CodedMarc)
--   [Austin Johnson](https://github.com/LovesWorking)
 -   [Karl Richards](https://github.com/Acario175)
 -   [Davis Zung](https://github.com/daviszung)
