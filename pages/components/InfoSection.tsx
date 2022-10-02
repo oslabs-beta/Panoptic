@@ -27,8 +27,8 @@ const AboutUs = () => {
     <Flex
     justifyContent='center'
     >
-      {array.map((arr) => (
-        <>
+      {array.map(arr => (
+        <div key={`${arr.title}`}>
           <Box
             height='300px'
             width='400px'
@@ -52,7 +52,7 @@ const AboutUs = () => {
               {arr.info1}
             </Text>
           </Box>
-        </>
+        </div>
       ))}
     </Flex>
   );

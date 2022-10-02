@@ -1,4 +1,3 @@
-import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 // import styles from '../styles/Home.module.css';
 import styles from '../styles/Login.module.scss';
 import Nav from './components/Nav';
@@ -8,7 +7,6 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 // Login page serving file
 function LoginPage(): JSX.Element {
   const githubIcon: JSX.Element = <FaGithub className={styles.githubLogin} />;
-  const { data: session, status } = useSession();
   return (
     <div className={styles.body}>
       <Nav />
