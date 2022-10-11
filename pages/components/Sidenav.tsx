@@ -42,13 +42,13 @@ function Sidenav(props: any): JSX.Element {
             </div>
           </DrawerHeader>
           <DrawerBody className={styles.drawerBody}>
-            {/* <h2>{props.user.username}</h2> */}
-            {/* <Image
-              src={`${props.user.github['profilePic']}`}
+            <h2>Hello, {props.username}!</h2>
+            {props.profilePic ? <Image
+              src={props.profilePic}
               alt={'user profile pic'}
               width={80}
               height={80}
-            /> */}
+            /> : <></>}
             <a className={`${styles.link} /dashboard`} href='/dashboard'>
               Dashboard
             </a>

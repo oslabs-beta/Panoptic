@@ -9,7 +9,6 @@ import { RingLoader } from 'react-spinners';
 import axios from 'axios';
 import type { NextPage } from 'next';
 import { parseCookies } from '../lib/parseCookies';
-import { Octokit } from 'octokit';
 import Sidenav from './components/Sidenav';
 
 // when we make the api call to back end
@@ -239,10 +238,11 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
         className={styles.Grid}
         templateColumns={'1fr 3fr 1fr'}
         gap={5}
-        w='100vw'
+        minW='100vw'
+        maxW='100vw'
         h='100vh'
       >
-        <GridItem className={styles.containerLeft}>
+        <GridItem maxW='100%' className={styles.containerLeft}>
           <Box className={styles.metricsContainer}>
             <h2 className={styles.enterUrl}>Enter New Endpoint Below</h2>
             <input
@@ -267,10 +267,10 @@ const Dashboard: NextPage = ({ initialRememberValue }: any) => {
           </Box>
         </GridItem>
 
-        <GridItem className={styles.containerMid}>
+        <GridItem maxW='100%' className={styles.containerMid}>
           <VStack width='100%' height='100%'>
             <Box className={styles.controlPanel}>{scores}</Box>
-            <Box w='100%' h='100%' className={styles.lineChart}>
+            <Box minW='100%' h='100%' className={styles.lineChart}>
               <MainLineChartRE
                 labelTimes={times}
                 performanceData={performanceData}

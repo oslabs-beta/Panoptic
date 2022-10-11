@@ -24,7 +24,7 @@ const wrightDetails = (props: any) => {
   if (metrics) {
     for (const i in metrics[props.selectedMetric]) {
       const fullDescription = metrics[props.selectedMetric][i].description;
-      const descritpionText = fullDescription.substring(
+      const descriptionText = fullDescription.substring(
         0,
         fullDescription.indexOf('Learn more') - 1
       );
@@ -49,8 +49,8 @@ const wrightDetails = (props: any) => {
               <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4}>
-            {descritpionText}
+          <AccordionPanel textAlign='right' p={5} m={0} w={300} pb={0}>
+            {descriptionText}
             <a href={descriptionLink} rel='noreferrer' target='_blank'>
               <div className={style.learnMoreBtn}>Learn More</div>
             </a>

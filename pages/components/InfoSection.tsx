@@ -1,60 +1,51 @@
 import React from 'react';
-import { Flex, Spacer, Text, Box, Heading } from '@chakra-ui/react';
+import { Flex, Spacer, Text, Box, Heading, GridItem, Grid } from '@chakra-ui/react';
 import style from '../../styles/Home.module.scss'
-// import { FaTools, FaHandshake, FaStar } from 'react-icons/fa';
+
 
 const AboutUs = () => {
-  //   const [isLargerThan48] = useMediaQuery('(min-width: 48em)');
-
-  const array = [
-    {
-      title: 'Technical Website Audits ',
-      info: "Discover powerful insights about the strengths and weaknesses of your website, including: Performance, Accessibility, Best Practices, and SEO"
-
-    },
-    {
-      title: 'Github',
-      info: 'Login with Github to link your repositories and websites',
-      info1: 'Keep track of audit metrics over a history of commits'
-    },
-    {
-      title: 'Visual Reporting',
-      info: 'View your report with gauges, charts, and interactive lists, making it easy to understand the wealth of information from your report',
-    },
-  ];
 
   return (
-    <Flex
-    justifyContent='center'
-    >
-      {array.map(arr => (
-        <div key={`${arr.title}`}>
-          <Box
-            height='300px'
-            width='400px'
-            bg='#b2caee'
-            shadow='md'
-            p='6'
-            m='6'
-            borderRadius='8px'
-            textAlign='center'
-            margin='0rem 5%'
-            border='1px solid #C4DDFF'
-            color='black'
-            fontWeight='700'
-            boxShadow='xl'
-            overflow='auto'
-          >
-            <Heading size='sm' fontSize='2rem' margin='0 0 2rem 0'>{arr.title}</Heading>
-            <Text color='black' fontWeight='400' fontSize='1.35rem' height='fit-content'>
-              {arr.info}
-              <br></br>
-              {arr.info1}
+    <Box position='absolute' w='100%' left='0'>
+      <Grid color='white' bg='#3a5985' p={{base: '5%', lg: '10%'}} templateColumns={{base:'1fr', lg: 'repeat(3, 1fr)'}} gap={6} autoFlow="row dense">
+        <Flex pt={5} pl={{base: 5, md: 0}} direction={{base: 'row', md: 'column'}} justify='center' align='center' w='100%' bg='#608fca'>
+   
+
+            <Text textAlign={'center'}
+            lineHeight={1.2}
+            fontWeight={800}
+            fontSize={{ base: '1xl', sm: '2xl', lg: '3xl' }}>Technical Website Audits</Text>  
+            <Text fontSize={{ base: 'l', md: '2xl', lg: 'xl' }} m='10'>Discover powerful insights about the strengths and weaknesses of your website, including: Performance, Accessibility, Best Practices, and SEO.</Text>
+
+        </Flex>
+        <Flex pt={5} pl={{base: 5, md: 0}} direction={{base: 'row', md: 'column'}} justify='center' align='center' w='100%' bg='#608fca'>
+
+    
+            <Text 
+            textAlign={'center'}
+            lineHeight={1.2}
+            fontWeight={800}
+            fontSize={{ base: '1xl', sm: '2xl', lg: '3xl' }}
+            >
+              Github Integration
             </Text>
-          </Box>
-        </div>
-      ))}
-    </Flex>
+
+            <Text fontSize={{ base: 'l', md: '2xl', lg: 'xl' }} m='10'>Login with Github to link your repositories and websites to keep track of audit metrics over a history of commits.</Text>
+
+        </Flex>
+        <Flex pt={5} pl={{base: 5, md: 0}} direction={{base: 'row', md: 'column'}} justify='center' align='center' w='100%' bg='#608fca'>
+
+
+            <Text textAlign={'center'}
+            lineHeight={1.2}
+            fontWeight={800}
+            fontSize={{ base: '1xl', sm: '2xl', lg: '3xl' }}>Visual Reports</Text>
+
+            <Text fontSize={{ base: 'l', md: '2xl', lg: 'xl' }} m='10'>View your report with gauges, charts, and interactive lists, making it easy to understand the wealth of information from your report.</Text>
+
+        </Flex>
+      </Grid>
+    </Box>
   );
 };
 

@@ -41,7 +41,7 @@ const Nav: FC = (): JSX.Element => {
 
   /************************************  NAVBAR START *********************************/
   return (
-    <Box position='fixed' w='100%'>
+    <Box zIndex={100} position='fixed' w='100%'>
       {/************************************  NAVBAR  *********************************/}
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
@@ -83,7 +83,7 @@ const Nav: FC = (): JSX.Element => {
           </Center>
 
           {/************************************  NAV LINKS ON DESKTOP *********************************/}
-          <Flex ml={20} display={{ base: 'none', md: 'flex' }}>
+          <Flex ml={10} display={{ base: 'none', md: 'flex' }}>
             <DesktopNav />
           </Flex>
           {/************************************  SPACER *********************************/}
@@ -94,7 +94,7 @@ const Nav: FC = (): JSX.Element => {
             direction={'row'}
             spacing={4}>
             {/************************************  NAVBAR BUTTONS: DARK/LIGHT MODE *********************************/}
-            <Button display={{base: 'none', md: 'inline-flex'}} position={{base: 'relative', md: 'fixed'}} zIndex='5' top='25%' right='0' bg='black' color='white' onClick={toggleColorMode}>
+            <Button display={{base: 'none', md: 'inline-flex'}} position={{base: 'relative', md: 'fixed'}} zIndex='5' top='25%' right='0' bg='#266ef6' color='white' onClick={toggleColorMode}>
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             </Button>
             {/************************************  NAVBAR BUTTONS: LOGIN BTN *********************************/}
@@ -108,17 +108,19 @@ const Nav: FC = (): JSX.Element => {
               </Button>
             </Link>
             {/************************************  NAVBAR BUTTONS: SIGNUP BTN *********************************/}
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Sign Up
-            </Button>
+            <Link href='/signup'>
+              <Button
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'#266ef6'}
+                _hover={{
+                  bg: '#608fca',
+                }}>
+                Sign Up
+              </Button>
+            </Link>
           </Stack>
         </Flex>
       </Flex>
@@ -134,13 +136,13 @@ const Nav: FC = (): JSX.Element => {
 const DesktopNav = () => {
 
   return (
-    <Stack direction={'row'} justify={'center'} spacing={8}>
+    <Stack direction={'row'} justify={'center'} spacing={5}>
       {/****  LOOP THROUGH NAV ITEMS ARRAY TO RENDER LINK INSIDE BOX ****/}
       {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-              <Link href={navItem.href ?? '#'}>
-                {navItem.label}
-              </Link>
+        <Box cursor='pointer' fontWeight='700' key={navItem.label}>
+          <Link href={navItem.href ?? '#'}>
+            {navItem.label}   
+          </Link>
         </Box>
       ))}
     </Stack>
@@ -161,9 +163,11 @@ const MobileNav = () => {
       <Button display={{base: 'inline-flex', md: 'none'}} onClick={toggleColorMode}>
         {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
       </Button>
-      <Button w='100%'>
-        Sign Up
-      </Button>
+      <Link href='/signup'>
+        <Button w='100%'>
+          Sign Up
+        </Button>
+      </Link>
     </Stack>
   );
 };
@@ -219,7 +223,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Features',
-    href: '/',
+    href: '#Features',
   },
 ];
 

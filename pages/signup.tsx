@@ -9,7 +9,7 @@ import { Box } from '@chakra-ui/react';
 // Sign Up page serving file
 function signupPage():JSX.Element {
   const githubIcon = <FaGithub className={styles.githubLogin} />;
-  const { data: session, status } = useSession();
+
 
   return (
     <div className={styles.body}>
@@ -21,15 +21,15 @@ function signupPage():JSX.Element {
         id='login'
       >
         <Box
-          mt='1'
+          mb='2'
           fontWeight='semibold'
           as='h2'
-          color='black'
+          color='black.200'
           lineHeight='tight'
           // noOfLines={1}
           textAlign='center'
         >
-          Please enter the information below to create an account
+          Create A New Account
         </Box>
         <Box w='100%'>
           <input
@@ -65,14 +65,13 @@ function signupPage():JSX.Element {
             textAlign='center'
             m={5}
           >
-            Or <br /> Feel free to create an account with your GitHub account
+            Or
           </Box>
           <a
-            onClick={() => signIn('github')}
             className={styles.oauthBtn}
             href='http://localhost:3000/api/githublogin'
           >
-            {githubIcon}Create Account with Github
+            {githubIcon}Create Account Using Github
           </a>
         </Box>
       </form>

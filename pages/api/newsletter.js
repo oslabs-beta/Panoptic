@@ -1,17 +1,18 @@
+require('dotenv').config();
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 const sendToMailChimp = (req, res) => {
   const { EMAIL } = req.body;
   mailchimp.setConfig({
-    apiKey: "b1d923e73fdbb043cae54c13581370a5-us5",
+    apiKey: process.env.MAILCHIMP_KEY,
     server: "us5",
   });
   
-  const listId = "396c103380";
+  const listId = process.env.MAILCHIMP_LIST;
 
-  
+  console.log(process.env.MAILCHIMP_KEY, process.env.MAILCHIMP_LIST);
   const run = async () => {
-    const response = await mailchimp.lists.addListMember(listId, {
+    const response = await mailchimp.lists.setListMember(listId, EMAIL, {
       email_address: EMAIL,
       status: "subscribed",
     });

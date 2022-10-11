@@ -7,7 +7,7 @@ const AboutLH:FC = (props): JSX.Element => {
     <div id={styles.docsContainer}>
       <VStack>
         <VStack>
-          <Heading size='2xl' color='#266ef6'>What is Google Lighthouse</Heading>
+          <Heading textAlign='center' size='2xl' color='#266ef6'>What is Google Lighthouse</Heading>
           <br />
           <p>
             <em>Google Lighthouse</em> is an open-source tool for running technical website audits. It creates a browser environment, and visits a selected endpoint just as any user would, and along the way collects data on key metrics including <strong>Performance, Accessibility, Best Practices, and SEO</strong>. When Lighthouse finishes running an audit, it can deliver all of the metrics associated on a results page.

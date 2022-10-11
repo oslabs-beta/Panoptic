@@ -31,7 +31,8 @@
 
 .endpointsTitle {
   font-family: $primary-font;
-  font-size: 2rem;
+  font-size: 1.55rem;
+  padding: 0.5em 1em;
   font-weight: 900;
   border-bottom: 1px solid $lavender;
   color: $secondary-blue;
@@ -41,12 +42,11 @@
 .endpointContainer {
   border: 1px solid $lavender;
   border-radius: 8px;
-  width: 100%;
+  // width: 100%;
   overflow: hidden;
 }
 
 .endpointBtn {
   background-color: #266ef6;
   color: $lavender;
-
 }

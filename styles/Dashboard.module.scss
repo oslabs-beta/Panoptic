@@ -71,7 +71,25 @@
   background-color: $lavender;
   border: 2px solid $lavender;
 }
+/* width */
+.containerLeft::-webkit-scrollbar {
+  width: 5px;
+}
 
+/* Track */
+.containerLeft::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.containerLeft::-webkit-scrollbar-thumb {
+  background: $neon-pink
+}
+
+/* Handle on hover */
+.containerLeft::-webkit-scrollbar-thumb:hover {
+  background: $neon-orange;
+}
 .containerLeft {
   text-align: center;
   display: flex;
@@ -80,9 +98,8 @@
   background: black;
   opacity: 55%;
   color: white;
-  margin-right: 3rem;
   font-size: 1.2rem;
-
+  overflow-y: scroll;
   input {
     text-align: center;
     color: white;
@@ -108,8 +125,27 @@
   justify-content: center;
   align-items: center;
   padding: 1em;
+  overflow-y: scroll;
+}
+/* width */
+.containerRight::-webkit-scrollbar {
+  width: 5px;
 }
 
+/* Track */
+.containerRight::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.containerRight::-webkit-scrollbar-thumb {
+  background: $neon-pink
+}
+
+/* Handle on hover */
+.containerRight::-webkit-scrollbar-thumb:hover {
+  background: $neon-orange;
+}
 .containerGauge {
   display: flex;
   height: 90%;
@@ -139,14 +175,12 @@
 .endpointInput {
   color: $primary-black;
   font-family: $primary-font;
-  height: 2.5rem;
-  min-width: 15vw;
-  width: 65%;
+  height: 2rem;
+  width: 100%;
   border-bottom: 2px solid $secondary-blue;
   font-weight: 500;
   outline: 0;
   background: transparent;
-  transition: border-color 0.2s;
 }
 
 .endpointInput:focus {
@@ -210,7 +244,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: large;
+  font-size: 1rem;
   color: $primary-blue;
   width: 100%;
   background-color: $lavender;
@@ -231,7 +265,8 @@
 
 .learnMoreBtn {
   border-radius: 6px;
-  padding: 0rem 1rem;
+  margin-top: 5px;
+  text-align: center;
   background: $lavender;
   color: $primary-blue;
   font-weight: 500;

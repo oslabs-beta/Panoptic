@@ -36,34 +36,34 @@ const EndpointsList: FC<any> = (props: any) => {
   for (const key in props.reponames) {
     // console.log('props.reponames', props.reponames)
     const tempArr: JSX.Element[] = props.reponames[key].map((el: String) => (
-      <Button key={uuidv4()} onClick={endpointSelector} bg='#266ef6' _hover={{'background' : '#f0f4fb', 'color' : '#266ef6'}}>
+      <Box fontSize='15px' as='button' lineHeight='1.2' p={ 1 } maxW='100%' mt={1} key={uuidv4()} onClick={endpointSelector} bg='#266ef6' _hover={{'background' : '#f0f4fb', 'color' : '#266ef6'}}>
         {el}
-      </Button>
+      </Box>
     ));
     arr.push(
       <AccordionItem key={uuidv4()} className={style.li}>
         <AccordionButton>
           <Flex width='100%'>
-            <Text fontSize='4xl' fontWeight='semibold'>
+            <Text fontSize='4xl' fontWeight='bold'>
               {key}
             </Text>
             <Spacer />
             <VStack>
               <SmallAddIcon onClick={() => console.log('Add clicked')} />
               <Spacer />
-              <EditIcon onClick={() => console.log('Add clicked')} />
+              <EditIcon onClick={() => console.log('Edit clicked')} />
               <Spacer />
               <SmallCloseIcon onClick={() => console.log('Del clicked')} />
             </VStack>
           </Flex>
         </AccordionButton>
-        <AccordionPanel pb={4}>{tempArr}</AccordionPanel>
+        <AccordionPanel p={0} m={0} w={250}>{tempArr}</AccordionPanel>
       </AccordionItem>
     );
   }
   return (
     <div className={style.EndpointsList}>
-      <Accordion className={style.endpointContainer}>
+      <Accordion defaultIndex={[0]} allowMultiple className={style.endpointContainer}>
         <h1 className={style.endpointsTitle}>My Repositories:</h1>
         {arr}
       </Accordion>

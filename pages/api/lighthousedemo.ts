@@ -4,8 +4,10 @@ import { LHData, LHOptions } from '../../types';
 import express, { Request, Response } from 'express';
 
 function isValidUrl(string) {
-  const matchpattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
-  if (matchpattern.test(string) && string.includes('www')) return true;
+  let matchpattern = "(https?|ftp)://(www\\.)?(((([a-zA-Z0-9.-]+\\.){1,}[a-zA-Z]{2,4}|localhost))|((\\d{1,3}\\.){3}(\\d{1,3})))(:(\\d+))?(/([a-zA-Z0-9-._~!$&'()*+,;=:@/]|%[0-9A-F]{2})*)?(\\?([a-zA-Z0-9-._~!$&'()*+,;=:/?@]|%[0-9A-F]{2})*)?(#([a-zA-Z0-9._-]|%[0-9A-F]{2})*)?"
+  matchpattern = "^" + matchpattern + "$";
+  let regex = new RegExp(matchpattern)
+  if (regex.test(string)) return true;
   return false;
 }
 
@@ -13,17 +15,9 @@ export default async function lighthouseRequest(req: Request, res: Response):Pro
   
   let url = req.body;
 
-  if(url[url.length - 1] !== '/') url = url.concat('/');
-
-  if(url.slice(0, 8) !== 'https://' && url.slice(0,7) !== 'http://') {
-    for(let i = 0; i < url.length; i++) {
-      if(url[i] === 'w' && url[i+3] === '.') {
-        url = 'https://'.concat(url.slice(i, url.length - 1));
-        break;
-      };
-    };
-  };
-
+  if(url[url.length - 1] !== '/') url = url + '/';
+  if(!url.includes('https://') && !url.includes('http://')) url = 'https://' + url;
+  if(url.includes('www.')) url = url.replace('www.', '');
   try {
     if (!isValidUrl(url)){
       throw new Error('Please enter a valid url, format should be https://www.[website].com')
